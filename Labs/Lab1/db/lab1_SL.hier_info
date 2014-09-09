@@ -1,0 +1,56 @@
+|lab1_SL
+clk => ~NO_FANOUT~
+s[0] => s[0].IN2
+s[1] => s[1].IN2
+s[2] => s[2].IN2
+s[3] => s[3].IN2
+led[0] <= ledBarDecoder:bar.led
+led[1] <= ledBarDecoder:bar.led
+led[2] <= ledBarDecoder:bar.led
+led[3] <= ledBarDecoder:bar.led
+led[4] <= ledBarDecoder:bar.led
+led[5] <= ledBarDecoder:bar.led
+led[6] <= ledBarDecoder:bar.led
+led[7] <= ledBarDecoder:bar.led
+seg[0] <= led7Decoder:led7.seg
+seg[1] <= led7Decoder:led7.seg
+seg[2] <= led7Decoder:led7.seg
+seg[3] <= led7Decoder:led7.seg
+seg[4] <= led7Decoder:led7.seg
+seg[5] <= led7Decoder:led7.seg
+seg[6] <= led7Decoder:led7.seg
+
+
+|lab1_SL|ledBarDecoder:bar
+s[0] => led[1].DATAIN
+s[0] => led[0].DATAIN
+s[1] => led[3].DATAIN
+s[1] => led[2].DATAIN
+s[2] => led.IN0
+s[2] => led[5].DATAIN
+s[2] => led[4].DATAIN
+s[3] => led.IN1
+led[0] <= s[0].DB_MAX_OUTPUT_PORT_TYPE
+led[1] <= s[0].DB_MAX_OUTPUT_PORT_TYPE
+led[2] <= s[1].DB_MAX_OUTPUT_PORT_TYPE
+led[3] <= s[1].DB_MAX_OUTPUT_PORT_TYPE
+led[4] <= s[2].DB_MAX_OUTPUT_PORT_TYPE
+led[5] <= s[2].DB_MAX_OUTPUT_PORT_TYPE
+led[6] <= led.DB_MAX_OUTPUT_PORT_TYPE
+led[7] <= <GND>
+
+
+|lab1_SL|led7Decoder:led7
+s[0] => Decoder0.IN3
+s[1] => Decoder0.IN2
+s[2] => Decoder0.IN1
+s[3] => Decoder0.IN0
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
