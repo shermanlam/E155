@@ -4,7 +4,7 @@ module lab1_SL(	input logic clk,				//clock
 						output logic [7:0] led, 	//8 lights on LED bar
 						output logic [6:0] seg);	//segments in 7-seg display
 	
-	ledBarDecoder	bar(.s(s), .led(led));	//instance of the led bar decoder
+	ledBarDecoder	bar(.clk(clk), .s(s), .led(led));	//instance of the led bar decoder
 	led7Decoder		led7(.s(s), .seg(seg)); //instance of 7-seg display decoder
 
 endmodule
@@ -17,8 +17,22 @@ endmodule
 	Author: Sherman
 	Date: Sep 9, 2014
 */
-module ledBarDecoder(input logic [3:0] s,
+module ledBarDecoder(input logic clk,
+							input logic [3:0] s,
 							output logic [7:0] led);
+	logic [23:0] count = 24'b0;
+	logic [23:0] period = 24'h7F2815;	//every 8333333 cycles of a 40MHz clock, the
+													//7th led will flash on or off
+	
+	always_ff @(posedge clk) begin
+		if (count == period) begin
+											count = 24'b0;
+											led[7] = ~led[7];
+			end
+		else								count <= count + 1'b1;
+		//count <= count + 1'b1;
+	end
+	
 	always_comb begin
 		led[1:0] = s[0] ? 2'b01 : 2'b10;
 		led[3:2] = s[1] ? 2'b01 : 2'b10;
@@ -38,26 +52,27 @@ endmodule
 */
 module led7Decoder(	input logic [3:0] s,			//4 DIP switches
 							output logic [6:0] seg);	//segments in 7-seg display
+							
 	always_comb begin
 		//lookup table for s-seg relationship
 		case(s)
-			4'b0000:	seg = 7'b1000000;		// 0x0
-			4'b0001:	seg = 7'b1111001;		// 0x1
-			4'b0010:	seg = 7'b0100100;		// 0x2
-			4'b0011:	seg = 7'b0110000;		// 0x3
-			4'b0100:	seg = 7'b0011001;		// 0x4
-			4'b0101:	seg = 7'b0010010;		// 0x5
-			4'b0110:	seg = 7'b0000010;		// 0x6
-			4'b0111:	seg = 7'b1111000;		// 0x7
-			4'b1000:	seg = 7'b0000000;		// 0x8
-			4'b1001:	seg = 7'b0011000;		// 0x9
-			4'b1010:	seg = 7'b0001000;		// 0xA
-			4'b1011:	seg = 7'b0000011;		// 0xB
-			4'b1100:	seg = 7'b0100111;		// 0xC
-			4'b1101:	seg = 7'b0100001;		// 0xD
-			4'b1110:	seg = 7'b0000110;		// 0xE
-			4'b1111:	seg = 7'b0001110;		// 0xF
-			default: seg = 7'b1111110;		// default to a dash
+			4'b0000:	seg = 7'b100_0000;		// 0x0
+			4'b0001:	seg = 7'b111_1001;		// 0x1
+			4'b0010:	seg = 7'b010_0100;		// 0x2
+			4'b0011:	seg = 7'b011_0000;		// 0x3
+			4'b0100:	seg = 7'b001_1001;		// 0x4
+			4'b0101:	seg = 7'b001_0010;		// 0x5
+			4'b0110:	seg = 7'b000_0010;		// 0x6
+			4'b0111:	seg = 7'b111_1000;		// 0x7
+			4'b1000:	seg = 7'b000_0000;		// 0x8
+			4'b1001:	seg = 7'b001_1000;		// 0x9
+			4'b1010:	seg = 7'b000_1000;		// 0xA
+			4'b1011:	seg = 7'b000_0011;		// 0xB
+			4'b1100:	seg = 7'b010_0111;		// 0xC
+			4'b1101:	seg = 7'b010_0001;		// 0xD
+			4'b1110:	seg = 7'b000_0110;		// 0xE
+			4'b1111:	seg = 7'b000_1110;		// 0xF
+			default: seg = 7'b111_1110;		// default to a dash
 		endcase
 		
 	end
