@@ -23,14 +23,15 @@ module ledBarDecoder(input logic clk,
 	logic [23:0] count = 24'b0;
 	logic [23:0] period = 24'h7F2815;	//every 8333333 cycles of a 40MHz clock, the
 													//7th led will flash on or off
+	//assign led[7] = 1'b0;								//init at 0
 	
 	always_ff @(posedge clk) begin
-		if (count == period) begin
-											count = 24'b0;
-											led[7] = ~led[7];
-			end
-		else								count <= count + 1'b1;
-		//count <= count + 1'b1;
+		if (count >= period) begin
+			count <= 24'b0;
+			led[7] = ~led[7];
+		end
+		else			
+			count <= count + 1'b1;
 	end
 	
 	always_comb begin
@@ -38,7 +39,8 @@ module ledBarDecoder(input logic clk,
 		led[3:2] = s[1] ? 2'b01 : 2'b10;
 		led[5:4] = s[2] ? 2'b01 : 2'b10;
 		led[6] = (s[3]&s[2]) ? 1'b1 : 1'b0;
-	end	
+	end
+
 endmodule
 
 
@@ -56,22 +58,22 @@ module led7Decoder(	input logic [3:0] s,			//4 DIP switches
 	always_comb begin
 		//lookup table for s-seg relationship
 		case(s)
-			4'b0000:	seg = 7'b100_0000;		// 0x0
-			4'b0001:	seg = 7'b111_1001;		// 0x1
-			4'b0010:	seg = 7'b010_0100;		// 0x2
-			4'b0011:	seg = 7'b011_0000;		// 0x3
-			4'b0100:	seg = 7'b001_1001;		// 0x4
-			4'b0101:	seg = 7'b001_0010;		// 0x5
-			4'b0110:	seg = 7'b000_0010;		// 0x6
-			4'b0111:	seg = 7'b111_1000;		// 0x7
-			4'b1000:	seg = 7'b000_0000;		// 0x8
-			4'b1001:	seg = 7'b001_1000;		// 0x9
-			4'b1010:	seg = 7'b000_1000;		// 0xA
-			4'b1011:	seg = 7'b000_0011;		// 0xB
-			4'b1100:	seg = 7'b010_0111;		// 0xC
-			4'b1101:	seg = 7'b010_0001;		// 0xD
-			4'b1110:	seg = 7'b000_0110;		// 0xE
-			4'b1111:	seg = 7'b000_1110;		// 0xF
+			4'h0:	seg = 7'b100_0000;		// 0x0
+			4'h1:	seg = 7'b111_1001;		// 0x1
+			4'h2:	seg = 7'b010_0100;		// 0x2
+			4'h3:	seg = 7'b011_0000;		// 0x3
+			4'h4:	seg = 7'b001_1001;		// 0x4
+			4'h5:	seg = 7'b001_0010;		// 0x5
+			4'h6:	seg = 7'b000_0010;		// 0x6
+			4'h7:	seg = 7'b111_1000;		// 0x7
+			4'h8:	seg = 7'b000_0000;		// 0x8
+			4'h9:	seg = 7'b001_1000;		// 0x9
+			4'ha:	seg = 7'b000_1000;		// 0xA
+			4'hb:	seg = 7'b000_0011;		// 0xB
+			4'hc:	seg = 7'b010_0111;		// 0xC
+			4'hd:	seg = 7'b010_0001;		// 0xD
+			4'he:	seg = 7'b000_0110;		// 0xE
+			4'hf:	seg = 7'b000_1110;		// 0xF
 			default: seg = 7'b111_1110;		// default to a dash
 		endcase
 		

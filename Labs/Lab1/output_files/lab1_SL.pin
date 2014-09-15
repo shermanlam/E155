@@ -68,17 +68,17 @@ CHIP  "lab1_SL"  ASSIGNED TO AN: EP3C5E144C8
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
-RESERVED_INPUT_WITH_WEAK_PULLUP : 1         :        :                   :         : 1         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 2         :        :                   :         : 1         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 3         :        :                   :         : 1         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 4         :        :                   :         : 1         :                
+seg[1]                       : 1         : output : 2.5 V             :         : 1         : Y              
+seg[0]                       : 2         : output : 2.5 V             :         : 1         : Y              
+seg[5]                       : 3         : output : 2.5 V             :         : 1         : Y              
+seg[2]                       : 4         : output : 2.5 V             :         : 1         : Y              
 VCCINT                       : 5         : power  :                   : 1.2V    :           :                
 ~ALTERA_ASDO_DATA1~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 6         : input  : 2.5 V             :         : 1         : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 7         :        :                   :         : 1         :                
+seg[6]                       : 7         : output : 2.5 V             :         : 1         : Y              
 ~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 8         : input  : 2.5 V             :         : 1         : N              
 nSTATUS                      : 9         :        :                   :         : 1         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 10        :        :                   :         : 1         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 11        :        :                   :         : 1         :                
+seg[3]                       : 10        : output : 2.5 V             :         : 1         : Y              
+seg[4]                       : 11        : output : 2.5 V             :         : 1         : Y              
 ~ALTERA_DCLK~                : 12        : output : 2.5 V             :         : 1         : N              
 ~ALTERA_DATA0~ / RESERVED_INPUT_WITH_WEAK_PULLUP : 13        : input  : 2.5 V             :         : 1         : N              
 nCONFIG                      : 14        :        :                   :         : 1         :                
@@ -91,50 +91,50 @@ TDO                          : 20        : output :                   :         
 nCE                          : 21        :        :                   :         : 1         :                
 GND+                         : 22        :        :                   :         : 1         :                
 GND+                         : 23        :        :                   :         : 1         :                
-clk                          : 24        : input  : 2.5 V             :         : 2         : N              
+GND+                         : 24        :        :                   :         : 2         :                
 GND+                         : 25        :        :                   :         : 2         :                
 VCCIO2                       : 26        : power  :                   : 2.5V    : 2         :                
 GND                          : 27        : gnd    :                   :         :           :                
-led[6]                       : 28        : output : 2.5 V             :         : 2         : Y              
+led[7]                       : 28        : output : 2.5 V             :         : 2         : Y              
 VCCINT                       : 29        : power  :                   : 1.2V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 30        :        :                   :         : 2         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 31        :        :                   :         : 2         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 32        :        :                   :         : 2         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 33        :        :                   :         : 2         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 34        :        :                   :         : 2         :                
+led[6]                       : 30        : output : 2.5 V             :         : 2         : Y              
+led[5]                       : 31        : output : 2.5 V             :         : 2         : Y              
+led[4]                       : 32        : output : 2.5 V             :         : 2         : Y              
+led[3]                       : 33        : output : 2.5 V             :         : 2         : Y              
+led[2]                       : 34        : output : 2.5 V             :         : 2         : Y              
 VCCA1                        : 35        : power  :                   : 2.5V    :           :                
 GNDA1                        : 36        : gnd    :                   :         :           :                
 VCCD_PLL1                    : 37        : power  :                   : 1.2V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 38        :        :                   :         : 3         :                
+led[1]                       : 38        : output : 2.5 V             :         : 3         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 39        :        :                   :         : 3         :                
 VCCIO3                       : 40        : power  :                   : 2.5V    : 3         :                
 GND                          : 41        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 42        :        :                   :         : 3         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 43        :        :                   :         : 3         :                
-s[3]                         : 44        : input  : 2.5 V             :         : 3         : Y              
+led[0]                       : 43        : output : 2.5 V             :         : 3         : Y              
+s[0]                         : 44        : input  : 2.5 V             :         : 3         : Y              
 VCCINT                       : 45        : power  :                   : 1.2V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 46        :        :                   :         : 3         :                
 VCCIO3                       : 47        : power  :                   : 2.5V    : 3         :                
 GND                          : 48        : gnd    :                   :         :           :                
-s[2]                         : 49        : input  : 2.5 V             :         : 3         : Y              
-s[1]                         : 50        : input  : 2.5 V             :         : 3         : Y              
-s[0]                         : 51        : input  : 2.5 V             :         : 3         : Y              
-seg[2]                       : 52        : output : 2.5 V             :         : 3         : N              
-seg[1]                       : 53        : output : 2.5 V             :         : 3         : N              
-seg[6]                       : 54        : output : 2.5 V             :         : 4         : N              
-seg[0]                       : 55        : output : 2.5 V             :         : 4         : N              
+s[1]                         : 49        : input  : 2.5 V             :         : 3         : Y              
+s[2]                         : 50        : input  : 2.5 V             :         : 3         : Y              
+s[3]                         : 51        : input  : 2.5 V             :         : 3         : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 52        :        :                   :         : 3         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 53        :        :                   :         : 3         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 54        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 55        :        :                   :         : 4         :                
 VCCIO4                       : 56        : power  :                   : 2.5V    : 4         :                
 GND                          : 57        : gnd    :                   :         :           :                
-seg[4]                       : 58        : output : 2.5 V             :         : 4         : N              
-seg[3]                       : 59        : output : 2.5 V             :         : 4         : N              
-seg[5]                       : 60        : output : 2.5 V             :         : 4         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 58        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 59        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 60        :        :                   :         : 4         :                
 VCCINT                       : 61        : power  :                   : 1.2V    :           :                
 VCCIO4                       : 62        : power  :                   : 2.5V    : 4         :                
 GND                          : 63        : gnd    :                   :         :           :                
-led[4]                       : 64        : output : 2.5 V             :         : 4         : N              
-led[5]                       : 65        : output : 2.5 V             :         : 4         : N              
-led[2]                       : 66        : output : 2.5 V             :         : 4         : N              
-led[3]                       : 67        : output : 2.5 V             :         : 4         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 64        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 65        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 66        :        :                   :         : 4         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 67        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 68        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 69        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 70        :        :                   :         : 4         :                
@@ -155,7 +155,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 84        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 85        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 87        :        :                   :         : 5         :                
-GND+                         : 88        :        :                   :         : 5         :                
+clk                          : 88        : input  : 2.5 V             :         : 5         : Y              
 GND+                         : 89        :        :                   :         : 5         :                
 GND+                         : 90        :        :                   :         : 6         :                
 GND+                         : 91        :        :                   :         : 6         :                
@@ -194,8 +194,8 @@ GND                          : 123       : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : 124       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 125       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 126       :        :                   :         : 7         :                
-led[0]                       : 127       : output : 2.5 V             :         : 7         : N              
-led[1]                       : 128       : output : 2.5 V             :         : 8         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 127       :        :                   :         : 7         :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : 128       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 129       :        :                   :         : 8         :                
 VCCIO8                       : 130       : power  :                   : 2.5V    : 8         :                
 GND                          : 131       : gnd    :                   :         :           :                
@@ -208,7 +208,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 137       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : 138       :        :                   :         : 8         :                
 VCCIO8                       : 139       : power  :                   : 2.5V    : 8         :                
 GND                          : 140       : gnd    :                   :         :           :                
-led[7]                       : 141       : output : 2.5 V             :         : 8         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : 141       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 142       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 143       :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 144       :        :                   :         : 8         :                
