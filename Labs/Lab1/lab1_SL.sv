@@ -1,4 +1,11 @@
-//This is a module for lab1
+/* This module is the wrapper for the project. It instantiates
+   an instance of the led bar decoder and 7 segment decoder
+   
+   Author: Sherman
+   Email: slam@g.hmc.edu
+   Date: Sep 9, 2014
+*/
+
 module lab1_SL(	input logic clk,				//clock
 						input logic [3:0] s,			//4 DIP switches
 						output logic [7:0] led, 	//8 lights on LED bar
@@ -15,6 +22,7 @@ endmodule
 	led[7:0] = [led7, ... ,led0]
 	
 	Author: Sherman
+   Email: slam@g.hmc.edu
 	Date: Sep 9, 2014
 */
 module ledBarDecoder(input logic clk,
@@ -23,7 +31,6 @@ module ledBarDecoder(input logic clk,
 	logic [23:0] count = 24'b0;
 	logic [23:0] period = 24'h7F2815;	//every 8333333 cycles of a 40MHz clock, the
 													//7th led will flash on or off
-	//assign led[7] = 1'b0;								//init at 0
 	
 	always_ff @(posedge clk) begin
 		if (count >= period) begin
@@ -50,6 +57,7 @@ endmodule
 	seg[6:0] = [g,f, ... ,b,a]
 	
 	Author: Sherman
+   Email: slam@g.hmc.edu
 	Date: Sep 9, 2014
 */
 module led7Decoder(	input logic [3:0] s,			//4 DIP switches
@@ -76,7 +84,7 @@ module led7Decoder(	input logic [3:0] s,			//4 DIP switches
 			4'hf:	seg = 7'b000_1110;		// 0xF
 			default: seg = 7'b111_1110;		// default to a dash
 		endcase
-		
+      
 	end
 endmodule
 		
