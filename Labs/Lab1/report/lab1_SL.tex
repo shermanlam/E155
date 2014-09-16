@@ -13,6 +13,7 @@
 \usepackage[squaren]{SIunits}
 \usepackage{listings}
 \usepackage{subfloat}
+\usepackage{hyperref}
 
 %\pagestyle{fancy}
 %\lhead{E155, Lab1}
@@ -64,9 +65,9 @@ This lab consisted of two main components:
 		\item Writing a simple program for interfacing LEDs and switches
 	\end{enumerate}
 
-In the first section of this lab, I assembled the E155 Utility Board from the provide kit. This board serves as a development board for a PIC32 microcontroller and a Cyclone III FPGA. The kit included basic through-hole components such as resistors, capacitors, switches, header pins, and LEDs. Other accessories included a VGA port, JTAG pins, and a jack for programming the PIC. The only surface-mount components were 3 voltage regulators (for 2.5V, 1.2V, and 3.3V). I ran some basic checks to verify that the board performed as expected. These checks included measuring the clock output and voltage regulator outputs.\\
+In the first section of this lab, I assembled the E155 Utility Board from the provide kit. This board serves as a development board for a PIC32 microcontroller and a Cyclone III FPGA. The kit included basic through-hole components such as resistors, capacitors, switches, header pins, and LEDs. Other accessories included a VGA port, JTAG pins, and a jack for programming the PIC. The only surface-mount components were 3 voltage regulators (for 2.5V, 1.2V, and 3.3V). Upon completion of the assembly, I ran some basic checks to verify that the board performed as expected. \\
 
-In the second section of this lab, I used Quartus II to design an interface between the DIP switches on the development board LEDs. The LEDs included a LED bar on the development board and a 7-segment display that was wired off the board.
+In the second section of this lab, I used Quartus II to design an interface between the DIP switches on the development board and several LEDs. The LEDs used were an LED bar on the development board and a 7-segment display that was wired off the board.
 
 
 \section{Design and Testing Methodology}
@@ -75,12 +76,12 @@ In the second section of this lab, I used Quartus II to design an interface betw
 
 \subsubsection{Development Board}
 
-The design of the development board was set by the course instructors and so it was simply assembled according to the provided lab instructions. As briefly mentioned in \ref{sec:intro} several tests were run to verify that the hardware on the board functioned according to my expectations. The results included the following:
+The design of the development board was set by the course instructors and so it was simply assembled according to the provided lab instructions. As briefly mentioned in Section \ref{sec:intro}, several tests were run to verify that the hardware on the board functioned according to my expectations. The results included the following:
 
 	\begin{description} \itemsep0pt
 		\item[Pre-assembly Inspection ] No visible defects were found on the PCB or the components. Using a multimeter, no short was detected across Vin and GND.
-		\item[Power Supply ] When the board was powered by a 5V regulated input, the outputs of the voltage regulators read within 0.05V of the nominal voltage outputs. 
-		\item[Clock ] The output of the clock measured by an oscilloscope to be within 1MHz of the nominal frequency (40MHz).
+		\item[Power Supply ] When the board was powered by a 5V regulated input, the outputs of the voltage regulators read within 0.05V of their nominal voltage outputs. 
+		\item[Clock ] The output of the clock as measured by an oscilloscope was within 1MHz of the nominal frequency (40MHz).
 		\item[LED Bar ] To check the LED bar's functionality, first the pin to one LED was connected (via a wire on the breadboard) to the pin of a switch. If the LED toggles with the switch, the LED was deemed functional. This test was repeated for all the LEDs. All LEDs performed as expected.
 		\item[Switches ] To check the switches' functionality, first the pin to one LED on the LED bar was connected to the pin of one switch. If the LED toggles with the switch, the switch was deemed functional. This test was repeated for all the switches. All switches performed as expected.
 		
@@ -91,13 +92,10 @@ The design of the development board was set by the course instructors and so it 
 \subsubsection{7-Segment Display}
 
 
-
-
-In designing the 7-segment LED circuit, I aimed to make the circuit consistent and reliable. As seen in the Table \ref{tb:pin_mapping}, the control pins of the 7-segment LED were connected to pins 1,2,3,4,7,10, and 11. The layout of the segments on the display is shown in Figure \ref{figure:seven_segement_layout}.
+ Table \ref{tb:pin_mapping} shows the mapping between the segments of the 7-segment LED and output pins on the development board. The layout of the segments on the display is shown in Figure \ref{figure:seven_segement_layout}.
 
 
 \begin{table}[h]
-\label{tb:pin_mapping}
 \center
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
@@ -106,6 +104,7 @@ Pin       & P2  & P1  & P4  & P10  & P11  & P3  & P7  \\ \hline
 Segment   & A   & B   & C   & D    & E    & F   & G   \\ \hline
 \end{tabular}
 \caption{Pin Mapping from development board to 7-segment display}
+\label{tb:pin_mapping}
 \end{table}
 
 
@@ -117,7 +116,7 @@ Segment   & A   & B   & C   & D    & E    & F   & G   \\ \hline
 \end{figure} 
 
 
-In order to ensure that the logic on these pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}.
+In order to ensure that the logic on the output pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. This places the current draw per segment in the recommended $5mA$ to $20mA$ range. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}. The pinout for the 7-segment display is shown in Figure \ref{figure:seven_segment_pinout}. Since the display used has 2 7-segment display, only half of the display was used.
 
 
 \begin{equation}
@@ -139,6 +138,8 @@ R = V/I
 
 \subsection{Software}
 
+\subsubsection{7-Segment Decoder}
+\label{sec:software_7seg}
 
 \begin{table}[h]
 \centering
@@ -170,14 +171,20 @@ s{[}3{]} & s{[}2{]} & s{[}1{]} & s{[}0{]} & (hex) & G & F & E & D & C & B & A & 
 
 The software was written for simplicity. In particular, there are two approaches to the decoder of the 7-segment display. Both approaches start with a truth table with the state of the switches (s[3:0]) as the inputs and the state of the led segments (led[6:0]) as the outputs (see Table \ref{table:7seg_decoder}). Note that since this is a common anode 7-segment display, pulling a pin LOW will actually turn on the corresponding segment. The first approach is to write the state of each segment in terms of the inputs (either sum-of-products or product-of-sums form). The second approach uses a case structure to implement a lookup table. Every possible value for s[3:0] is mapped to a value for led[6:0]. \\
 
-Quartus will theoretically optimize both approaches to similar (if not identical) logic blocks. So both will perform similarly in hardware. I chose to implement the lookup table since it is easier to code and less prone to coding mistakes. Also note that I configured the DIP switches with the LSB on the right (switch 4). \\
+Quartus will theoretically optimize both approaches to similar (if not identical) logic blocks. Consequently, both will perform similarly in hardware. I chose to implement the lookup table since it is easier to code and less prone to coding mistakes. Also note that I configured the DIP switches with the LSB on the right hand side of the switch (switch 4). This yields an intuitive user interface. 
+
+
+\subsubsection{LED bar decoder}
+\label{sec:software_LEDbar}
 
 The decoder for the LED bar is similar to that of the 7-segment display. Its functionality is described in Figure \ref{figure:led_bar_decoder}. \\
 
 In order to flash the LED at 2.4Hz, I setup a counter that tracks the number of clock cycles that have elapsed. To "flash" an LED, the LED must first be toggled on and then off. This requires two clock cycles. So, to flash the LED at 2.4Hz, the LED needs to be toggled at 4.8Hz, or every $\frac{40MHz}{4.8Hz} = 83333333$ cycles. \\
 
-To check the logic output of my decoders, I simulated the module with ModelSim-Altera. The results are shown in Figure \ref{figure:wave}. \\
 
+\subsubsection{Testing}
+
+To check the logic output of my decoders, I simulated the module with ModelSim-Altera. The results are shown in Figure \ref{figure:wave}. The outputs agree with the behavior described in Sections \ref{sec:software_7seg} and \ref{sec:software_LEDbar} \\
 
 
 \begin{figure}[h!]
@@ -200,6 +207,8 @@ To check the logic output of my decoders, I simulated the module with ModelSim-A
 
 
 \section{Technical Documentation}
+
+This section provides the source code for this project and a full schematic for the 7-segment display wiring.
 
 \subsection{System Verilog Code}
 
@@ -307,6 +316,16 @@ endmodule
 \caption{Schematic for full 7-segment display.}
 \label{figure:seven_segment}
 \end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{seven_segment_pinout.png}
+\caption{Pinout for a common anode 7-segment display. Source: Avago HDSP-F15x Series Datasheet, Digikey
+}
+\label{figure:seven_segment_pinout}
+\end{figure} 
+
 
 
 \clearpage
