@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  16 SEP 2014 00:39
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  16 SEP 2014 08:15
 entering extended mode
 **lab1_SL.tex
 
@@ -333,72 +333,88 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 102.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<single_led.png, id=8, 259.7203pt x 155.83218pt>
+<seven_segment_layout.png, id=8, 112.92188pt x 184.43906pt>
+File: seven_segment_layout.png Graphic file (type png)
+
+<use seven_segment_layout.png>
+Package pdftex.def Info: seven_segment_layout.png used on input line 114.
+(pdftex.def)             Requested size: 67.75363pt x 110.66428pt.
+
+<single_led.png, id=10, 259.7203pt x 155.83218pt>
 File: single_led.png Graphic file (type png)
  <use single_led.png>
-Package pdftex.def Info: single_led.png used on input line 126.
+Package pdftex.def Info: single_led.png used on input line 134.
 (pdftex.def)             Requested size: 181.80296pt x 109.08177pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-
- []
-
-[2 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/report/sing
-le_led.png>]
+ [2 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/report/sev
+en_segment_layout.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/L
+abs/Lab1/report/single_led.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
+
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
-<wave.png, id=17, 1090.82532pt x 390.70969pt>
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+
+ []
+
+[3] <led_bar.png, id=23, 457.71pt x 181.42781pt>
+File: led_bar.png Graphic file (type png)
+ <use led_bar.png>
+Package pdftex.def Info: led_bar.png used on input line 185.
+(pdftex.def)             Requested size: 320.39482pt x 126.9986pt.
+
+<wave.png, id=24, 1090.82532pt x 390.70969pt>
 File: wave.png Graphic file (type png)
  <use wave.png>
-Package pdftex.def Info: wave.png used on input line 232.
+Package pdftex.def Info: wave.png used on input line 193.
 (pdftex.def)             Requested size: 589.03691pt x 210.98009pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3] [4] [5 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/rep
-ort/wave.png>]
-Overfull \hbox (59.87569pt too wide) in paragraph at lines 280--280
+[4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/report/led_
+bar.png>]
+
+LaTeX Warning: Text page 5 contains only floats.
+
+[5 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/report/wave
+.png>]
+Overfull \hbox (59.87569pt too wide) in paragraph at lines 241--241
 []              \OT1/cmtt/m/n/10 logic [23:0] period = 24'h7F2815;   //every 83
 33333 cycles of a 40MHz clock, the[] 
  []
 
 
-Overfull \hbox (38.87587pt too wide) in paragraph at lines 281--281
+Overfull \hbox (38.87587pt too wide) in paragraph at lines 242--242
 []                                                 \OT1/cmtt/m/n/10 //7th led w
 ill toggle on or off. Yields a[] 
  []
 
 [6
 
-] <seven_segment.png, id=33, 559.33969pt x 215.30438pt>
+] <seven_segment.png, id=37, 559.33969pt x 215.30438pt>
 File: seven_segment.png Graphic file (type png)
 
 <use seven_segment.png>
-Package pdftex.def Info: seven_segment.png used on input line 345.
+Package pdftex.def Info: seven_segment.png used on input line 306.
 (pdftex.def)             Requested size: 447.47235pt x 172.24373pt.
 
-Overfull \hbox (13.85234pt too wide) in paragraph at lines 345--346
+Overfull \hbox (13.85234pt too wide) in paragraph at lines 306--307
  [][] 
  []
 
@@ -406,32 +422,30 @@ Overfull \hbox (13.85234pt too wide) in paragraph at lines 345--346
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [7] [8 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab1/report/
-seven_segment.png>]
+seven_segment.png>] [9
+
+]
 (C:\Users\Sherman\Documents\HMC\Courses\2014-2015\E155\Labs\Lab1\report\lab1_SL
-.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+.aux) ) 
 Here is how much of TeX's memory you used:
- 4546 strings out of 493921
- 61655 string characters out of 3147276
- 140076 words of memory out of 3000000
- 7784 multiletter control sequences out of 15000+200000
+ 4554 strings out of 493921
+ 61874 string characters out of 3147276
+ 138060 words of memory out of 3000000
+ 7790 multiletter control sequences out of 15000+200000
  11131 words of font info for 42 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,32p,653b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmtt10.pfb>
-Output written on lab1_SL.pdf (8 pages, 163974 bytes).
+ 27i,8n,32p,745b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmtt10.pfb>
+Output written on lab1_SL.pdf (9 pages, 182665 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 75 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -93,7 +93,7 @@ The design of the development board was set by the course instructors and so it 
 
 
 
-In designing the 7-segment LED circuit, I aimed to make the circuit consistent and reliable. As seen in the Table \ref{tb:pin_mapping}, the control pins of the 7-segment LED were connected to pins 1,2,3,4,7,10, and 11. 
+In designing the 7-segment LED circuit, I aimed to make the circuit consistent and reliable. As seen in the Table \ref{tb:pin_mapping}, the control pins of the 7-segment LED were connected to pins 1,2,3,4,7,10, and 11. The layout of the segments on the display is shown in Figure \ref{figure:seven_segement_layout}.
 
 
 \begin{table}[h]
@@ -109,7 +109,15 @@ Segment   & A   & B   & C   & D    & E    & F   & G   \\ \hline
 \end{table}
 
 
-In order to ensure that the logic on these pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}. 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{seven_segment_layout.png}
+\caption{Segment ordering of a 7-segment display. Image from E155 Lab1.}
+\label{figure:seven_segement_layout}
+\end{figure} 
+
+
+In order to ensure that the logic on these pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}.
 
 
 \begin{equation}
@@ -160,72 +168,25 @@ s{[}3{]} & s{[}2{]} & s{[}1{]} & s{[}0{]} & (hex) & G & F & E & D & C & B & A & 
 \label{table:7seg_decoder}
 \end{table}
 
-The software was written for simplicity. In particular, there are two approaches to the decoder of the 7-segment display. Both approaches start with a truth table with the state of the switches (s[3:0]) as the inputs and the state of the led segments (led[6:0]) as the outputs (see Table \ref{table:7seg_decoder}). The first approach is to write the state of each segment in terms of the inputs (either sum-of-products or product-of-sums form). The second approach uses a case structure to implement a lookup table. Every possible value for s[3:0] is mapped to a value for led[6:0]. \\
+The software was written for simplicity. In particular, there are two approaches to the decoder of the 7-segment display. Both approaches start with a truth table with the state of the switches (s[3:0]) as the inputs and the state of the led segments (led[6:0]) as the outputs (see Table \ref{table:7seg_decoder}). Note that since this is a common anode 7-segment display, pulling a pin LOW will actually turn on the corresponding segment. The first approach is to write the state of each segment in terms of the inputs (either sum-of-products or product-of-sums form). The second approach uses a case structure to implement a lookup table. Every possible value for s[3:0] is mapped to a value for led[6:0]. \\
 
 Quartus will theoretically optimize both approaches to similar (if not identical) logic blocks. So both will perform similarly in hardware. I chose to implement the lookup table since it is easier to code and less prone to coding mistakes. Also note that I configured the DIP switches with the LSB on the right (switch 4). \\
 
+The decoder for the LED bar is similar to that of the 7-segment display. Its functionality is described in Figure \ref{figure:led_bar_decoder}. \\
 
-The decoder for the LED bar is similar to that of the 7-segment display and is based on Tables \ref{table:bar1}, \ref{table:bar2}, \ref{table:bar3}, and \ref{table:bar4}.
-
+In order to flash the LED at 2.4Hz, I setup a counter that tracks the number of clock cycles that have elapsed. To "flash" an LED, the LED must first be toggled on and then off. This requires two clock cycles. So, to flash the LED at 2.4Hz, the LED needs to be toggled at 4.8Hz, or every $\frac{40MHz}{4.8Hz} = 83333333$ cycles. \\
 
 To check the logic output of my decoders, I simulated the module with ModelSim-Altera. The results are shown in Figure \ref{figure:wave}. \\
 
-In order to flash the LED at 2.4Hz, I setup a counter that tracks the number of clock cycles that have elapsed. To "flash" an LED, the LED must first be toggled on and then off. This requires two clock cycles. So, to flash the LED at 2.4Hz, the LED needs to be toggled at 4.8Hz, or every $\frac{40MHz}{4.8Hz} = 83333333$ cycles. 
 
 
-\begin{table}[h]
+\begin{figure}[h!]
 \centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{s{[}0{]}} & \textbf{led{[}0{]}} & \textbf{led{[}1{]}} \\ \hline
-0                 & 0                   & 1                   \\ \hline
-1                 & 1                   & 0                   \\ \hline
-\end{tabular}
-\caption{LED bar decoder truth table 1}
-\label{table:bar1}
-\end{table}
+\includegraphics[scale=0.7]{led_bar.png}
+\caption{Pin requirements for led bar decoder. Image from E155 Lab1.}
+\label{figure:led_bar_decoder}
+\end{figure} 
 
-
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{s{[}1{]}} & \textbf{led{[}2{]}} & \textbf{led{[}1{]}} \\ \hline
-0                 & 0                   & 1                   \\ \hline
-1                 & 1                   & 0                   \\ \hline
-\end{tabular}
-\caption{LED bar decoder truth table 2}
-\label{table:bar2}
-\end{table}
-
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{s{[}2{]}} & \textbf{led{[}4{]}} & \textbf{led{[}3{]}} \\ \hline
-0                 & 0                   & 1                   \\ \hline
-1                 & 1                   & 0                   \\ \hline
-\end{tabular}
-\caption{LED bar decoder truth table 3}
-\label{table:bar3}
-\end{table}
-
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{s{[}3{]}} & \textbf{s{[}4{]}} & \textbf{led{[}6{]}} \\ \hline
-0                 & 0                 & 0                   \\ \hline
-0                 & 1                 & 0                   \\ \hline
-1                 & 0                 & 0                   \\ \hline
-1                 & 1                 & 1                   \\ \hline
-\end{tabular}
-\caption{LED bar decoder truth table 4}
-\label{table:bar4}
-\end{table}
 
 \begin{figure}[h!]
 \centering
@@ -347,6 +308,8 @@ endmodule
 \label{figure:seven_segment}
 \end{figure} 
 
+
+\clearpage
 
 \section{Results and Discussion}
 
