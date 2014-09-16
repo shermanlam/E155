@@ -13,7 +13,7 @@
 \usepackage[squaren]{SIunits}
 \usepackage{listings}
 \usepackage{subfloat}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 %\pagestyle{fancy}
 %\lhead{E155, Lab1}
@@ -92,7 +92,7 @@ The design of the development board was set by the course instructors and so it 
 \subsubsection{7-Segment Display}
 
 
- Table \ref{tb:pin_mapping} shows the mapping between the segments of the 7-segment LED and output pins on the development board. The layout of the segments on the display is shown in Figure \ref{figure:seven_segement_layout}.
+ Table \ref{tb:pin_mapping} shows the mapping between the segments of the 7-segment LED and output pins on the development board. These mappings were chosen to minimize wiring overlap on the breadboard. The layout of the segments on the display is shown in Figure \ref{figure:seven_segment_layout}.
 
 
 \begin{table}[h]
@@ -112,11 +112,11 @@ Segment   & A   & B   & C   & D    & E    & F   & G   \\ \hline
 \centering
 \includegraphics[scale=0.6]{seven_segment_layout.png}
 \caption{Segment ordering of a 7-segment display. Image from E155 Lab1.}
-\label{figure:seven_segement_layout}
+\label{figure:seven_segment_layout}
 \end{figure} 
 
 
-In order to ensure that the logic on the output pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. This places the current draw per segment in the recommended $5mA$ to $20mA$ range. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}. The pinout for the 7-segment display is shown in Figure \ref{figure:seven_segment_pinout}. Since the display used has 2 7-segment display, only half of the display was used.
+In order to ensure that the logic on the output pins either settled on LOW or HIGH, a pull up resistor was placed on the output of each pin. $10k\Omega$ was selected because it can pull the logic level of a pin to HIGH without drawing much current. In addition, each segment was wired in series with its own current limiting resistor. The value of this resistor was chosen to be $220\Omega$ as determined by Equation \ref{eq:resistor}. This places the current draw per segment in the recommended $5mA$ to $20mA$ range. The schematic for a single segment of the display is shown in Figure \ref{figure:single_led}. The full schematic for the 7-segment display is shown in Figure \ref{figure:seven_segment}. The pinout for the 7-segment display is shown in Figure \ref{figure:seven_segment_pinout}. Since the display used has 2 7-segment displays, only half of the module was used (see Figure \ref{figure:seven_segment_image}). 
 
 
 \begin{equation}
@@ -135,6 +135,14 @@ R = V/I
 \label{figure:single_led}
 \end{figure} 
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.1]{seven_segment_image.jpg}
+\caption{Image of the wired 7-segment display.}
+\label{figure:seven_segment_image}
+\end{figure} 
+
+\clearpage
 
 \subsection{Software}
 
@@ -182,9 +190,9 @@ The decoder for the LED bar is similar to that of the 7-segment display. Its fun
 In order to flash the LED at 2.4Hz, I setup a counter that tracks the number of clock cycles that have elapsed. To "flash" an LED, the LED must first be toggled on and then off. This requires two clock cycles. So, to flash the LED at 2.4Hz, the LED needs to be toggled at 4.8Hz, or every $\frac{40MHz}{4.8Hz} = 83333333$ cycles. \\
 
 
-\subsubsection{Testing}
+\subsubsection{Testing and Flashing}
 
-To check the logic output of my decoders, I simulated the module with ModelSim-Altera. The results are shown in Figure \ref{figure:wave}. The outputs agree with the behavior described in Sections \ref{sec:software_7seg} and \ref{sec:software_LEDbar} \\
+To check the logic output of my decoders, I simulated the module with ModelSim-Altera. The results are shown in Figure \ref{figure:wave}. The outputs agree with the behavior described in Sections \ref{sec:software_7seg} and \ref{sec:software_LEDbar}. The program was then flashed to PROM per lab instructions. This allows the FPGA to load the program whenever the board is turned on or reset. \\
 
 
 \begin{figure}[h!]
@@ -332,11 +340,13 @@ endmodule
 
 \section{Results and Discussion}
 
-The program worked as expected. This indicates that the hardware (at least for the LEDs and switches) are all functioning. All aspects of the lab were completed, including simulation ModelSim and flashing the program to PROM. 
+The program worked as expected. This indicates that the hardware (at least for the LEDs and switches) are all functioning. All aspects of the lab were completed. 
 
 
 
-\section{Conclusions}
+\section{Conclusion}
+
+In this lab, I assembled the development board from the provide kit and programmed an interface between the onboard switches and several LEDs. The program was written in System Verilog, synthesized in Quartus II, and flashed on the FPGA through JTAG with Quartus' built in programmer. \\
 
 Breakdown of time spent on lab:
 \begin{description}
@@ -344,9 +354,9 @@ Breakdown of time spent on lab:
 	\item[Testing Hardware] 0.5hrs
 	\item[Programming, Simulating, Debugging] 2hrs
 	\item[Breadboarding] 1hrs
-	\item[Relearning Latex] 1hrs
-	\item[Writing Report] 3hrs
-	\item[Total Time Spent] 11hrs
+	\item[Relearning Latex] 2hrs
+	\item[Writing Report] 4hrs
+	\item[Total Time Spent] 13hrs
 \end{description}
 
 
