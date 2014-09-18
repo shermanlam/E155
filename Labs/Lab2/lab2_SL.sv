@@ -38,6 +38,8 @@ module multiplexer(	input logic clk, reset,
 	// time multiplexer for switching bewteen displays
 	logic [18:0] hPeriod = 19'd333333;	// 1Hz toggling
 	logic [18:0] counter = 'b0;
+	//logic [28:0] hPeriod = 29'd80000000;	// 1Hz toggling
+	//logic [28:0] counter = 'b0;
 		
 	always_ff @(posedge clk, posedge reset) begin
 		if (reset)		

@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C5E144) Path("C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab2/output_files/") File("lab2_SL.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C5) Path("C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab2/output_files/") File("lab2_SL.jic") MfrSpec(OpMask(1) SEC_Device(EPCS4) Child_OpMask(1 1));
 
 ChainEnd;
 
