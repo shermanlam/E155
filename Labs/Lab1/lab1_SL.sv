@@ -35,7 +35,7 @@ module ledBarDecoder(input logic clk,
 	always_ff @(posedge clk) begin
 		if (count >= period) begin
 			count <= 24'b0;
-			led[7] = ~led[7];
+			led[7] <= ~led[7];
 		end
 		else			
 			count <= count + 1'b1;

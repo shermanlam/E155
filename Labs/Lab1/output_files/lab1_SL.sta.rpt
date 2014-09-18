@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for lab1_SL
-Sun Sep 14 20:32:10 2014
+Tue Sep 16 15:25:56 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -1842,7 +1842,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sun Sep 14 20:32:06 2014
+    Info: Processing started: Tue Sep 16 15:25:50 2014
 Info: Command: quartus_sta lab1_SL -c lab1_SL
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -1915,8 +1915,8 @@ Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 468 megabytes
-    Info: Processing ended: Sun Sep 14 20:32:10 2014
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Processing ended: Tue Sep 16 15:25:56 2014
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 

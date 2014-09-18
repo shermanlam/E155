@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 64-Bit"
 // VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-// DATE "09/14/2014 20:32:13"
+// DATE "09/16/2014 15:26:02"
 
 // 
 // Device: Altera EP3C5E144C8 Package TQFP144
@@ -33,10 +33,10 @@ module lab1_SL (
 	s,
 	led,
 	seg);
-input 	clk;
-input 	[3:0] s;
-output 	[7:0] led;
-output 	[6:0] seg;
+input 	logic clk ;
+input 	logic [3:0] s ;
+output 	logic [7:0] led ;
+output 	logic [6:0] seg ;
 
 // Design Ports Information
 // led[0]	=>  Location: PIN_43,	 I/O Standard: 2.5 V,	 Current Strength: Default

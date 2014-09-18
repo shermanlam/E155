@@ -1,0 +1,62 @@
+|lab2_SL
+clk => clk.IN1
+s1[0] => s3.DATAB
+s1[1] => s3.DATAB
+s1[2] => s3.DATAB
+s1[3] => s3.DATAB
+s2[0] => s3.DATAA
+s2[1] => s3.DATAA
+s2[2] => s3.DATAA
+s2[3] => s3.DATAA
+on1 <= multiplexer:m1.on1
+on2 <= multiplexer:m1.on2
+seg[0] <= led7Decoder:decoder.seg
+seg[1] <= led7Decoder:decoder.seg
+seg[2] <= led7Decoder:decoder.seg
+seg[3] <= led7Decoder:decoder.seg
+seg[4] <= led7Decoder:decoder.seg
+seg[5] <= led7Decoder:decoder.seg
+seg[6] <= led7Decoder:decoder.seg
+
+
+|lab2_SL|multiplexer:m1
+clk => on1~reg0.CLK
+clk => on2~reg0.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+clk => counter[4].CLK
+clk => counter[5].CLK
+clk => counter[6].CLK
+clk => counter[7].CLK
+clk => counter[8].CLK
+clk => counter[9].CLK
+clk => counter[10].CLK
+clk => counter[11].CLK
+clk => counter[12].CLK
+clk => counter[13].CLK
+clk => counter[14].CLK
+clk => counter[15].CLK
+clk => counter[16].CLK
+clk => counter[17].CLK
+clk => counter[18].CLK
+clk => counter[19].CLK
+on1 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+on2 <= on2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab2_SL|led7Decoder:decoder
+s[0] => Decoder0.IN3
+s[1] => Decoder0.IN2
+s[2] => Decoder0.IN1
+s[3] => Decoder0.IN0
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+

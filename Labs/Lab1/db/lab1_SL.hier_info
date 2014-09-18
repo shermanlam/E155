@@ -4,21 +4,21 @@ s[0] => s[0].IN2
 s[1] => s[1].IN2
 s[2] => s[2].IN2
 s[3] => s[3].IN2
-led[0] << ledBarDecoder:bar.led
-led[1] << ledBarDecoder:bar.led
-led[2] << ledBarDecoder:bar.led
-led[3] << ledBarDecoder:bar.led
-led[4] << ledBarDecoder:bar.led
-led[5] << ledBarDecoder:bar.led
-led[6] << ledBarDecoder:bar.led
-led[7] << ledBarDecoder:bar.led
-seg[0] << led7Decoder:led7.seg
-seg[1] << led7Decoder:led7.seg
-seg[2] << led7Decoder:led7.seg
-seg[3] << led7Decoder:led7.seg
-seg[4] << led7Decoder:led7.seg
-seg[5] << led7Decoder:led7.seg
-seg[6] << led7Decoder:led7.seg
+led[0] <= ledBarDecoder:bar.led
+led[1] <= ledBarDecoder:bar.led
+led[2] <= ledBarDecoder:bar.led
+led[3] <= ledBarDecoder:bar.led
+led[4] <= ledBarDecoder:bar.led
+led[5] <= ledBarDecoder:bar.led
+led[6] <= ledBarDecoder:bar.led
+led[7] <= ledBarDecoder:bar.led
+seg[0] <= led7Decoder:led7.seg
+seg[1] <= led7Decoder:led7.seg
+seg[2] <= led7Decoder:led7.seg
+seg[3] <= led7Decoder:led7.seg
+seg[4] <= led7Decoder:led7.seg
+seg[5] <= led7Decoder:led7.seg
+seg[6] <= led7Decoder:led7.seg
 
 
 |lab1_SL|ledBarDecoder:bar
