@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{psfrag}
+\usepackage{setspace}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+%\usepackage{fancyhdr}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage[squaren]{SIunits}
+\usepackage{listings}
+\usepackage{subfloat}
+%\usepackage{hyperref}
+
+%\pagestyle{fancy}
+%\lhead{E155, Lab1}
+%\chead{\today}
+%\rhead{Sherman Lam}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+
+
+\setlength{\parindent}{0pt} 	% remove the silly paragraph indents
+
+\begin{document}
+
+
+
+% ---------------------------------------
+% Name section
+% ---------------------------------------
+\begin{flushleft}
+Sherman Lam
+\\E155
+\\ \today
+\end{flushleft}
+
+
+% ---------------------------------------
+% Title
+% ---------------------------------------
+\begin{center}
+\begin{Large}
+\textbf{Lab 2 Report: Multiplexed Display}
+\end{Large}
+\end{center}
+
+
+% ---------------------------------------
+% Start report
+% ---------------------------------------
+
+
+\section{Introduction}
+\label{sec:intro}
+
+
+
+\section{Design and Testing Methodology}
+
+\subsection{Hardware}
+
+
+\subsubsection{7-Segment Display}
+
+
+
+\subsection{Software}
+
+\subsubsection{7-Segment Decoder}
+\label{sec:software_7seg}
+
+
+\subsubsection{LED bar decoder}
+\label{sec:software_LEDbar}
+
+\subsubsection{Testing and Flashing}
+
+
+
+\section{Technical Documentation}
+
+
+
+\subsection{System Verilog Code}
+
+\small\begin{verbatim}
+
+/* This module is the wrapper for the project. It instantiates
+  an instance of the led bar decoder and 7 segment decoder
+  
+  Author: Sherman Lam
+  Email: slam@g.hmc.edu
+  Date: Sep 9, 2014
+*/
+
+module lab1_SL( input logic clk,        //clock
+            input logic [3:0] s,        //4 DIP switches
+            output logic [7:0] led,     //8 lights on LED bar
+            output logic [6:0] seg);    //segments in 7-seg display
+  
+  //instance of the led bar decoder
+  ledBarDecoder   bar(.clk(clk), .s(s), .led(led));   
+  //instance of 7-seg display decoder
+  led7Decoder     led7(.s(s), .seg(seg)); 
+
+endmodule
+
+
+\end{verbatim}
+
+
+
+
+\clearpage
+
+\section{Results and Discussion}
+
+
+
+
+\section{Conclusion}
+
+\end{document}
