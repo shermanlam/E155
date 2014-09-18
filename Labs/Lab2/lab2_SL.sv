@@ -18,7 +18,8 @@ module lab2_SL(input logic clk, reset,
 	// select the right set of switches.
 	// on1 -> s1 is used. on2 -> s2 is used
 	logic [3:0] s3;
-	assign s3 = on1? s1 : s2;
+	// inverted because to turn on, the pin must be pulled LOW
+	assign s3 = on1? s2 : s1;	
 	
 	// 7 segment decoder
 	led7Decoder decoder(.s(s3), .seg(seg));
@@ -34,17 +35,16 @@ endmodule
 */
 module multiplexer(	input logic clk, reset,
 							output logic on1,on2);
-		// time multiplexer for switching bewteen displays
-		//logic [19:0] hPeriod = 20'd400000;	// 50Hz flashing
-	logic hPeriod = 1'b1;
-	logic [19:0] counter = 20'b0;
+	// time multiplexer for switching bewteen displays
+	logic [18:0] hPeriod = 19'd333333;	// 1Hz toggling
+	logic [18:0] counter = 'b0;
 		
 	always_ff @(posedge clk, posedge reset) begin
 		if (reset)		
 			on1 = 1'b1;
 		else begin
 			if (counter >= hPeriod) begin
-				counter <= 'b0;
+				counter = 'b0;
 				on1 = ~on1;
 			end
 			else
