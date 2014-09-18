@@ -1,5 +1,5 @@
 Fitter report for lab2_SL
-Thu Sep 18 16:10:43 2014
+Thu Sep 18 16:33:09 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -66,7 +66,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Thu Sep 18 16:10:43 2014      ;
+; Fitter Status                      ; Successful - Thu Sep 18 16:33:09 2014      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; lab2_SL                                    ;
 ; Top-level Entity Name              ; lab2_SL                                    ;
@@ -239,7 +239,7 @@ The pin-out file can be found in C:/Users/Sherman/Documents/HMC/Courses/2014-201
 ;     -- Dedicated logic registers            ; 20 / 5,136 ( < 1 % ) ;
 ;     -- I/O registers                        ; 0 / 424 ( 0 % )      ;
 ;                                             ;                      ;
-; Total LABs:  partially or completely used   ; 5 / 321 ( 2 % )      ;
+; Total LABs:  partially or completely used   ; 3 / 321 ( < 1 % )    ;
 ; Virtual pins                                ; 0                    ;
 ; I/O pins                                    ; 19 / 95 ( 20 % )     ;
 ;     -- Clock pins                           ; 2 / 4 ( 50 % )       ;
@@ -293,7 +293,7 @@ The pin-out file can be found in C:/Users/Sherman/Documents/HMC/Courses/2014-201
 ;     -- Dedicated logic registers            ; 20 / 5136 ( < 1 % ) ; 0 / 5136 ( 0 % )               ;
 ;     -- I/O registers                        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total LABs:  partially or completely used   ; 5 / 321 ( 2 % )     ; 0 / 321 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 3 / 321 ( < 1 % )   ; 0 / 321 ( 0 % )                ;
 ;                                             ;                     ;                                ;
 ; Virtual pins                                ; 0                   ; 0                              ;
 ; I/O pins                                    ; 19                  ; 0                              ;
@@ -592,14 +592,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; seg[4] ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; seg[5] ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; seg[6] ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; s2[0]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; s1[0]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; s2[0]  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; s2[1]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; s1[1]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; s2[1]  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; s1[2]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; s2[2]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; s1[3]  ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
+; s1[2]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; s2[3]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; s1[3]  ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; clk    ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; reset  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 +--------+----------+---------------+---------------+-----------------------+-----+------+
@@ -610,23 +610,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------+-------------------+---------+
 ; Source Pin / Fanout               ; Pad To Core Index ; Setting ;
 +-----------------------------------+-------------------+---------+
+; s2[0]                             ;                   ;         ;
+;      - s3[0]~0                    ; 0                 ; 6       ;
 ; s1[0]                             ;                   ;         ;
 ;      - s3[0]~0                    ; 0                 ; 6       ;
-; s2[0]                             ;                   ;         ;
-;      - s3[0]~0                    ; 1                 ; 6       ;
+; s2[1]                             ;                   ;         ;
+;      - s3[1]~1                    ; 0                 ; 6       ;
 ; s1[1]                             ;                   ;         ;
 ;      - s3[1]~1                    ; 0                 ; 6       ;
-; s2[1]                             ;                   ;         ;
-;      - s3[1]~1                    ; 1                 ; 6       ;
-; s1[2]                             ;                   ;         ;
-;      - s3[2]~2                    ; 0                 ; 6       ;
 ; s2[2]                             ;                   ;         ;
 ;      - s3[2]~2                    ; 0                 ; 6       ;
-; s1[3]                             ;                   ;         ;
+; s1[2]                             ;                   ;         ;
+;      - s3[2]~2                    ; 0                 ; 6       ;
 ; s2[3]                             ;                   ;         ;
 ;      - s3[3]~3                    ; 0                 ; 6       ;
+; s1[3]                             ;                   ;         ;
 ; clk                               ;                   ;         ;
 ; reset                             ;                   ;         ;
+;      - multiplexer:m1|on1         ; 0                 ; 6       ;
 ;      - multiplexer:m1|counter[0]  ; 0                 ; 6       ;
 ;      - multiplexer:m1|counter[1]  ; 0                 ; 6       ;
 ;      - multiplexer:m1|counter[2]  ; 0                 ; 6       ;
@@ -646,7 +647,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - multiplexer:m1|counter[16] ; 0                 ; 6       ;
 ;      - multiplexer:m1|counter[17] ; 0                 ; 6       ;
 ;      - multiplexer:m1|counter[18] ; 0                 ; 6       ;
-;      - multiplexer:m1|on1         ; 0                 ; 6       ;
 +-----------------------------------+-------------------+---------+
 
 
@@ -656,7 +656,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                       ; Location          ; Fan-Out ; Usage                      ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------+-------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 ; clk                        ; PIN_88            ; 20      ; Clock                      ; yes    ; Global Clock         ; GCLK8            ; --                        ;
-; multiplexer:m1|LessThan0~6 ; LCCOMB_X23_Y1_N28 ; 19      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; multiplexer:m1|LessThan0~6 ; LCCOMB_X23_Y3_N24 ; 19      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
 ; reset                      ; PIN_60            ; 20      ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
 +----------------------------+-------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 
@@ -685,7 +685,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; multiplexer:m1|counter[17]    ; 3       ;
 ; multiplexer:m1|LessThan0~5    ; 2       ;
 ; multiplexer:m1|LessThan0~4    ; 2       ;
-; multiplexer:m1|LessThan0~0    ; 2       ;
+; multiplexer:m1|LessThan0~3    ; 2       ;
+; multiplexer:m1|counter[18]    ; 2       ;
+; multiplexer:m1|counter[16]    ; 2       ;
 ; multiplexer:m1|counter[15]    ; 2       ;
 ; multiplexer:m1|counter[14]    ; 2       ;
 ; multiplexer:m1|counter[13]    ; 2       ;
@@ -702,20 +704,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; multiplexer:m1|counter[12]    ; 2       ;
 ; multiplexer:m1|counter[11]    ; 2       ;
 ; multiplexer:m1|counter[10]    ; 2       ;
-; multiplexer:m1|counter[18]    ; 2       ;
-; multiplexer:m1|counter[16]    ; 2       ;
-; s2[3]~input                   ; 1       ;
 ; s1[3]~input                   ; 1       ;
-; s2[2]~input                   ; 1       ;
+; s2[3]~input                   ; 1       ;
 ; s1[2]~input                   ; 1       ;
-; s2[1]~input                   ; 1       ;
+; s2[2]~input                   ; 1       ;
 ; s1[1]~input                   ; 1       ;
-; s2[0]~input                   ; 1       ;
+; s2[1]~input                   ; 1       ;
 ; s1[0]~input                   ; 1       ;
+; s2[0]~input                   ; 1       ;
 ; multiplexer:m1|on1~0          ; 1       ;
-; multiplexer:m1|LessThan0~3    ; 1       ;
 ; multiplexer:m1|LessThan0~2    ; 1       ;
 ; multiplexer:m1|LessThan0~1    ; 1       ;
+; multiplexer:m1|LessThan0~0    ; 1       ;
 ; led7Decoder:decoder|WideOr0~0 ; 1       ;
 ; led7Decoder:decoder|WideOr1~0 ; 1       ;
 ; led7Decoder:decoder|WideOr2~0 ; 1       ;
@@ -768,45 +768,45 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------+
 ; Routing Resource Type ; Usage                 ;
 +-----------------------+-----------------------+
-; Block interconnects   ; 38 / 32,401 ( < 1 % ) ;
-; C16 interconnects     ; 4 / 1,326 ( < 1 % )   ;
-; C4 interconnects      ; 40 / 21,816 ( < 1 % ) ;
-; Direct links          ; 6 / 32,401 ( < 1 % )  ;
+; Block interconnects   ; 36 / 32,401 ( < 1 % ) ;
+; C16 interconnects     ; 6 / 1,326 ( < 1 % )   ;
+; C4 interconnects      ; 30 / 21,816 ( < 1 % ) ;
+; Direct links          ; 10 / 32,401 ( < 1 % ) ;
 ; Global clocks         ; 1 / 10 ( 10 % )       ;
-; Local interconnects   ; 25 / 10,320 ( < 1 % ) ;
-; R24 interconnects     ; 2 / 1,289 ( < 1 % )   ;
-; R4 interconnects      ; 31 / 28,186 ( < 1 % ) ;
+; Local interconnects   ; 24 / 10,320 ( < 1 % ) ;
+; R24 interconnects     ; 6 / 1,289 ( < 1 % )   ;
+; R4 interconnects      ; 29 / 28,186 ( < 1 % ) ;
 +-----------------------+-----------------------+
 
 
-+--------------------------------------------------------------------------+
-; LAB Logic Elements                                                       ;
-+--------------------------------------------+-----------------------------+
-; Number of Logic Elements  (Average = 7.60) ; Number of LABs  (Total = 5) ;
-+--------------------------------------------+-----------------------------+
-; 1                                          ; 1                           ;
-; 2                                          ; 1                           ;
-; 3                                          ; 0                           ;
-; 4                                          ; 0                           ;
-; 5                                          ; 0                           ;
-; 6                                          ; 0                           ;
-; 7                                          ; 0                           ;
-; 8                                          ; 1                           ;
-; 9                                          ; 0                           ;
-; 10                                         ; 0                           ;
-; 11                                         ; 0                           ;
-; 12                                         ; 1                           ;
-; 13                                         ; 0                           ;
-; 14                                         ; 0                           ;
-; 15                                         ; 1                           ;
-; 16                                         ; 0                           ;
-+--------------------------------------------+-----------------------------+
++---------------------------------------------------------------------------+
+; LAB Logic Elements                                                        ;
++---------------------------------------------+-----------------------------+
+; Number of Logic Elements  (Average = 12.67) ; Number of LABs  (Total = 3) ;
++---------------------------------------------+-----------------------------+
+; 1                                           ; 0                           ;
+; 2                                           ; 0                           ;
+; 3                                           ; 0                           ;
+; 4                                           ; 0                           ;
+; 5                                           ; 0                           ;
+; 6                                           ; 0                           ;
+; 7                                           ; 0                           ;
+; 8                                           ; 0                           ;
+; 9                                           ; 0                           ;
+; 10                                          ; 0                           ;
+; 11                                          ; 1                           ;
+; 12                                          ; 1                           ;
+; 13                                          ; 0                           ;
+; 14                                          ; 0                           ;
+; 15                                          ; 1                           ;
+; 16                                          ; 0                           ;
++---------------------------------------------+-----------------------------+
 
 
 +------------------------------------------------------------------+
 ; LAB-wide Signals                                                 ;
 +------------------------------------+-----------------------------+
-; LAB-wide Signals  (Average = 1.00) ; Number of LABs  (Total = 5) ;
+; LAB-wide Signals  (Average = 1.67) ; Number of LABs  (Total = 3) ;
 +------------------------------------+-----------------------------+
 ; 1 Async. clear                     ; 1                           ;
 ; 1 Clock                            ; 2                           ;
@@ -818,20 +818,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                        ;
 +----------------------------------------------+-----------------------------+
-; Number of Signals Sourced  (Average = 11.60) ; Number of LABs  (Total = 5) ;
+; Number of Signals Sourced  (Average = 19.33) ; Number of LABs  (Total = 3) ;
 +----------------------------------------------+-----------------------------+
 ; 0                                            ; 0                           ;
-; 1                                            ; 1                           ;
-; 2                                            ; 1                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 0                           ;
 ; 3                                            ; 0                           ;
 ; 4                                            ; 0                           ;
 ; 5                                            ; 0                           ;
 ; 6                                            ; 0                           ;
 ; 7                                            ; 0                           ;
-; 8                                            ; 1                           ;
+; 8                                            ; 0                           ;
 ; 9                                            ; 0                           ;
 ; 10                                           ; 0                           ;
-; 11                                           ; 0                           ;
+; 11                                           ; 1                           ;
 ; 12                                           ; 0                           ;
 ; 13                                           ; 0                           ;
 ; 14                                           ; 0                           ;
@@ -853,11 +853,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                       ;
 +-------------------------------------------------+-----------------------------+
-; Number of Signals Sourced Out  (Average = 2.80) ; Number of LABs  (Total = 5) ;
+; Number of Signals Sourced Out  (Average = 3.67) ; Number of LABs  (Total = 3) ;
 +-------------------------------------------------+-----------------------------+
 ; 0                                               ; 0                           ;
-; 1                                               ; 2                           ;
-; 2                                               ; 1                           ;
+; 1                                               ; 1                           ;
+; 2                                               ; 0                           ;
 ; 3                                               ; 1                           ;
 ; 4                                               ; 0                           ;
 ; 5                                               ; 0                           ;
@@ -869,15 +869,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                       ;
 +---------------------------------------------+-----------------------------+
-; Number of Distinct Inputs  (Average = 4.40) ; Number of LABs  (Total = 5) ;
+; Number of Distinct Inputs  (Average = 5.67) ; Number of LABs  (Total = 3) ;
 +---------------------------------------------+-----------------------------+
 ; 0                                           ; 0                           ;
 ; 1                                           ; 0                           ;
 ; 2                                           ; 0                           ;
-; 3                                           ; 1                           ;
+; 3                                           ; 0                           ;
 ; 4                                           ; 2                           ;
-; 5                                           ; 1                           ;
-; 6                                           ; 1                           ;
+; 5                                           ; 0                           ;
+; 6                                           ; 0                           ;
+; 7                                           ; 0                           ;
+; 8                                           ; 0                           ;
+; 9                                           ; 1                           ;
 +---------------------------------------------+-----------------------------+
 
 
@@ -951,14 +954,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; seg[4]             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; seg[5]             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; seg[6]             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; s1[0]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; s2[0]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; s1[1]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; s1[0]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; s2[1]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; s1[2]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; s1[1]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; s2[2]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; s1[3]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; s1[2]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; s2[3]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; s1[3]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; clk                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; reset              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
@@ -1032,7 +1035,7 @@ Info (176353): Automatically promoted node clk~input (placed in PIN 88 (CLK7, DI
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:03
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:02
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
@@ -1040,22 +1043,22 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y12 to location X10_Y24
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
+    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y0 to location X10_Y11
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.42 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.30 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:02
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab2/output_files/lab2_SL.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 727 megabytes
-    Info: Processing ended: Thu Sep 18 16:10:44 2014
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Peak virtual memory: 724 megabytes
+    Info: Processing ended: Thu Sep 18 16:33:09 2014
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:12
 
 
 +----------------------------+

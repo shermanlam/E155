@@ -9,7 +9,7 @@
 */
 module lab2_SL(input logic clk, reset,
 					input logic [3:0] s1,s2, //DIP switches
-					output logic on1, on2,   //decides which LED set is on
+					output logic on1, on2,   //if on1 is pulled LOW, LED set 1 is on.
 					output logic [6:0] seg); //segment states
 					
 	// time multiplexing
@@ -18,7 +18,7 @@ module lab2_SL(input logic clk, reset,
 	// select the right set of switches.
 	// on1 -> s1 is used. on2 -> s2 is used
 	logic [3:0] s3;
-	// inverted because to turn on, the pin must be pulled LOW
+	// if on1 is pulled LOW, LED set 1 is on.
 	assign s3 = on1? s2 : s1;	
 	
 	// 7 segment decoder
@@ -43,7 +43,7 @@ module multiplexer(	input logic clk, reset,
 		
 	always_ff @(posedge clk, posedge reset) begin
 		if (reset)		
-			on1 = 1'b1;
+			on1 = 1'b0;
 		else begin
 			if (counter >= hPeriod) begin
 				counter = 'b0;
