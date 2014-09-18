@@ -12,7 +12,6 @@ module lab2_SL(input logic clk,
 					output logic on1, on2,   //decides which LED set is on
 					output logic [6:0] seg); //segment states
 					
-					
 	// time multiplexing
 	multiplexer m1(.clk(clk), .on1(on1), .on2(on2));
 	
@@ -36,19 +35,22 @@ endmodule
 module multiplexer(	input logic clk,
 							output logic on1,on2);
 		// time multiplexer for switching bewteen displays
-		logic [19:0] hPeriod = 20'd400000;	// 50Hz flashing
-		logic [19:0] counter = 20'b0;			
+		//logic [19:0] hPeriod = 20'd400000;	// 50Hz flashing
+	logic hPeriod = 1'b1;
+	logic [19:0] counter = 20'b0;
+	logic switch = 1'b0;
 		
-		always_ff @(posedge clk) begin
+	always_ff @(posedge clk) begin
 		if (counter >= hPeriod) begin
-			counter <= 24'b0;
-			//toggle display
-			on2 = on1;							 
-			on1 = ~on2;
+			counter <= 'b0;
+			switch = ~switch;
 		end
 		else			
 			counter <= counter + 1'b1;
 	end
+	
+	assign on1 = switch;
+	assign on2 = ~on1;
 	
 endmodule
 

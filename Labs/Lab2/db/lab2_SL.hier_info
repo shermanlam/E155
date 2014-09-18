@@ -20,8 +20,7 @@ seg[6] <= led7Decoder:decoder.seg
 
 
 |lab2_SL|multiplexer:m1
-clk => on1~reg0.CLK
-clk => on2~reg0.CLK
+clk => switch.CLK
 clk => counter[0].CLK
 clk => counter[1].CLK
 clk => counter[2].CLK
@@ -42,8 +41,8 @@ clk => counter[16].CLK
 clk => counter[17].CLK
 clk => counter[18].CLK
 clk => counter[19].CLK
-on1 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
-on2 <= on2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+on1 <= switch.DB_MAX_OUTPUT_PORT_TYPE
+on2 <= switch.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |lab2_SL|led7Decoder:decoder
