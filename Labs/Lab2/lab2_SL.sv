@@ -7,13 +7,13 @@
 	Email: slam@g.hmc.edu
 	Date: Sep 17, 2014
 */
-module lab2_SL(input logic clk,
+module lab2_SL(input logic clk, reset,
 					input logic [3:0] s1,s2, //DIP switches
 					output logic on1, on2,   //decides which LED set is on
 					output logic [6:0] seg); //segment states
 					
 	// time multiplexing
-	multiplexer m1(.clk(clk), .on1(on1), .on2(on2));
+	multiplexer m1(.clk(clk), .on1(on1), .on2(on2), .reset(reset));
 	
 	// select the right set of switches.
 	// on1 -> s1 is used. on2 -> s2 is used
@@ -32,24 +32,27 @@ endmodule
 	Email: slam@g.hmc.edu
 	Date: Sep 17, 2014
 */
-module multiplexer(	input logic clk,
+module multiplexer(	input logic clk, reset,
 							output logic on1,on2);
 		// time multiplexer for switching bewteen displays
 		//logic [19:0] hPeriod = 20'd400000;	// 50Hz flashing
 	logic hPeriod = 1'b1;
 	logic [19:0] counter = 20'b0;
-	logic switch = 1'b0;
 		
-	always_ff @(posedge clk) begin
-		if (counter >= hPeriod) begin
-			counter <= 'b0;
-			switch = ~switch;
+	always_ff @(posedge clk, posedge reset) begin
+		if (reset)		
+			on1 = 1'b1;
+		else begin
+			if (counter >= hPeriod) begin
+				counter <= 'b0;
+				on1 = ~on1;
+			end
+			else
+				//on1 = on1;
+				counter <= counter + 1'b1;
 		end
-		else			
-			counter <= counter + 1'b1;
 	end
 	
-	assign on1 = switch;
 	assign on2 = ~on1;
 	
 endmodule

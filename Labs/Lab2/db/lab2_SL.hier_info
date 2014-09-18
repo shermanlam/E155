@@ -1,5 +1,6 @@
 |lab2_SL
 clk => clk.IN1
+reset => reset.IN1
 s1[0] => s3.DATAB
 s1[1] => s3.DATAB
 s1[2] => s3.DATAB
@@ -20,7 +21,6 @@ seg[6] <= led7Decoder:decoder.seg
 
 
 |lab2_SL|multiplexer:m1
-clk => switch.CLK
 clk => counter[0].CLK
 clk => counter[1].CLK
 clk => counter[2].CLK
@@ -41,8 +41,30 @@ clk => counter[16].CLK
 clk => counter[17].CLK
 clk => counter[18].CLK
 clk => counter[19].CLK
-on1 <= switch.DB_MAX_OUTPUT_PORT_TYPE
-on2 <= switch.DB_MAX_OUTPUT_PORT_TYPE
+clk => on1~reg0.CLK
+reset => on1~reg0.PRESET
+reset => counter[19].ENA
+reset => counter[18].ENA
+reset => counter[17].ENA
+reset => counter[16].ENA
+reset => counter[15].ENA
+reset => counter[14].ENA
+reset => counter[13].ENA
+reset => counter[12].ENA
+reset => counter[11].ENA
+reset => counter[10].ENA
+reset => counter[9].ENA
+reset => counter[8].ENA
+reset => counter[7].ENA
+reset => counter[6].ENA
+reset => counter[5].ENA
+reset => counter[4].ENA
+reset => counter[3].ENA
+reset => counter[2].ENA
+reset => counter[1].ENA
+reset => counter[0].ENA
+on1 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+on2 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |lab2_SL|led7Decoder:decoder
