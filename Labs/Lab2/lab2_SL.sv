@@ -10,10 +10,13 @@
 module lab2_SL(input logic clk, reset,
 					input logic [3:0] s1,s2, //DIP switches
 					output logic on1, on2,   //if on1 is pulled LOW, LED set 1 is on.
-					output logic [6:0] seg); //segment states
-					
+					output logic [6:0] seg); //segment states		
+	
 	// time multiplexing
-	multiplexer m1(.clk(clk), .on1(on1), .on2(on2), .reset(reset));
+	multiplexer m1(.clk(clk), .on1(on1), .reset(reset));
+	
+	// the segments always have opposite states.
+	assign on2 = ~on1;		
 	
 	// select the right set of switches.
 	// on1 -> s1 is used. on2 -> s2 is used
@@ -34,12 +37,10 @@ endmodule
 	Date: Sep 17, 2014
 */
 module multiplexer(	input logic clk, reset,
-							output logic on1,on2);
+							output logic on1);
 	// time multiplexer for switching bewteen displays
-	logic [18:0] hPeriod = 19'd333333;	// 1Hz toggling
+	logic [18:0] hPeriod = 19'd333333;	// 120Hz toggling
 	logic [18:0] counter = 'b0;
-	//logic [28:0] hPeriod = 29'd80000000;	// 1Hz toggling
-	//logic [28:0] counter = 'b0;
 		
 	always_ff @(posedge clk, posedge reset) begin
 		if (reset)		
@@ -54,8 +55,6 @@ module multiplexer(	input logic clk, reset,
 				counter <= counter + 1'b1;
 		end
 	end
-	
-	assign on2 = ~on1;
 	
 endmodule
 

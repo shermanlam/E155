@@ -10,7 +10,7 @@ s2[1] => s3.DATAB
 s2[2] => s3.DATAB
 s2[3] => s3.DATAB
 on1 <= multiplexer:m1.on1
-on2 <= multiplexer:m1.on2
+on2 <= multiplexer:m1.on1
 seg[0] <= led7Decoder:decoder.seg
 seg[1] <= led7Decoder:decoder.seg
 seg[2] <= led7Decoder:decoder.seg
@@ -62,7 +62,6 @@ reset => counter[2].ENA
 reset => counter[1].ENA
 reset => counter[0].ENA
 on1 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
-on2 <= on1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |lab2_SL|led7Decoder:decoder

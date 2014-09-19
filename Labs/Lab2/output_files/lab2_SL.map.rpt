@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab2_SL
-Thu Sep 18 16:32:54 2014
+Thu Sep 18 18:02:17 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -42,7 +42,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Sep 18 16:32:54 2014      ;
+; Analysis & Synthesis Status        ; Successful - Thu Sep 18 18:02:17 2014      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; lab2_SL                                    ;
 ; Top-level Entity Name              ; lab2_SL                                    ;
@@ -228,7 +228,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -238,7 +238,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Sep 18 16:32:48 2014
+    Info: Processing started: Thu Sep 18 18:02:13 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab2_SL -c lab2_SL
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 3 design units, including 3 entities, in source file lab2_sl.sv
@@ -261,9 +261,9 @@ Info (21057): Implemented 57 device resources after synthesis - the final resour
     Info (21061): Implemented 38 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 498 megabytes
-    Info: Processing ended: Thu Sep 18 16:32:54 2014
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Processing ended: Thu Sep 18 18:02:17 2014
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
 
 
 +------------------------------------------+
