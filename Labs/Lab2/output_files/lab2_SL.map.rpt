@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab2_SL
-Thu Sep 18 18:02:17 2014
+Fri Sep 19 17:05:23 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -42,16 +42,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Sep 18 18:02:17 2014      ;
+; Analysis & Synthesis Status        ; Successful - Fri Sep 19 17:05:23 2014      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; lab2_SL                                    ;
 ; Top-level Entity Name              ; lab2_SL                                    ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 38                                         ;
-;     Total combinational functions  ; 38                                         ;
+; Total logic elements               ; 43                                         ;
+;     Total combinational functions  ; 43                                         ;
 ;     Dedicated logic registers      ; 20                                         ;
 ; Total registers                    ; 20                                         ;
-; Total pins                         ; 19                                         ;
+; Total pins                         ; 24                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -171,28 +171,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 38        ;
+; Estimated Total logic elements              ; 43        ;
 ;                                             ;           ;
-; Total combinational functions               ; 38        ;
+; Total combinational functions               ; 43        ;
 ; Logic element usage by number of LUT inputs ;           ;
 ;     -- 4 input functions                    ; 13        ;
-;     -- 3 input functions                    ; 6         ;
-;     -- <=2 input functions                  ; 19        ;
+;     -- 3 input functions                    ; 10        ;
+;     -- <=2 input functions                  ; 20        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 20        ;
-;     -- arithmetic mode                      ; 18        ;
+;     -- normal mode                          ; 21        ;
+;     -- arithmetic mode                      ; 22        ;
 ;                                             ;           ;
 ; Total registers                             ; 20        ;
 ;     -- Dedicated logic registers            ; 20        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 19        ;
+; I/O pins                                    ; 24        ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 20        ;
-; Total fan-out                               ; 214       ;
-; Average fan-out                             ; 2.23      ;
+; Total fan-out                               ; 236       ;
+; Average fan-out                             ; 2.13      ;
 +---------------------------------------------+-----------+
 
 
@@ -201,7 +201,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name          ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
-; |lab2_SL                   ; 38 (4)            ; 20 (0)       ; 0           ; 0            ; 0       ; 0         ; 19   ; 0            ; |lab2_SL                     ; work         ;
+; |lab2_SL                   ; 43 (9)            ; 20 (0)       ; 0           ; 0            ; 0       ; 0         ; 24   ; 0            ; |lab2_SL                     ; work         ;
 ;    |led7Decoder:decoder|   ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab2_SL|led7Decoder:decoder ; work         ;
 ;    |multiplexer:m1|        ; 27 (27)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab2_SL|multiplexer:m1      ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------+--------------+
@@ -238,7 +238,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Sep 18 18:02:13 2014
+    Info: Processing started: Fri Sep 19 17:05:19 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab2_SL -c lab2_SL
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 3 design units, including 3 entities, in source file lab2_sl.sv
@@ -255,15 +255,15 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab2/output_files/lab2_SL.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 57 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 67 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 9 output pins
-    Info (21061): Implemented 38 logic cells
+    Info (21059): Implemented 14 output pins
+    Info (21061): Implemented 43 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 498 megabytes
-    Info: Processing ended: Thu Sep 18 18:02:17 2014
+    Info: Processing ended: Fri Sep 19 17:05:23 2014
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:04
 
 
 +------------------------------------------+

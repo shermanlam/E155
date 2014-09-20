@@ -10,7 +10,8 @@
 module lab2_SL(input logic clk, reset,
 					input logic [3:0] s1,s2, //DIP switches
 					output logic on1, on2,   //if on1 is pulled LOW, LED set 1 is on.
-					output logic [6:0] seg); //segment states		
+					output logic [6:0] seg,
+					output logic [4:0] led); //segment states		
 	
 	// time multiplexing
 	multiplexer m1(.clk(clk), .on1(on1), .reset(reset));
@@ -20,12 +21,16 @@ module lab2_SL(input logic clk, reset,
 	
 	// select the right set of switches.
 	// on1 -> s1 is used. on2 -> s2 is used
-	logic [3:0] s3;
 	// if on1 is pulled LOW, LED set 1 is on.
+	logic [3:0] s3;
 	assign s3 = on1? s2 : s1;	
 	
 	// 7 segment decoder
 	led7Decoder decoder(.s(s3), .seg(seg));
+	
+	// sum the outputs and write to LED bar
+	assign led = s1 + s2;
+	
 	
 endmodule
 
@@ -95,3 +100,4 @@ module led7Decoder(	input logic [3:0] s,			//4 DIP switches
       
 	end
 endmodule
+

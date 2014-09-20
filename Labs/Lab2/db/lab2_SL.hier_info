@@ -2,22 +2,35 @@
 clk => clk.IN1
 reset => reset.IN1
 s1[0] => s3.DATAA
+s1[0] => Add0.IN4
 s1[1] => s3.DATAA
+s1[1] => Add0.IN3
 s1[2] => s3.DATAA
+s1[2] => Add0.IN2
 s1[3] => s3.DATAA
+s1[3] => Add0.IN1
 s2[0] => s3.DATAB
+s2[0] => Add0.IN8
 s2[1] => s3.DATAB
+s2[1] => Add0.IN7
 s2[2] => s3.DATAB
+s2[2] => Add0.IN6
 s2[3] => s3.DATAB
-on1 <= multiplexer:m1.on1
-on2 <= multiplexer:m1.on1
-seg[0] <= led7Decoder:decoder.seg
-seg[1] <= led7Decoder:decoder.seg
-seg[2] <= led7Decoder:decoder.seg
-seg[3] <= led7Decoder:decoder.seg
-seg[4] <= led7Decoder:decoder.seg
-seg[5] <= led7Decoder:decoder.seg
-seg[6] <= led7Decoder:decoder.seg
+s2[3] => Add0.IN5
+on1 << multiplexer:m1.on1
+on2 << multiplexer:m1.on1
+seg[0] << led7Decoder:decoder.seg
+seg[1] << led7Decoder:decoder.seg
+seg[2] << led7Decoder:decoder.seg
+seg[3] << led7Decoder:decoder.seg
+seg[4] << led7Decoder:decoder.seg
+seg[5] << led7Decoder:decoder.seg
+seg[6] << led7Decoder:decoder.seg
+led[0] << Add0.DB_MAX_OUTPUT_PORT_TYPE
+led[1] << Add0.DB_MAX_OUTPUT_PORT_TYPE
+led[2] << Add0.DB_MAX_OUTPUT_PORT_TYPE
+led[3] << Add0.DB_MAX_OUTPUT_PORT_TYPE
+led[4] << Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |lab2_SL|multiplexer:m1
