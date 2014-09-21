@@ -1,12 +1,41 @@
 \relax 
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
 \newlabel{sec:intro}{{1}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Assembled board.}}{1}}
+\newlabel{fig:board}{{1}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Design and Testing Methodology}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Hardware}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Software}{1}}
-\newlabel{sec:software_LEDbar}{{2.2}{1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Testing and Flashing}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Technical Documentation}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}System Verilog Code}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Discussion}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Hardware}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces DC gain of 2N3906 transistor. Image obtained from 2N3906 datasheet.}}{3}}
+\newlabel{fig:2N3906_gain}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Software}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Truth table for 7-Segment LED decoder}}{3}}
+\newlabel{table:7seg_decoder}{{1}{3}}
+\newlabel{sec:software_LEDbar}{{2.2}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Simulation}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The counter increments at every clock cycle.}}{4}}
+\newlabel{fig:wave_clk}{{3}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Logic for 7-segment decoder.}}{4}}
+\newlabel{fig:wave_mux}{{4}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces If the reset signal is never HIGH, the control signals for toggling the 7-segment displays (on1 and on2) will not resolve to a logic level.}}{5}}
+\newlabel{fig:wave_reset_no}{{5}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Once the reset signal is HIGH, the control signals for toggling the 7-segment displays (on1 and on2) are initialized to hard-coded starting values.}}{5}}
+\newlabel{fig:wave_reset_yes}{{6}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces When on1 and on2 will swap states, s3 (the signal used for the 7-segment decoding) changes from s1 to s2 or vice versa.}}{5}}
+\newlabel{fig:wave_toggle}{{7}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The summation of the two input switch values (s1 and s2) is sent to the led bar (led[4:0]).}}{6}}
+\newlabel{fig:wave_sum}{{8}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Technical Documentation}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}7-segment Displays Schematic}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Full schematic for dual 7-segment display. Note that on1 and on2 toggle the two displays on and off. Only one or the other is on at any given time.}}{8}}
+\newlabel{fig:seven_seg_sch}{{9}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Schematic for reset button.}}{9}}
+\newlabel{fig:reset_sch}{{10}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Schematic for DIP switch 1. This controls display segment 1 (left).}}{9}}
+\newlabel{fig:s1_sch}{{11}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Schematic for DIP switch 2. This controls display segment 2 (right).}}{10}}
+\newlabel{fig:s2_sch}{{12}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}System Verilog Code}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Discussion}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Time Spent}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Suggestions for lab}{13}}
