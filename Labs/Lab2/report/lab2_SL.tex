@@ -3,29 +3,13 @@
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{psfrag}
 \usepackage{setspace}
 \usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
-%\usepackage{fancyhdr}
 \usepackage{subfigure}
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage[squaren]{SIunits}
-
 \usepackage{listings}
-
-\usepackage{subfloat}
-%\usepackage{hyperref}
-
-%\pagestyle{fancy}
-%\lhead{E155, Lab1}
-%\chead{\today}
-%\rhead{Sherman Lam}
-%\renewcommand{\headrulewidth}{0.4pt}
-%\lfoot{}
-%\cfoot{}
-%\rfoot{}
-
 
 \setlength{\parindent}{0pt} 	% remove the silly paragraph indents
 
@@ -61,9 +45,9 @@ Sherman Lam
 \section{Introduction}
 \label{sec:intro}
 
-In this lab I displayed two 7-segment displays while only using one 7-segment decoder. This is was done by time-multiplexing the two displays. With this technique, one switch is read, decoded, and shown on its corresponding 7-segment display. Then, then the second switch is read, decoded, and shown on its corresponding 7-segment display. Only one 7-segment display is on at a time. The FPGA rapidly switches between the two sets of switches and displays at a rate fasts enough to appear steady to the human eye. In addition, the sum of the two switches is displayed on the LED bar. \\
+In this lab I displayed two 7-segment displays while only using one 7-segment decoder. This is was done by time-multiplexing the two displays. With this technique, one switch is read, decoded, and shown on its corresponding 7-segment display. Then, then the second switch is read, decoded, and shown on its corresponding 7-segment display. Only one 7-segment display is on at a time. The FPGA rapidly switches between the two sets of switches and displays at a rate fast enough to appear steady to the human eye. In addition, the sum of the two switches is displayed on the LED bar on the $\mu$Mudd. \\
 
-Figure \ref{fig:board}, shows the result of the lab. The DIP switches on the breadboard control the left 7-segment display (closer to the top of the breadboard) and the DIP switches on the $\mu$Mudd control the right 7-segment display (closer to the bottom of the breadboard). 
+Figure \ref{fig:board}, shows the result of the lab. The DIP switches on the breadboard control the left 7-segment display (currently set to 4) and the DIP switches on the $\mu$Mudd control the right 7-segment display (currently set to 2). The sum 6 is displayed on the LED bar using the 5 bottom LEDs. The least significant bit is at the bottom. 
 
 \begin{figure}[h!]
 \centering
@@ -75,65 +59,27 @@ Figure \ref{fig:board}, shows the result of the lab. The DIP switches on the bre
 
 \section{Design and Testing Methodology}
 
-Notes on pin mapping:
-
-switch 1:
-s1[0] = P54
-s1[1] = P55
-s1[2] = P53
-s1[3] = P24
-
-switch 2:
-s2[0] = P44
-s2[1] = P49
-s2[2] = P50
-s2[3] = P51
-
-display enable:
-on1 = P87
-on2 = P86
-
-clk = P88
-reset = P60
-
-seg[0] = a = P2
-seg[1] = b = P1
-seg[2] = c = P4
-seg[3] = d = P10
-seg[4] = e = P11
-seg[5] = f = P3
-seg[6] = g = P7
-
-led[0] = P28		(LSB)
-led[1] = P30
-led[2] = P31
-led[3] = P32
-led[4] = P33
-
-
-
-Other notes:
-Drop between base and emitter was measured to be 0.74-0.76 V. 0.7V approx okay.
-Drop between emitter and collector was 0.12-0.15V for 5.6k base resistor. 0.09V for 2.2k resistor. 0.05V for 1k resistor. 
-Drop across 220 ohm resistors is 1V
-
-reset switch works.
-
 
 \subsection{Hardware}
 
+A PNP transistor (2N3906) was chosen for toggling the displays because the switch was acting on the anode. The general circuit for using a PNP transistor for switching purposes in shown in Figure \ref{fig:bjt}. If the transistor's based voltage ($V_B$) is brought close to GND, the PNP will turn on. If $V_B$ is brought close to VCC, the transistor will turn off. However, since BJT transistors are current controlled, a resistor ($R_{B}$) must be placed between $V_B$ and its signal pin ($V_{signal}$). To select a value for this resistor, I first considered the largest current draw expected ($I_C$).
 
-A PNP transistor (2N3906) was chosen for toggling the displays because the switch was acting on the anode. If the transistor's based voltage ($V_B$) is brought close to GND, the PNP would turn on. If $V_B$ is brought close to VCC, the transistor would turn off. However, since BJT transistors are current controlled, a resistor must be placed between $V_B$ and its signal pin. To select a value for this resistor, I first considered the largest current draw expected ($I_C$).
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{bjt.png}
+\caption{General use of a PNP transistor for switching a load}
+\label{fig:bjt}
+\end{figure} 
 
 \begin{align*}
 I_{C} &= (\# segments)*(I_{1segment}) \\
-I_{C} &= (\# segments)*(\frac{Vcc-V_{led}}{R}) \\
+I_{C} &= (\# segments)*(\frac{V_{CC}-V_{led}}{R}) \\
 I_{C} &= (\# segments)*(\frac{3.3V-1.7V}{220\Omega}) \\
 I_{C} &= 7*(7.3mA) \\
 I_{C} &= 51mA
 \end{align*}
 
-Then, I considered how much base current ($I_{B}$) I need in order to supply $I_{C}$. The transistor DC current gain (denoted $\beta$ or $h_{FE}$) was approximated from Figure \ref{fig:2N3906_gain} to be 120. So, $I_{B}$ was found to be:
+Then, I considered how much base current ($I_{B}$) I need in order to supply $I_{C}$. The transistor DC current gain (denoted $\beta$ or $h_{FE}$) was approximated from Figure \ref{fig:2N3906_gain} to be 120. So, $I_{B}$ was found to be: 
 
 \begin{align*}
 I_{B} &= \frac{I_{C}}{\beta} \\
@@ -141,7 +87,7 @@ I_{B} &= \frac{51mA}{120} \\
 I_{B} &= 0.4mA
 \end{align*}
 
-We can then find the resistor need to supply this voltage when the signal pin is pulled LOW. Because this is a silicon diode, $V_{EB}=0.7V$.  Note that R was rounded to the nearest resistor value available in the lab. This is okay because the the value of R is not critical. It simply needs to be high enough to prevent the transistor from burning out (if $V_EB$ is too high) and low enough to allow sufficient current to light up the LEDs. If the value of the R is lower than ideal, the transistor will saturate but still function.
+We can then find the resistor need to supply this voltage when the signal pin is pulled LOW. Because this is a silicon transistor, $V_{EB}=0.7V$.  Note that R was rounded to the nearest resistor value available in the lab. This is okay because the the value of R is not critical. It simply needs to be high enough to prevent the transistor from burning out (if $V_EB$ is too high) and low enough to allow sufficient current to light up the LEDs. If the value of the R is lower than ideal, the transistor will saturate but still function. \\
 
 \begin{align*}
 R &= \frac{Vcc-V_{EB}}{I_{B}} \\
@@ -160,14 +106,11 @@ R &\approx 5.6k\Omega
 \end{figure} 
 
 
-
-
-
 PNP transistors were also used because MOSFETs were not available. 
 
 \subsection{Software}
 
-
+Table \ref{table:7seg_decoder} shows how the switch inputs map to the 7-segment outputs. \\
 
 
 \begin{table}[h]
@@ -199,6 +142,84 @@ s{[}3{]} & s{[}2{]} & s{[}1{]} & s{[}0{]} & (hex) & G & F & E & D & C & B & A & 
 \end{table}
 
 
+Figure \ref{fig:logic} shows the logic flow of the program. on1 is the control signal that decides whether or not the first 7-segment display is on (the first display is set to the left display). Note, because the hardware requires on1 to be pulled LOW in order for the PNP transistor to turn on, s1[3:0] is selected when on1 is 0. Since only one display is on at at time, on2 (the control signal for the second display) is the bitwise NOT of on1. s3 is the value on the selected switch and is passed through the 7-segment decoder to obtain the state of each segment in the display. Even though similar cathodes of both displays share the same state, only the segments in one display will be turned on (as determined by the states of on1 and on2). The sum of both switches are simply passed through an adder to obtain a 5-bit sum. This sum is directly written to the LED bar. See Tables \ref{table:pinmap_ledbar}, \ref{table:pinmap_sevenseg}, \ref{table:pinmap_control}, \ref{table:pinmap_sw1}, and \ref{table:pinmap_sw2} for the pin mappings of each signal. \\
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.11]{logic.jpg}
+\caption{Logic flow of time multiplexer}
+\label{fig:logic}
+\end{figure} 
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{LED Bar Pin Mapping}}             \\ \hline
+led{[}4{]} & led{[}3{]} & led{[}2{]} & led{[}1{]} & led{[}0{]} \\ \hline
+P33        & P32        & P31        & P30        & P28        \\ \hline
+\end{tabular}
+\caption{Pin mapping of LED bar}
+\label{table:pinmap_ledbar}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{7}{|c|}{\textbf{7 - Segment Display Pin Mapping}} \\ \hline
+seg[0]/A   & seg[1]/B   & seg[3]/C   & seg[4]/D    & seg[5]/E    & seg[6]/F   & seg[7]/G   \\ \hline
+P2         & P1         & P4         & P10         & P11         & P3         & P7  \\ \hline
+\end{tabular}
+\caption{Pin mapping of 7-segment display}
+\label{table:pinmap_sevenseg}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Control Signals Pin Mapping}} \\ \hline
+on1        & on2        & clk        & reset       \\ \hline
+P87        & P86        & P88        & P60         \\ \hline
+\end{tabular}
+\caption{Pin mapping of control signals}
+\label{table:pinmap_control}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Switch 1 Pin Mapping}} \\ \hline
+s1{[}3{]}  & s1{[}2{]}  & s1{[}1{]} & s1{[}0{]} \\ \hline
+P24        & P53        & P55       & P54       \\ \hline
+\end{tabular}
+\caption{Pin mapping for DIP switch set 1}
+\label{table:pinmap_sw1}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Switch 2 Pin Mapping}} \\ \hline
+s2{[}3{]}  & s2{[}2{]}  & s2{[}1{]} & s2{[}0{]} \\ \hline
+P51        & P50        & P49       & P44       \\ \hline
+\end{tabular}
+\caption{Pin mapping for DIP switch set 2}
+\label{table:pinmap_sw2}
+\end{table}
+
+
+
+To flash a display, the display needs to be toggled twice: once to turn on, and once to turn off. Thus, in order for the program to flash the segments at 60Hz, each segment needs to be toggled at 120Hz. The on-board clock oscillates at 40MHz so the LED displays need to be toggled every $\frac{40MHz}{120Hz} \approx 333333$ clock cycles. The 60Hz flashing rate was experimentally determined to be successful at deceiving the human eye.
 
 
 \label{sec:software_LEDbar}
@@ -208,7 +229,7 @@ s{[}3{]} & s{[}2{]} & s{[}1{]} & s{[}0{]} & (hex) & G & F & E & D & C & B & A & 
 
 \subsubsection{Simulation}
 
-The code's logic was tested in ModelSim-Altera. The following show the results of the wave simulations that were run.
+The code's logic was tested in ModelSim-Altera. The following show the results of the wave simulations that were run. The program was simulated in sections to ease debugging and wave simulation viewing.
 
 \begin{figure}[h!]
 \centering
@@ -262,12 +283,13 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \section{Technical Documentation}
 
+The following section shows schematics for breadboard circuit that was built. The source code is also provided.
 
 \subsection{7-segment Displays Schematic}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.7, angle=90]{seven_segment_all.png}
+\includegraphics[scale=0.5, angle=90]{seven_segment_all.png}
 \caption{Full schematic for dual 7-segment display. Note that on1 and on2 toggle the two displays on and off. Only one or the other is on at any given time.}
 \label{fig:seven_seg_sch}
 \end{figure} 
@@ -340,7 +362,7 @@ module lab2_SL(input logic clk, reset,
 endmodule
 
 
-/* This module time multiplexes
+/* This module time multiplexes by toggling on1.
 
    Author: Sherman Lam
    Email: slam@g.hmc.edu
@@ -416,7 +438,7 @@ endmodule
 
 \section{Results and Discussion}
 
-The system works as expected. The number set by the DIP switches on the breadboard is displayed on the left 7-segment display. The number set by the DIP switches on the $\mu$Mudd is displayed on the right 7-segment display. The FPGA flashes both displays at 60Hz. This flashing is unnoticeable when viewed by the human eye. Since each display is operating at 50$\%$ duty cycle, the intensity of the display is about half that of a display being held on (100$\%$ duty cycle). In addition, when the reset button is pressed, display 1 (left) turns on and display 2 (right) turns off. This states is held until the reset button is released.  \\
+The system works as expected. The number set by the DIP switches on the breadboard is displayed on the left 7-segment display. The number set by the DIP switches on the $\mu$Mudd is displayed on the right 7-segment display. The FPGA flashes both displays at 60Hz. This flashing is unnoticeable when viewed by the human eye. Since each display is operating at 50$\%$ duty cycle, the intensity of the display is about half that of a display being held on (100$\%$ duty cycle). In addition, when the reset button is pressed, display 1 (left) turns on and display 2 (right) turns off. This states is held until the reset button is released. The sum of the values on the two switches is correctly displayed on the LED bar. \\
 
 
 \section{Conclusion}
@@ -426,13 +448,15 @@ The system works as expected. The number set by the DIP switches on the breadboa
 \begin{description}
 	\item[Programming, Simulating] 2.5hrs
 	\item[Breadboarding] 2hrs
-	\item[Writing Report] 3hrs
-	\item[Total Time Spent] 7.5hrs
+	\item[Writing Report] 5hrs
+	\item[Total Time Spent] 9.5hrs
 \end{description}
 
 \subsection{Suggestions for lab}
 
-The current lab asks the student to use the DIP switches on the $\mu$Mudd in addition to 4 wires to control the two 7-segment displays. However, many people were asking if 4 wires meant an extra set of DIP switch. The instructions seem confusing in regards to this detail. Unless the lab's goal is to purposefully give semi-ambiguous instructions in order to force students to think (channeling E80, eh?), I would suggest explicitly give instructions to use a second set of DIP switches.
+The current lab asks the student to use the DIP switches on the $\mu$Mudd in addition to 4 wires to control the two 7-segment displays. However, many people were asking if 4 wires meant an extra set of DIP switch. The instructions seem confusing in regards to this detail. Unless the lab's goal is to purposefully give semi-ambiguous instructions in order to force students to think (channeling E80, eh?), I would suggest explicitly give instructions to use a second set of DIP switches. \\
+
+Also, using MOSFETs may making the switching much easier. Maybe you could consider stocking the E155 Lab with some?
 
 
 \end{document}

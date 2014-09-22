@@ -4546,17 +4546,17 @@ Source: http://www.osram.convergy.de/</description>
 </class>
 </classes>
 <parts>
-<part name="PIN1" library="supply2" deviceset="V--&gt;" device="" value="s[1] / P1"/>
+<part name="PIN1" library="supply2" deviceset="V--&gt;" device="" value="s3[1] / P1"/>
 <part name="R1" library="resistor" deviceset="R-US_" device="0411/12" value="10k"/>
 <part name="R2" library="resistor" deviceset="R-US_" device="0411/12" value="220"/>
 <part name="B2" library="adafruit" deviceset="LED" device="5MM"/>
-<part name="PIN2" library="supply2" deviceset="V--&gt;" device="" value="s[0] / P2"/>
-<part name="PIN3" library="supply2" deviceset="V--&gt;" device="" value="s[5] / P3"/>
-<part name="PIN4" library="supply2" deviceset="V--&gt;" device="" value="s[2] / P4"/>
+<part name="PIN2" library="supply2" deviceset="V--&gt;" device="" value="s3[0] / P2"/>
+<part name="PIN3" library="supply2" deviceset="V--&gt;" device="" value="s3[5] / P3"/>
+<part name="PIN4" library="supply2" deviceset="V--&gt;" device="" value="s3[2] / P4"/>
 <part name="+3V4" library="supply1" deviceset="+3V3" device=""/>
-<part name="PIN5" library="supply2" deviceset="V--&gt;" device="" value="s[6] / P7"/>
-<part name="PIN6" library="supply2" deviceset="V--&gt;" device="" value="s[3] / P10"/>
-<part name="PIN11" library="supply2" deviceset="V--&gt;" device="" value="s[4] / P11"/>
+<part name="PIN5" library="supply2" deviceset="V--&gt;" device="" value="s3[6] / P7"/>
+<part name="PIN6" library="supply2" deviceset="V--&gt;" device="" value="s3[3] / P10"/>
+<part name="PIN11" library="supply2" deviceset="V--&gt;" device="" value="s3[4] / P11"/>
 <part name="Q1" library="transistor-pnp" deviceset="2N3906" device=""/>
 <part name="SUPPLY1" library="sherman" deviceset="V--&gt;" device="" value="on1 / P87"/>
 <part name="B1" library="adafruit" deviceset="LED" device="5MM"/>
