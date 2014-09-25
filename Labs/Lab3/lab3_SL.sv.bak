@@ -1,0 +1,5 @@
+module lab3_SL(	input logic clk, reset,
+						output logic [6:0] seg);
+						
+				
+endmodule
