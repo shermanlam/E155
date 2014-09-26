@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab3_SL
-Thu Sep 25 15:55:17 2014
+Thu Sep 25 19:49:11 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -14,9 +14,12 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Elapsed Time Per Partition
- 10. Analysis & Synthesis Messages
- 11. Analysis & Synthesis Suppressed Messages
+  9. Parameter Settings for User Entity Instance: clk_sm:subClk
+ 10. Parameter Settings for User Entity Instance: row_sm:row
+ 11. Port Connectivity Checks: "record_sm:memory"
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
+ 14. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -42,7 +45,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Sep 25 15:55:17 2014      ;
+; Analysis & Synthesis Status        ; Successful - Thu Sep 25 19:49:11 2014      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; lab3_SL                                    ;
 ; Top-level Entity Name              ; lab3_SL                                    ;
@@ -51,7 +54,7 @@ applicable agreement for further details.
 ;     Total combinational functions  ; 0                                          ;
 ;     Dedicated logic registers      ; 0                                          ;
 ; Total registers                    ; 0                                          ;
-; Total pins                         ; 9                                          ;
+; Total pins                         ; 13                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -186,11 +189,11 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- Dedicated logic registers            ; 0     ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
-; I/O pins                                    ; 9     ;
+; I/O pins                                    ; 13    ;
 ; Embedded Multiplier 9-bit elements          ; 0     ;
 ; Maximum fan-out node                        ; clk   ;
 ; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 9     ;
+; Total fan-out                               ; 13    ;
 ; Average fan-out                             ; 0.50  ;
 +---------------------------------------------+-------+
 
@@ -200,7 +203,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |lab3_SL                   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 9    ; 0            ; |lab3_SL            ; work         ;
+; |lab3_SL                   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 13   ; 0            ; |lab3_SL            ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -220,6 +223,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: clk_sm:subClk ;
++----------------+------------------+------------------------+
+; Parameter Name ; Value            ; Type                   ;
++----------------+------------------+------------------------+
+; HALF_PERIOD    ; 0000000000000011 ; Unsigned Binary        ;
++----------------+------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------+
+; Parameter Settings for User Entity Instance: row_sm:row ;
++----------------+-------+--------------------------------+
+; Parameter Name ; Value ; Type                           ;
++----------------+-------+--------------------------------+
+; ROW1           ; 0001  ; Unsigned Binary                ;
+; ROW2           ; 0010  ; Unsigned Binary                ;
+; ROW3           ; 0100  ; Unsigned Binary                ;
+; ROW4           ; 1000  ; Unsigned Binary                ;
++----------------+-------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "record_sm:memory"                                                                       ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; last     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; lastlast ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -235,21 +271,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Sep 25 15:55:12 2014
+    Info: Processing started: Thu Sep 25 19:49:09 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab3_SL -c lab3_SL
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (12021): Found 4 design units, including 4 entities, in source file lab3_sl.sv
+Info (12021): Found 5 design units, including 5 entities, in source file lab3_sl.sv
     Info (12023): Found entity 1: lab3_SL
     Info (12023): Found entity 2: row_sm
-    Info (12023): Found entity 3: record_sm
-    Info (12023): Found entity 4: clk_sm
+    Info (12023): Found entity 3: read_keys
+    Info (12023): Found entity 4: record_sm
+    Info (12023): Found entity 5: clk_sm
 Info (12021): Found 3 design units, including 3 entities, in source file seven_seg_displays.sv
     Info (12023): Found entity 1: seven_seg_displays
     Info (12023): Found entity 2: multiplexer
     Info (12023): Found entity 3: led7Decoder
 Info (12127): Elaborating entity "lab3_SL" for the top level hierarchy
-Warning (10034): Output port "seg" at lab3_SL.sv(9) has no driver
-Warning (12158): Entity "lab3_SL" contains only dangling pins
+Warning (10034): Output port "seg" at lab3_SL.sv(10) has no driver
+Info (12128): Elaborating entity "clk_sm" for hierarchy "clk_sm:subClk"
+Info (12128): Elaborating entity "record_sm" for hierarchy "record_sm:memory"
+Info (12128): Elaborating entity "row_sm" for hierarchy "row_sm:row"
+Info (10264): Verilog HDL Case Statement information at lab3_SL.sv(57): all case item expressions in this case statement are onehot
+Info (12128): Elaborating entity "read_keys" for hierarchy "read_keys:read"
+Info (10264): Verilog HDL Case Statement information at lab3_SL.sv(83): all case item expressions in this case statement are onehot
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "seg[0]" is stuck at GND
     Warning (13410): Pin "seg[1]" is stuck at GND
@@ -261,16 +303,20 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (144001): Generated suppressed messages file C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/output_files/lab3_SL.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
+Warning (21074): Design contains 6 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "clk"
     Warning (15610): No output dependent on input pin "reset"
-Info (21057): Implemented 9 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
+    Warning (15610): No output dependent on input pin "col[0]"
+    Warning (15610): No output dependent on input pin "col[1]"
+    Warning (15610): No output dependent on input pin "col[2]"
+    Warning (15610): No output dependent on input pin "col[3]"
+Info (21057): Implemented 13 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 6 input pins
     Info (21059): Implemented 7 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 467 megabytes
-    Info: Processing ended: Thu Sep 25 15:55:17 2014
-    Info: Elapsed time: 00:00:05
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 17 warnings
+    Info: Peak virtual memory: 468 megabytes
+    Info: Processing ended: Thu Sep 25 19:49:11 2014
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

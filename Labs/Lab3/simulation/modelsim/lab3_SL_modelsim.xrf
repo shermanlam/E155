@@ -12,3 +12,7 @@ instance = comp, \seg[5]~output , seg[5]~output, lab3_SL, 1
 instance = comp, \seg[6]~output , seg[6]~output, lab3_SL, 1
 instance = comp, \clk~input , clk~input, lab3_SL, 1
 instance = comp, \reset~input , reset~input, lab3_SL, 1
+instance = comp, \col[0]~input , col[0]~input, lab3_SL, 1
+instance = comp, \col[1]~input , col[1]~input, lab3_SL, 1
+instance = comp, \col[2]~input , col[2]~input, lab3_SL, 1
+instance = comp, \col[3]~input , col[3]~input, lab3_SL, 1

@@ -1,1 +1,2 @@
+Warning (10268): Verilog HDL information at lab3_SL.sv(136): always construct contains both blocking and non-blocking assignments
 Warning (10268): Verilog HDL information at seven_seg_displays.sv(50): always construct contains both blocking and non-blocking assignments

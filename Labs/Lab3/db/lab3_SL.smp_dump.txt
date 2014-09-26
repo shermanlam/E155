@@ -1,0 +1,7 @@
+
+State Machine - |lab3_SL|row_sm:row|state
+Name state.ROW4 state.ROW3 state.ROW2 state.ROW1 
+state.ROW1 0 0 0 0 
+state.ROW2 0 0 1 1 
+state.ROW3 0 1 0 1 
+state.ROW4 1 0 0 1 

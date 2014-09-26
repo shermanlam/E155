@@ -1,6 +1,10 @@
 |lab3_SL
-clk => ~NO_FANOUT~
-reset => ~NO_FANOUT~
+clk => clk.IN1
+reset => reset.IN3
+col[0] => col[0].IN1
+col[1] => col[1].IN1
+col[2] => col[2].IN1
+col[3] => col[3].IN1
 seg[0] <= <GND>
 seg[1] <= <GND>
 seg[2] <= <GND>
@@ -8,5 +12,136 @@ seg[3] <= <GND>
 seg[4] <= <GND>
 seg[5] <= <GND>
 seg[6] <= <GND>
+
+
+|lab3_SL|clk_sm:subClk
+clk => loop_clk~reg0.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+clk => counter[4].CLK
+clk => counter[5].CLK
+clk => counter[6].CLK
+clk => counter[7].CLK
+clk => counter[8].CLK
+clk => counter[9].CLK
+clk => counter[10].CLK
+clk => counter[11].CLK
+clk => counter[12].CLK
+clk => counter[13].CLK
+clk => counter[14].CLK
+clk => counter[15].CLK
+reset => loop_clk~reg0.ACLR
+reset => counter[0].ACLR
+reset => counter[1].ACLR
+reset => counter[2].ACLR
+reset => counter[3].ACLR
+reset => counter[4].ACLR
+reset => counter[5].ACLR
+reset => counter[6].ACLR
+reset => counter[7].ACLR
+reset => counter[8].ACLR
+reset => counter[9].ACLR
+reset => counter[10].ACLR
+reset => counter[11].ACLR
+reset => counter[12].ACLR
+reset => counter[13].ACLR
+reset => counter[14].ACLR
+reset => counter[15].ACLR
+loop_clk <= loop_clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3_SL|record_sm:memory
+loop_clk => lastlast[0]~reg0.CLK
+loop_clk => lastlast[1]~reg0.CLK
+loop_clk => lastlast[2]~reg0.CLK
+loop_clk => lastlast[3]~reg0.CLK
+loop_clk => last[0]~reg0.CLK
+loop_clk => last[1]~reg0.CLK
+loop_clk => last[2]~reg0.CLK
+loop_clk => last[3]~reg0.CLK
+reset => lastlast[0]~reg0.ACLR
+reset => lastlast[1]~reg0.ACLR
+reset => lastlast[2]~reg0.ACLR
+reset => lastlast[3]~reg0.ACLR
+reset => last[0]~reg0.ACLR
+reset => last[1]~reg0.ACLR
+reset => last[2]~reg0.ACLR
+reset => last[3]~reg0.ACLR
+pressed => lastlast[0]~reg0.ENA
+pressed => last[3]~reg0.ENA
+pressed => last[2]~reg0.ENA
+pressed => last[1]~reg0.ENA
+pressed => last[0]~reg0.ENA
+pressed => lastlast[3]~reg0.ENA
+pressed => lastlast[2]~reg0.ENA
+pressed => lastlast[1]~reg0.ENA
+newest[0] => last[0]~reg0.DATAIN
+newest[1] => last[1]~reg0.DATAIN
+newest[2] => last[2]~reg0.DATAIN
+newest[3] => last[3]~reg0.DATAIN
+last[0] <= last[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+last[1] <= last[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+last[2] <= last[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+last[3] <= last[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+lastlast[0] <= lastlast[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+lastlast[1] <= lastlast[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+lastlast[2] <= lastlast[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+lastlast[3] <= lastlast[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3_SL|row_sm:row
+loop_clk => state[0]~reg0.CLK
+loop_clk => state[1]~reg0.CLK
+loop_clk => state[2]~reg0.CLK
+loop_clk => state[3]~reg0.CLK
+reset => state.OUTPUTSELECT
+reset => state.OUTPUTSELECT
+reset => state.OUTPUTSELECT
+reset => state.OUTPUTSELECT
+state[0] <= state[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+state[1] <= state[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+state[2] <= state[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+state[3] <= state[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3_SL|read_keys:read
+state[0] => Mux0.IN19
+state[0] => Mux1.IN17
+state[0] => Mux2.IN19
+state[0] => Mux3.IN19
+state[0] => Mux4.IN19
+state[1] => Mux0.IN18
+state[1] => Mux1.IN16
+state[1] => Mux2.IN18
+state[1] => Mux3.IN18
+state[1] => Mux4.IN18
+state[2] => Mux0.IN17
+state[2] => Mux1.IN15
+state[2] => Mux2.IN17
+state[2] => Mux3.IN17
+state[2] => Mux4.IN17
+state[3] => Mux0.IN16
+state[3] => Mux1.IN14
+state[3] => Mux2.IN16
+state[3] => Mux3.IN16
+state[3] => Mux4.IN16
+col[0] => Decoder2.IN3
+col[1] => Decoder1.IN2
+col[1] => Decoder2.IN2
+col[2] => Decoder0.IN1
+col[2] => Decoder1.IN1
+col[2] => Decoder2.IN1
+col[3] => Decoder0.IN0
+col[3] => Decoder1.IN0
+col[3] => Decoder2.IN0
+col[3] => Mux1.IN18
+col[3] => Mux1.IN19
+pressed <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+newest[0] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+newest[1] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+newest[2] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+newest[3] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 
 

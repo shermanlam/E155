@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 64-Bit"
 // VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-// DATE "09/25/2014 15:55:44"
+// DATE "09/25/2014 19:49:34"
 
 // 
 // Device: Altera EP3C5E144C8 Package TQFP144
@@ -31,21 +31,27 @@
 module lab3_SL (
 	clk,
 	reset,
+	col,
 	seg);
 input 	logic clk ;
 input 	logic reset ;
+input 	logic [3:0] col ;
 output 	logic [6:0] seg ;
 
 // Design Ports Information
-// clk	=>  Location: PIN_1,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// reset	=>  Location: PIN_31,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// clk	=>  Location: PIN_106,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// reset	=>  Location: PIN_120,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// col[0]	=>  Location: PIN_7,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// col[1]	=>  Location: PIN_11,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// col[2]	=>  Location: PIN_10,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// col[3]	=>  Location: PIN_142,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // seg[0]	=>  Location: PIN_28,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[1]	=>  Location: PIN_142,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[2]	=>  Location: PIN_32,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[3]	=>  Location: PIN_66,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[4]	=>  Location: PIN_104,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[5]	=>  Location: PIN_112,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// seg[6]	=>  Location: PIN_126,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[1]	=>  Location: PIN_126,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[2]	=>  Location: PIN_66,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[3]	=>  Location: PIN_83,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[4]	=>  Location: PIN_124,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[5]	=>  Location: PIN_4,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// seg[6]	=>  Location: PIN_30,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -65,6 +71,10 @@ initial $sdf_annotate("lab3_SL_min_1200mv_0c_v_fast.sdo");
 
 wire \clk~input_o ;
 wire \reset~input_o ;
+wire \col[0]~input_o ;
+wire \col[1]~input_o ;
+wire \col[2]~input_o ;
+wire \col[3]~input_o ;
 wire \seg[0]~output_o ;
 wire \seg[1]~output_o ;
 wire \seg[2]~output_o ;
@@ -87,7 +97,7 @@ defparam \seg[0]~output .bus_hold = "false";
 defparam \seg[0]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X3_Y24_N23
+// Location: IOOBUF_X16_Y24_N2
 cycloneiii_io_obuf \seg[1]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -100,7 +110,7 @@ defparam \seg[1]~output .bus_hold = "false";
 defparam \seg[1]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X0_Y6_N16
+// Location: IOOBUF_X28_Y0_N2
 cycloneiii_io_obuf \seg[2]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -113,7 +123,7 @@ defparam \seg[2]~output .bus_hold = "false";
 defparam \seg[2]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X28_Y0_N2
+// Location: IOOBUF_X34_Y9_N23
 cycloneiii_io_obuf \seg[3]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -126,7 +136,7 @@ defparam \seg[3]~output .bus_hold = "false";
 defparam \seg[3]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X34_Y18_N2
+// Location: IOOBUF_X18_Y24_N16
 cycloneiii_io_obuf \seg[4]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -139,7 +149,7 @@ defparam \seg[4]~output .bus_hold = "false";
 defparam \seg[4]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X28_Y24_N2
+// Location: IOOBUF_X0_Y22_N2
 cycloneiii_io_obuf \seg[5]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -152,7 +162,7 @@ defparam \seg[5]~output .bus_hold = "false";
 defparam \seg[5]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X16_Y24_N2
+// Location: IOOBUF_X0_Y8_N16
 cycloneiii_io_obuf \seg[6]~output (
 	.i(gnd),
 	.oe(vcc),
@@ -165,7 +175,7 @@ defparam \seg[6]~output .bus_hold = "false";
 defparam \seg[6]~output .open_drain_output = "false";
 // synopsys translate_on
 
-// Location: IOIBUF_X0_Y23_N1
+// Location: IOIBUF_X34_Y20_N8
 cycloneiii_io_ibuf \clk~input (
 	.i(clk),
 	.ibar(gnd),
@@ -175,7 +185,7 @@ defparam \clk~input .bus_hold = "false";
 defparam \clk~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: IOIBUF_X0_Y7_N1
+// Location: IOIBUF_X23_Y24_N8
 cycloneiii_io_ibuf \reset~input (
 	.i(reset),
 	.ibar(gnd),
@@ -183,6 +193,46 @@ cycloneiii_io_ibuf \reset~input (
 // synopsys translate_off
 defparam \reset~input .bus_hold = "false";
 defparam \reset~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X0_Y21_N8
+cycloneiii_io_ibuf \col[0]~input (
+	.i(col[0]),
+	.ibar(gnd),
+	.o(\col[0]~input_o ));
+// synopsys translate_off
+defparam \col[0]~input .bus_hold = "false";
+defparam \col[0]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X0_Y18_N22
+cycloneiii_io_ibuf \col[1]~input (
+	.i(col[1]),
+	.ibar(gnd),
+	.o(\col[1]~input_o ));
+// synopsys translate_off
+defparam \col[1]~input .bus_hold = "false";
+defparam \col[1]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X0_Y18_N15
+cycloneiii_io_ibuf \col[2]~input (
+	.i(col[2]),
+	.ibar(gnd),
+	.o(\col[2]~input_o ));
+// synopsys translate_off
+defparam \col[2]~input .bus_hold = "false";
+defparam \col[2]~input .simulate_z_as = "z";
+// synopsys translate_on
+
+// Location: IOIBUF_X3_Y24_N22
+cycloneiii_io_ibuf \col[3]~input (
+	.i(col[3]),
+	.ibar(gnd),
+	.o(\col[3]~input_o ));
+// synopsys translate_off
+defparam \col[3]~input .bus_hold = "false";
+defparam \col[3]~input .simulate_z_as = "z";
 // synopsys translate_on
 
 assign seg[0] = \seg[0]~output_o ;
