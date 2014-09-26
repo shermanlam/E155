@@ -15,12 +15,20 @@ module lab3_SL(	input logic clk, reset,
 	logic pressed;
 	logic loop_clk;
 	logic[3:0] state;
-		
-	clk_sm 		subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
-	record_sm 	memory(.loop_clk(loop_clk),.reset(reset),.pressed(pressed),
-							.newest(newest),.last(last),.lastlast(lastlast));
-	row_sm 		row(.loop_clk(loop_clk),.reset(reset),.state(state));
-	read_keys	read(.state(state),.col(col),.pressed(pressed),.newest(newest));
+	
+	// run the clk at a slower rate
+	clk_sm 			subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
+	//keep track of the last 2 numbers
+	record_sm 		memory(.loop_clk(loop_clk),.reset(reset),.pressed(pressed),
+							.newest(newest),.last(last),.lastlast(lastlast),
+							.wasPressed(wasPressed);
+	//fsm for deciding which row to check next
+	row_sm 			row(.loop_clk(loop_clk),.reset(reset),.state(state));
+	//read the rows and cols of the keypad and decode to hex
+	read_keys		read(.state(state),.col(col),.pressed(pressed),.newest(newest));
+	// keeps track if key was pressed in the last time step
+	record_pressed recordPressed(.clk(clk),.reset(reset),.pressed(pressed),
+							.wasPressed(wasPressed));
 				
 endmodule
 
@@ -119,6 +127,25 @@ module read_keys(	input logic [3:0] state,
 	end
 endmodule
 					
+					
+					
+/* This keeps track of whether or not a key was pressed in
+the last time step
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 25, 2014
+*/
+module record_pressed(	input logic pressed, clk, reset
+							output logic wasPressed);
+		always_ff(posedge clk) begin
+			if (reset == 1'b1)
+				wasPressed = 1'b0;
+			else
+				wasPressed <= pressed;
+		end
+	
+endmodule	
 
 
 /* This is the state machine that records the last
@@ -129,7 +156,7 @@ Email: slam@g.hmc.edu
 Date: Sep 25,2104
 */
 module record_sm(	input logic loop_clk, reset,
-						input logic pressed,
+						input logic pressed, wasPressed,
 						input logic [3:0] newest,
 						output logic [3:0] last, lastlast);
 	// store
@@ -138,7 +165,8 @@ module record_sm(	input logic loop_clk, reset,
 			last = 'h0;
 			lastlast = 'h0; 
 		end
-		else if (pressed == 1'b1)	begin
+		//record only the first instance of the press
+		else if ((pressed == 1'b1) & (~wasPressed))	begin
 			lastlast <= last;
 			last <= newest;
 		end
