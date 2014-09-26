@@ -5,7 +5,7 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module lab3_SL(	input logic clk, reset,
+module lab3_SL(	input logic clk, reset, on1, on2,
 						input logic [3:0] col,
 						output logic [6:0] seg);
 	//wires
@@ -13,15 +13,17 @@ module lab3_SL(	input logic clk, reset,
 	logic[3:0] last;
 	logic[3:0] lastlast;
 	logic pressed;
+	logic wasPressed;
 	logic loop_clk;
 	logic[3:0] state;
+	logic[4:0] led;
 	
 	// run the clk at a slower rate
 	clk_sm 			subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
 	//keep track of the last 2 numbers
 	record_sm 		memory(.loop_clk(loop_clk),.reset(reset),.pressed(pressed),
 							.newest(newest),.last(last),.lastlast(lastlast),
-							.wasPressed(wasPressed);
+							.wasPressed(wasPressed));
 	//fsm for deciding which row to check next
 	row_sm 			row(.loop_clk(loop_clk),.reset(reset),.state(state));
 	//read the rows and cols of the keypad and decode to hex
@@ -29,6 +31,10 @@ module lab3_SL(	input logic clk, reset,
 	// keeps track if key was pressed in the last time step
 	record_pressed recordPressed(.clk(clk),.reset(reset),.pressed(pressed),
 							.wasPressed(wasPressed));
+	//seven segment display
+	seven_seg_displays		seven_seg(.clk(clk),.reset(reset),.s1(last),
+										.s2(lastlast),.on1(on1),.on2(on2),.seg(seg),
+										.led(led));
 				
 endmodule
 
@@ -136,9 +142,9 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module record_pressed(	input logic pressed, clk, reset
+module record_pressed(	input logic pressed, clk, reset,
 							output logic wasPressed);
-		always_ff(posedge clk) begin
+		always_ff@(posedge clk) begin
 			if (reset == 1'b1)
 				wasPressed = 1'b0;
 			else
@@ -171,7 +177,6 @@ module record_sm(	input logic loop_clk, reset,
 			last <= newest;
 		end
 	end
-	
 endmodule
 
 
