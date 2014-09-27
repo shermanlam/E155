@@ -14,7 +14,7 @@ run 400
 force col 0100
 run 400
 force col 1000
-run 100
+run 400
 force col 0101
 run 100
 force col 0000

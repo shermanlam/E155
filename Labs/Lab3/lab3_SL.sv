@@ -17,6 +17,7 @@ module lab3_SL(	input logic clk, reset, on1, on2,
 	logic loop_clk;
 	logic[3:0] state;
 	logic[4:0] led;
+	logic[3:0] samples;
 	
 	// run the clk at a slower rate
 	clk_sm 			subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
@@ -26,10 +27,12 @@ module lab3_SL(	input logic clk, reset, on1, on2,
 							.wasPressed(wasPressed));
 	//fsm for deciding which row to check next
 	row_sm 			row(.loop_clk(loop_clk),.reset(reset),.state(state));
+	//sample the keys synchronously
+	sample_keys		sample(.loop_clk(loop_clk),.reset(reset),.col(col),.samples(samples));
 	//read the rows and cols of the keypad and decode to hex
-	read_keys		read(.state(state),.col(col),.pressed(pressed),.newest(newest));
+	decode_keys		read(.state(state),.samples(samples),.pressed(pressed),.newest(newest));
 	// keeps track if key was pressed in the last time step
-	record_pressed recordPressed(.clk(clk),.reset(reset),.pressed(pressed),
+	record_pressed recordPressed(.loop_clk(loop_clk),.reset(reset),.pressed(pressed),
 							.wasPressed(wasPressed));
 	//seven segment display
 	seven_seg_displays		seven_seg(.clk(clk),.reset(reset),.s1(last),
@@ -80,6 +83,25 @@ module row_sm( input logic loop_clk, reset,
 endmodule
 
 
+/* This samples the keys at the rising edge of loop_clk.
+This is meant to prevent button bounce.
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 26,2014
+*/
+module sample_keys(	input logic loop_clk, reset,
+							input logic [3:0] col, 
+							output logic [3:0] samples);
+		always_ff@(posedge loop_clk) begin
+			if (reset)
+				samples <= 4'b0000;
+			else begin
+				samples <= col;
+			end
+		end
+endmodule
+
 
 /* This checks whether or not a button has been pressed.
 
@@ -87,36 +109,36 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module read_keys(	input logic [3:0] state,
-						input logic [3:0] col,
+module decode_keys(	input logic [3:0] state,
+						input logic [3:0] samples,
 						output logic pressed,
 						output logic [3:0] newest);
 	logic [4:0] key = 'b0;
 	always_comb begin
 		//check each row
 		case(state)
-			4'b0001:	casez(col)			// find the first key
+			4'b0001:	casez(samples)			// find the first key
 						4'b1???: key = 5'hA;
 						4'b01??: key = 5'h3;
 						4'b001?: key = 5'h2;
 						4'b0001: key = 5'h1;
 						default: key = 5'h10;	// no key		
 					endcase	
-			4'b0010:	casez(col)			// find the first key
+			4'b0010:	casez(samples)			// find the first key
 						4'b1???: key = 5'hB;
 						4'b01??: key = 5'h6;
 						4'b001?: key = 5'h5;
 						4'b0001: key = 5'h4;
 						default: key = 5'h10;	// no key		
 					endcase	
-			4'b0100:	casez(col)			// find the first key
+			4'b0100:	casez(samples)			// find the first key
 						4'b1???: key = 5'hC;
 						4'b01??: key = 5'h9;
 						4'b001?: key = 5'h8;
 						4'b0001: key = 5'h7;
 						default: key = 5'h10;	// no key		
 					endcase			
-			4'b1000:	casez(col)			// find the first key
+			4'b1000:	casez(samples)			// find the first key
 						4'b1???: key = 5'hD;
 						4'b01??: key = 5'hF;
 						4'b001?: key = 5'h0;
@@ -142,9 +164,9 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module record_pressed(	input logic pressed, clk, reset,
+module record_pressed(	input logic pressed, loop_clk, reset,
 							output logic wasPressed);
-		always_ff@(posedge clk) begin
+		always_ff@(posedge loop_clk) begin
 			if (reset == 1'b1)
 				wasPressed = 1'b0;
 			else
@@ -175,6 +197,10 @@ module record_sm(	input logic loop_clk, reset,
 		else if ((pressed == 1'b1) & (~wasPressed))	begin
 			lastlast <= last;
 			last <= newest;
+		end
+		else begin
+			lastlast <= lastlast;
+			last <= last;
 		end
 	end
 endmodule

@@ -1,0 +1,16 @@
+restart -f
+force -freeze sim:/lab3_SL/loop_clk 1 0, 0 {50 ps} -r 100
+force col 0000
+force state 0001
+force reset 1
+run 25
+force reset 0
+run 25
+force col 0001
+run 400
+force col 0001
+run 800
+force col 0000
+run 400
+force col 0001
+run 800

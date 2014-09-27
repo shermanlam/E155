@@ -1,6 +1,6 @@
 |lab3_SL
-clk => clk.IN3
-reset => reset.IN5
+clk => clk.IN2
+reset => reset.IN6
 on1 => on1.IN1
 on2 => on2.IN1
 col[0] => col[0].IN1
@@ -102,7 +102,26 @@ state[2] <= state[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 state[3] <= state[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_SL|read_keys:read
+|lab3_SL|sample_keys:sample
+loop_clk => samples[0]~reg0.CLK
+loop_clk => samples[1]~reg0.CLK
+loop_clk => samples[2]~reg0.CLK
+loop_clk => samples[3]~reg0.CLK
+reset => samples.OUTPUTSELECT
+reset => samples.OUTPUTSELECT
+reset => samples.OUTPUTSELECT
+reset => samples.OUTPUTSELECT
+col[0] => samples.DATAA
+col[1] => samples.DATAA
+col[2] => samples.DATAA
+col[3] => samples.DATAA
+samples[0] <= samples[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+samples[1] <= samples[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+samples[2] <= samples[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+samples[3] <= samples[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab3_SL|decode_keys:read
 state[0] => Mux0.IN19
 state[0] => Mux1.IN17
 state[0] => Mux2.IN19
@@ -123,17 +142,17 @@ state[3] => Mux1.IN14
 state[3] => Mux2.IN16
 state[3] => Mux3.IN16
 state[3] => Mux4.IN16
-col[0] => Decoder2.IN3
-col[1] => Decoder1.IN2
-col[1] => Decoder2.IN2
-col[2] => Decoder0.IN1
-col[2] => Decoder1.IN1
-col[2] => Decoder2.IN1
-col[3] => Decoder0.IN0
-col[3] => Decoder1.IN0
-col[3] => Decoder2.IN0
-col[3] => Mux1.IN18
-col[3] => Mux1.IN19
+samples[0] => Decoder2.IN3
+samples[1] => Decoder1.IN2
+samples[1] => Decoder2.IN2
+samples[2] => Decoder0.IN1
+samples[2] => Decoder1.IN1
+samples[2] => Decoder2.IN1
+samples[3] => Decoder0.IN0
+samples[3] => Decoder1.IN0
+samples[3] => Decoder2.IN0
+samples[3] => Mux1.IN18
+samples[3] => Mux1.IN19
 pressed <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 newest[0] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
 newest[1] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
@@ -143,7 +162,7 @@ newest[3] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 
 |lab3_SL|record_pressed:recordPressed
 pressed => wasPressed.DATAA
-clk => wasPressed~reg0.CLK
+loop_clk => wasPressed~reg0.CLK
 reset => wasPressed.OUTPUTSELECT
 wasPressed <= wasPressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
