@@ -18,7 +18,6 @@ seg[3] <= seven_seg_displays:seven_seg.seg
 seg[4] <= seven_seg_displays:seven_seg.seg
 seg[5] <= seven_seg_displays:seven_seg.seg
 seg[6] <= seven_seg_displays:seven_seg.seg
-led1 <= state[0].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |lab3_SL|clk_sm:subClk

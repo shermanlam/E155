@@ -9,8 +9,7 @@ module lab3_SL(	input logic clk, reset,
 						input logic [3:0] col,
 						output logic on1,on2,
 						output logic [3:0] state,
-						output logic [6:0] seg,
-						output logic led1);
+						output logic [6:0] seg);
 	//wires
 	logic[3:0] newest;
 	logic[3:0] last;
@@ -18,11 +17,9 @@ module lab3_SL(	input logic clk, reset,
 	logic pressed;
 	logic wasPressed;
 	logic loop_clk;
-	//logic[3:0] state;
 	logic[4:0] led;
 	logic[3:0] samples;
 	logic[3:0] laststate;
-	assign led1 = state[0];
 	
 	// run the clk at a slower rate
 	clk_sm 			subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
@@ -295,9 +292,9 @@ Date: Sep 25,2104
 module clk_sm( input logic clk, reset,
 					output logic loop_clk);
 
-//parameter HALF_PERIOD = 16'd2632; //7.6kHz loop rate
+parameter HALF_PERIOD = 16'd2632; //7.6kHz loop rate
 //parameter HALF_PERIOD = 16'd3;
-parameter HALF_PERIOD = 28'd10000;
+//parameter HALF_PERIOD = 28'd10000;
 logic [27:0] counter = '0;
 
 always_ff@(posedge clk, posedge reset) begin
