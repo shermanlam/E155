@@ -5,9 +5,12 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module lab3_SL(	input logic clk, reset, on1, on2,
+module lab3_SL(	input logic clk, reset,
 						input logic [3:0] col,
-						output logic [6:0] seg);
+						output logic on1,on2,
+						output logic [3:0] state,
+						output logic [6:0] seg,
+						output logic led1);
 	//wires
 	logic[3:0] newest;
 	logic[3:0] last;
@@ -15,9 +18,11 @@ module lab3_SL(	input logic clk, reset, on1, on2,
 	logic pressed;
 	logic wasPressed;
 	logic loop_clk;
-	logic[3:0] state;
+	//logic[3:0] state;
 	logic[4:0] led;
 	logic[3:0] samples;
+	logic[3:0] laststate;
+	assign led1 = state[0];
 	
 	// run the clk at a slower rate
 	clk_sm 			subClk(.clk(clk),.reset(reset),.loop_clk(loop_clk));	
@@ -26,19 +31,37 @@ module lab3_SL(	input logic clk, reset, on1, on2,
 							.newest(newest),.last(last),.lastlast(lastlast),
 							.wasPressed(wasPressed));
 	//fsm for deciding which row to check next
-	row_sm 			row(.loop_clk(loop_clk),.reset(reset),.state(state));
+	row_sm 			row(.loop_clk(loop_clk),.reset(reset),.state(state),.col(col));
 	//sample the keys synchronously
 	sample_keys		sample(.loop_clk(loop_clk),.reset(reset),.col(col),.samples(samples));
+	//remember the last state
+	last_state		rememberState(.loop_clk(loop_clk),.state(state),.laststate(laststate));
 	//read the rows and cols of the keypad and decode to hex
-	decode_keys		read(.state(state),.samples(samples),.pressed(pressed),.newest(newest));
+	decode_keys		read(.laststate(laststate),.samples(samples),.pressed(pressed),.newest(newest));
 	// keeps track if key was pressed in the last time step
 	record_pressed recordPressed(.loop_clk(loop_clk),.reset(reset),.pressed(pressed),
 							.wasPressed(wasPressed));
+	
 	//seven segment display
-	seven_seg_displays		seven_seg(.clk(clk),.reset(reset),.s1(last),
-										.s2(lastlast),.on1(on1),.on2(on2),.seg(seg),
+	seven_seg_displays		seven_seg(.clk(clk),.reset(reset),.s1(lastlast),
+										.s2(last),.on1(on1),.on2(on2),.seg(seg),
 										.led(led));
 				
+endmodule
+
+
+/* This keeps track of the last state
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 27, 2014
+*/
+module last_state(input logic loop_clk,
+						input logic [3:0] state,
+						output logic [3:0] laststate);
+		always_ff@(posedge loop_clk) begin
+			laststate <= state;
+		end
 endmodule
 
 
@@ -50,6 +73,7 @@ Email: slam@g.hmc.edu
 Date: Sep 25,2104
 */
 module row_sm( input logic loop_clk, reset,
+					input logic [3:0] col,
 					output logic [3:0] state);
 	
 	//state encodings
@@ -62,11 +86,13 @@ module row_sm( input logic loop_clk, reset,
 	logic [3:0] next;
 	
 	always_ff@(posedge loop_clk) begin
-		if (reset == 1'b1) begin
+		if (reset)
 			state <= ROW1;
-		end
-		else 
+		else if (col == 4'b0000)		//only switch rows when button not pressed.
 			state <= next;
+		else	
+			state <= state;	
+		
 	end			
 	
 	always_comb begin
@@ -109,14 +135,14 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: Sep 25, 2014
 */
-module decode_keys(	input logic [3:0] state,
+module decode_keys(	input logic [3:0] laststate,
 						input logic [3:0] samples,
 						output logic pressed,
 						output logic [3:0] newest);
 	logic [4:0] key = 'b0;
 	always_comb begin
 		//check each row
-		case(state)
+		case(laststate)
 			4'b0001:	casez(samples)			// find the first key
 						4'b1???: key = 5'hA;
 						4'b01??: key = 5'h3;
@@ -151,11 +177,47 @@ module decode_keys(	input logic [3:0] state,
 		//key is only pressed if we found a key
 		pressed = ~key[4];
 		newest = key[3:0];
+		
+		//TODO: change pressed to also depend on the state. Store pressed
+		// as a 4 bit number.
 	
 	end
 endmodule
 					
-					
+				
+/* This module keeps track of which key was pressed
+
+Author: Sherman
+Email: slam@g.hmc.edu
+Date Sep 27, 2014
+*/
+/*
+module sort_presses (input logic pressed, loop_clk, reset,
+							input logic [3:0] laststate,
+							output logic [3:0] pressedSort);
+	
+	logic [3:0] lastPressedSort; 
+	
+	always_ff@(posedge loop_clk) begin
+		if (reset)
+			lastPressedSort = 4'b0000;
+		else 
+			pressedSort <= lastPressedSort;
+	end	
+	
+	//next state logic
+	always_comb begin
+		case(state)
+			4'b0001:		lastPressedSort[0] = pressed;		//row 1
+			4'b0010:		lastPressedSort[1] = pressed;		//row 2
+			4'b0100:		lastPressedSort[2] = pressed;		//row 3
+			4'b1000:		lastPressedSort[3] = pressed;		//row 4
+			default: 	lastPressedSort = 4'b0000;
+		endcase
+	end
+endmodule
+		*/
+		
 					
 /* This keeps track of whether or not a key was pressed in
 the last time step
@@ -176,6 +238,14 @@ module record_pressed(	input logic pressed, loop_clk, reset,
 endmodule	
 
 
+/* This is a state machine that sorts the presses
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 27, 2014
+*/
+
+
 /* This is the state machine that records the last
 two values (last and lastlast) entered into the keypad. 
 
@@ -189,12 +259,12 @@ module record_sm(	input logic loop_clk, reset,
 						output logic [3:0] last, lastlast);
 	// store
 	always_ff@(posedge loop_clk, posedge reset) begin
-		if (reset == 1'b1) begin
+		if (reset) begin
 			last = 'h0;
 			lastlast = 'h0; 
 		end
 		//record only the first instance of the press
-		else if ((pressed == 1'b1) & (~wasPressed))	begin
+		else if (pressed & (~wasPressed)) begin
 			lastlast <= last;
 			last <= newest;
 		end
@@ -226,8 +296,9 @@ module clk_sm( input logic clk, reset,
 					output logic loop_clk);
 
 //parameter HALF_PERIOD = 16'd2632; //7.6kHz loop rate
-parameter HALF_PERIOD = 16'd3;
-logic [15:0] counter = '0;
+//parameter HALF_PERIOD = 16'd3;
+parameter HALF_PERIOD = 28'd10000;
+logic [27:0] counter = '0;
 
 always_ff@(posedge clk, posedge reset) begin
 	if (reset == 1'b1) begin					
@@ -246,5 +317,10 @@ end
 
 
 endmodule
+
+
+
+
+
 
 

@@ -3,15 +3,15 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -3.885
-TNS   : -114.353
+Slack : -3.867
+TNS   : -160.282
 
 Type  : Slow 1200mV 85C Model Setup 'clk_sm:subClk|loop_clk'
-Slack : -2.185
-TNS   : -20.396
+Slack : -2.314
+TNS   : -26.868
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : 0.189
+Slack : 0.108
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_sm:subClk|loop_clk'
@@ -20,47 +20,47 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -58.019
+TNS   : -75.863
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_sm:subClk|loop_clk'
 Slack : -1.487
-TNS   : -25.279
+TNS   : -31.227
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -3.641
-TNS   : -105.082
+Slack : -3.609
+TNS   : -146.781
 
 Type  : Slow 1200mV 0C Model Setup 'clk_sm:subClk|loop_clk'
-Slack : -1.954
-TNS   : -17.911
+Slack : -2.105
+TNS   : -24.185
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : 0.172
+Slack : 0.150
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk_sm:subClk|loop_clk'
-Slack : 0.402
+Slack : 0.403
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -58.019
+TNS   : -75.863
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_sm:subClk|loop_clk'
 Slack : -1.487
-TNS   : -25.279
+TNS   : -31.227
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -1.067
-TNS   : -26.237
+Slack : -1.069
+TNS   : -39.144
 
 Type  : Fast 1200mV 0C Model Setup 'clk_sm:subClk|loop_clk'
-Slack : -0.342
-TNS   : -2.167
+Slack : -0.426
+TNS   : -3.560
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : -0.120
-TNS   : -0.120
+Slack : -0.082
+TNS   : -0.082
 
 Type  : Fast 1200mV 0C Model Hold 'clk_sm:subClk|loop_clk'
 Slack : 0.187
@@ -68,10 +68,10 @@ TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -42.311
+TNS   : -55.342
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_sm:subClk|loop_clk'
 Slack : -1.000
-TNS   : -17.000
+TNS   : -21.000
 
 ------------------------------------------------------------

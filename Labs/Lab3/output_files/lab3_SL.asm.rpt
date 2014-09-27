@@ -1,5 +1,5 @@
 Assembler report for lab3_SL
-Fri Sep 26 21:43:11 2014
+Sat Sep 27 12:22:04 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Sep 26 21:43:11 2014 ;
+; Assembler Status      ; Successful - Sat Sep 27 12:22:04 2014 ;
 ; Revision Name         ; lab3_SL                               ;
 ; Top-level Entity Name ; lab3_SL                               ;
 ; Family                ; Cyclone III                           ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                                                           ;
 +----------------+---------------------------------------------------------------------------------------------------+
 ; Device         ; EP3C5E144C8                                                                                       ;
-; JTAG usercode  ; 0x0009FC3A                                                                                        ;
-; Checksum       ; 0x0009FC3A                                                                                        ;
+; JTAG usercode  ; 0x000A3800                                                                                        ;
+; Checksum       ; 0x000A3800                                                                                        ;
 +----------------+---------------------------------------------------------------------------------------------------+
 
 
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Fri Sep 26 21:43:10 2014
+    Info: Processing started: Sat Sep 27 12:22:01 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off lab3_SL -c lab3_SL
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 426 megabytes
-    Info: Processing ended: Fri Sep 26 21:43:11 2014
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 437 megabytes
+    Info: Processing ended: Sat Sep 27 12:22:04 2014
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 
 
