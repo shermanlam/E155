@@ -29,7 +29,7 @@
 (DELAYFILE
   (SDFVERSION "2.1")
   (DESIGN "lab3_SL")
-  (DATE "09/27/2014 12:35:47")
+  (DATE "09/28/2014 21:38:41")
   (VENDOR "Altera")
   (PROGRAM "Quartus II 64-Bit")
   (VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition")
@@ -1226,7 +1226,7 @@
     (INSTANCE subClk\|counter\[9\]\~46)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (328:328:328) (392:392:392))
+        (PORT dataa (327:327:327) (389:389:389))
         (IOPATH dataa combout (414:414:414) (444:444:444))
         (IOPATH dataa cout (486:486:486) (375:375:375))
         (IOPATH datad combout (167:167:167) (143:143:143))
@@ -1322,12 +1322,12 @@
     (INSTANCE subClk\|LessThan0\~5)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (330:330:330) (394:394:394))
-        (PORT datab (327:327:327) (384:384:384))
+        (PORT dataa (329:329:329) (394:394:394))
+        (PORT datab (326:326:326) (384:384:384))
         (PORT datac (517:517:517) (495:495:495))
         (PORT datad (285:285:285) (344:344:344))
-        (IOPATH dataa combout (349:349:349) (377:377:377))
-        (IOPATH datab combout (354:354:354) (380:380:380))
+        (IOPATH dataa combout (374:374:374) (392:392:392))
+        (IOPATH datab combout (384:384:384) (398:398:398))
         (IOPATH datac combout (301:301:301) (283:283:283))
         (IOPATH datad combout (167:167:167) (143:143:143))
       )
@@ -1338,13 +1338,13 @@
     (INSTANCE subClk\|LessThan0\~6)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (331:331:331) (394:394:394))
+        (PORT dataa (560:560:560) (539:539:539))
         (PORT datab (327:327:327) (385:385:385))
-        (PORT datac (515:515:515) (498:498:498))
+        (PORT datac (285:285:285) (353:353:353))
         (PORT datad (224:224:224) (231:231:231))
         (IOPATH dataa combout (435:435:435) (425:425:425))
         (IOPATH datab combout (354:354:354) (380:380:380))
-        (IOPATH datac combout (301:301:301) (285:285:285))
+        (IOPATH datac combout (305:305:305) (285:285:285))
         (IOPATH datad combout (167:167:167) (143:143:143))
       )
     )
@@ -1948,7 +1948,7 @@
         (PORT datac (798:798:798) (671:671:671))
         (PORT datad (225:225:225) (232:232:232))
         (IOPATH dataa combout (374:374:374) (392:392:392))
-        (IOPATH datab combout (384:384:384) (386:386:386))
+        (IOPATH datab combout (384:384:384) (398:398:398))
         (IOPATH datac combout (301:301:301) (283:283:283))
         (IOPATH datad combout (167:167:167) (143:143:143))
       )

@@ -45,73 +45,143 @@ Sherman Lam
 \section{Introduction}
 \label{sec:intro}
 
-In this lab I displayed two 7-segment displays while only using one 7-segment decoder. This was done by time-multiplexing the two displays. With this technique, one switch is read, decoded, and shown on its corresponding 7-segment display. Then, then the second switch is read, decoded, and shown on its corresponding 7-segment display. Only one 7-segment display is on at a time. The FPGA rapidly switches between the two sets of switches and displays at a rate fast enough to appear steady to the human eye. In addition, the sum of the two switches is displayed on the LED bar on the $\mu$Mudd32. \\
-
-Figure \ref{fig:board} shows the result of the lab. The DIP switches on the breadboard control the left 7-segment display (currently set to 4) and the DIP switches on the $\mu$Mudd32 control the right 7-segment display (currently set to 2). The sum 6 is displayed on the LED bar using the 5 bottom LEDs. The least significant bit is at the bottom. 
+In this lab, I used created an interface between a keypad and the dual-display system developed in Lab 2. When a number is pressed on the key pad, the number is recorded on the 2 displays. The most recently pressed number is shown on the "right" display (closer to the bottom of the board). The second most recently pressed number is shown on the "left" display (close to the top of the board). Figure \ref{fig:board} illustrates an example where "42" was entered into the keypad.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.11]{board.jpg}
-\caption{Assembled board.}
+\caption{The latest number entered on the keypad is displayed on the bottom display. The second latest number is displayed on the top.}
 \label{fig:board}
 \end{figure} 
 
 
 \section{Design and Testing Methodology}
 
-
 \subsection{Hardware}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.5]{bjt.png}
-\caption{General use of a PNP transistor for switching a load}
-\label{fig:bjt}
-\end{figure} 
+The keypad has 4 rows and 4 columns, which allows me to represent all 16 hex values (see Figure \ref{fig:keypad_pinout}. When a particular button is pressed its row and column are connected. For example, the button for the number 5 is on row 1 and column 1. When that button is pressed, row 1 and col 1 will be in contact. If pin R1 was pulled to HIGH, pin C1 would also register a HIGH. \\
 
-A PNP transistor (2N3906) was chosen for toggling the displays because the switch was acting on the anode. The general circuit for using a PNP transistor for switching purposes is shown in Figure \ref{fig:bjt}. If the transistor's based voltage ($V_B$) is brought close to GND, the PNP will turn on. If $V_B$ is brought close to VCC, the transistor will turn off. However, since BJT transistors are current controlled, a resistor ($R_{B}$) must be placed between $V_B$ and its signal pin ($V_{signal}$). To select a value for this resistor, I first considered the largest current draw expected ($I_C$).
-
-\begin{align*}
-I_{C} &= (\# segments)*(I_{1segment}) \\
-I_{C} &= (\# segments)*(\frac{V_{CC}-V_{led}}{R}) \\
-I_{C} &= (\# segments)*(\frac{3.3V-1.7V}{220\Omega}) \\
-I_{C} &= 7*(7.3mA) \\
-I_{C} &= 51mA
-\end{align*}
-
-Then, I considered how much base current ($I_{B}$) I need in order to supply $I_{C}$. The transistor DC current gain (denoted $\beta$ or $h_{FE}$) was approximated from Figure \ref{fig:2N3906_gain} to be 120. So, $I_{B}$ was found to be: 
-
-\begin{align*}
-I_{B} &= \frac{I_{C}}{\beta} \\
-I_{B} &= \frac{51mA}{120} \\
-I_{B} &= 0.4mA
-\end{align*}
-
-We can then find the resistor need to supply this voltage when the $V_{signal}$ is pulled LOW. Because this is a silicon transistor, $V_{EB}=0.7V$.  Note that R was rounded to the nearest resistor value available in the lab. This is okay because the the value of R is not critical. It simply needs to be high enough to prevent the transistor from burning out and low enough to allow sufficient current to light up the LEDs. If the value of the R is slightly lower than ideal, the transistor will saturate but still function. In testing, a 5.6$k\Omega$ will light up the LED display without burning out the transistor. \\
-
-\begin{align*}
-R &= \frac{Vcc-V_{EB}}{I_{B}} \\
-R &= \frac{3.3-0.7}{0.4mA} \\
-R &= 6.1k\Omega	\\
-R &\approx 5.6k\Omega
-\end{align*}
-
+To detect which button is pressed, each row is powered individually. Then the logic levels of the column s are read to determine if any buttons are pressed. Since the rows are being powered, they will always resolve to HIGH or LOW. However, to ensure that the columns also resolve to a logic level, pull-down resistors are placed on the column pins (C0 - C3). In this configuration, if a button is pressed, it will read HIGH, otherwise it will read low (See Figure \ref{fig:keypad_sch}). \\
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=1]{2N3906_gain.png}
-\caption{DC gain of 2N3906 transistor. Image obtained from 2N3906 datasheet.}
-\label{fig:2N3906_gain}
+\includegraphics[scale=0.35]{keypad_pinout.png}
+\caption{Pinout and key layout of the keypad. Image obtained from the HMC, E155 lab page.}
+\label{fig:keypad_pinout}
+\end{figure} 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{keypad_sch.png}
+\caption{Schematic representation of the keypad. When a button is pressed, its row and col are connected.}
+\label{fig:keypad_sch}
 \end{figure} 
 
 
-PNP transistors were also used because MOSFETs were not available. 
+\subsection{Button Bounce}
+\label{sec:button_bounce}
+
+One of the challenges with using the keypad is a phenomenon known as "button bounce." This occurs because when a mechanical button is pressed and released, the button continues to move up and down for a short duration of time. This in turn causes the contact to close and open. Figures \ref{fig:bounce_rise} and \ref{fig:bounce_fall} show button bounce as viewed from an oscilloscope. \\
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.11]{bounce_rise.jpg}
+\caption{Button bounce when the button is pressed down.}
+\label{fig:bounce_rise}
+\end{figure} 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.11]{bounce_fall.jpg}
+\caption{Button bounce when the button is released.}
+\label{fig:bounce_fall}
+\end{figure} 
+
+
 
 \subsection{Software}
 
-Table \ref{table:7seg_decoder} shows how the switch inputs map to the 7-segment outputs. \\
+The general approach to interpreting data from the keypad is as follows. First row 0 is powered. The column pins are read. If a button in that row is pressed down, the row remains powered until the button is released. If no button is pressed, row 0 is turned off and then row 1 is powered. Repeat. When button presses do occur, they are decoded based on the row being powered and the column that is read as HIGH. If multiple columns are HIGH at the same time, the left-most button is taken as the one being pressed down. \\
 
+To cope with the challenge of button bounce, the control loop rate is run at a slow enough frequency to avoid sampling twice in the same button press. This means that if the button is sampled while the signal is bouncing as in Figure \ref{fig:bounce_rise}, either a HIGH or LOW will be sampled. However, the next sample will be taken after the signal has resolved to a steady value. So, to the controller no bouncing in the signal is visible. \\
+
+From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that longest observed button bounce duration is 340$\mu$s. So, the fastest the columns should be sampled (accounting for a factor of safety of 2) at a particular row is once every 680$\mu$s. Since there are 4 rows and I'm going to only sample the columns for a given row once every 4 samples, I can sample sequential rows at $\frac{680\mu s}{4}=170\mu s$. This corresponds with a frequency of 5.8kHz.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.13]{flow.jpg}
+\caption{Control flow of the program.}
+\label{fig:flow}
+\end{figure} 
+
+
+
+\clearpage
+
+
+\subsubsection{Simulation}
+
+The code's logic was tested in ModelSim-Altera. The following show the results of the wave simulations that were run. The program was simulated in sections to ease debugging and wave simulation viewing.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{subclk.png}
+\caption{To slow the sampling rate of the program, a "loop clk" was created to run at a slower rate than the on board clk. All flip-flops in the design are run based on this this slower clock signal. Note that the loop clock in actuality runs much slower than what is shown.}
+\label{fig:subclk}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{bounce2.png}
+\caption{Even if the columns signal bounces, only one sample is taken. Bounce does not appear in the control signal "newest." }
+\label{fig:bounce}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{keypad_decode.png}
+\caption{The keypad decoder works! The signal state[3:0] gives the row that's being powered and col[3:0] gives which row is being powered. The hex symbol is on the signal "newest."}
+\label{fig:keypad_decode}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{mem.png}
+\caption{The program accurately remembers the last two numbers. "last" is the latest number entered. "lastlast" is the second to last number entered.}
+\label{fig:mem}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{rows.png}
+\caption{The main finite-state-machine keeps track of which row is being powered. The state uses 1-hot encoding so that it can be directly routed to the output. "next" represents the next state. When the reset signal is pulled high, the state resets synchronously to 0001.}
+\label{fig:states}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{state_change_on_button.png}
+\caption{When a button is pressed, the FSM is frozen in its current state. This prevents the program from registering a button that's being held down as multiple button presses.}
+\label{fig:button_held_down}
+\end{figure} 
+
+
+
+\clearpage
+
+\section{Technical Documentation}
+
+The following section shows schematics for the breadboard circuit that was built. The source code is also provided.
+
+\subsection{7-Segment Decoder Truth Table}
 
 \begin{table}[h]
 \centering
@@ -142,27 +212,68 @@ s3{[}3{]} & s3{[}2{]} & s3{[}1{]} & s3{[}0{]} & (hex) & G & F & E & D & C & B & 
 \end{table}
 
 
-Figure \ref{fig:logic} shows the logic flow of the program. on1 is the control signal that decides whether or not the first 7-segment display is on (the first display is set to the left display). Note, because the hardware requires on1 to be pulled LOW in order for the PNP transistor to turn on, s1[3:0] is selected when on1 is 0. Since only one display is on at at time, on2 (the control signal for the second display) is the bitwise NOT of on1. s3 is the value on the selected switch and is passed through the 7-segment decoder to obtain the state of each segment in the display. Even though similar cathodes  of both displays (e.g. G segments on displays 1 and 2) share the same state, only the segments in one display will be powered (as determined by the states of on1 and on2). The sum of both switches are simply passed through an adder to obtain a 5-bit sum. This sum is directly written to the LED bar. See Tables \ref{table:pinmap_ledbar}, \ref{table:pinmap_sevenseg}, \ref{table:pinmap_control}, \ref{table:pinmap_sw1}, and \ref{table:pinmap_sw2} for the pin mappings of each signal. \\
+\subsection{7-segment Displays Schematic}
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.11]{logic.jpg}
-\caption{Logic flow of time multiplexer}
-\label{fig:logic}
+\includegraphics[scale=0.54]{reset.png}
+\caption{Schematic for reset button.}
+\label{fig:reset_sch}
 \end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{s1.png}
+\caption{Schematic for DIP switch 1. This controls display segment 1 (left).}
+\label{fig:s1_sch}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.54]{s2.png}
+\caption{Schematic for DIP switch 2. This controls display segment 2 (right).}
+\label{fig:s2_sch}
+\end{figure} 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7, angle=90]{seven_segment_all.png}
+\caption{Full schematic for dual 7-segment display. Note that on1 and on2 toggle the two displays on and off. Only one or the other is on at any given time.}
+\label{fig:seven_seg_sch}
+\end{figure} 
+
+
+\clearpage
+
+\subsection{Pin Mapping}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Keypad Pin Mapping - Rows}}                                                                                                     \\ \hline
+R0 / state{[}0{]} & R1 / state{[}1{]} & R2 / state{[}2{]} & R3 / state{[}3{]} \\ \hline
+P70               & P66               & P67               & P69               \\ \hline
+\end{tabular}
+\caption{Pin mapping of keypad - Rows}
+\label{table:pinmap_keypad_row}
+\end{table}
 
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-\multicolumn{5}{|c|}{\textbf{LED Bar Pin Mapping}}             \\ \hline
-led{[}4{]} & led{[}3{]} & led{[}2{]} & led{[}1{]} & led{[}0{]} \\ \hline
-P33        & P32        & P31        & P30        & P28        \\ \hline
+\multicolumn{4}{|c|}{\textbf{Keypad Pin Mapping - Columns}}                                                                                                     \\ \hline
+C0 / col{[}0{]} & C1 / col{[}1{]} & C2 / col{[}2{]} & C3 / col{[}3{]} \\ \hline
+P68             & P73             & P72             & P71             \\ \hline
 \end{tabular}
-\caption{Pin mapping of LED bar}
-\label{table:pinmap_ledbar}
+\caption{Pin mapping of keypad}
+\label{table:pinmap_keypad_col}
 \end{table}
 
 
@@ -219,113 +330,324 @@ P51        & P50        & P49       & P44       \\ \hline
 
 
 
-To flash a display, the display needs to be toggled twice: once to turn on, and once to turn off. Thus, in order for the program to flash the segments at 60Hz, each segment needs to be toggled at 120Hz. The on-board clock oscillates at 40MHz so the LED displays need to be toggled every $\frac{40MHz}{120Hz} \approx 333333$ clock cycles. The 60Hz flashing rate was experimentally determined to be successful at deceiving the human eye.
-
-
-\label{sec:software_LEDbar}
-
-\clearpage
-
-
-\subsubsection{Simulation}
-
-The code's logic was tested in ModelSim-Altera. The following show the results of the wave simulations that were run. The program was simulated in sections to ease debugging and wave simulation viewing.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.65]{clk_works.png}
-\caption{The counter increments at every clock cycle.}
-\label{fig:wave_clk}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.7]{mux_all.png}
-\caption{Logic for 7-segment decoder.}
-\label{fig:wave_mux}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.75]{no_reset.png}
-\caption{If the reset signal is never HIGH, the control signals for toggling the 7-segment displays (on1 and on2) will not resolve to a logic level.}
-\label{fig:wave_reset_no}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.8]{yes_reset.png}
-\caption{Once the reset signal is HIGH, the control signals for toggling the 7-segment displays (on1 and on2) are initialized to hard-coded starting values.}
-\label{fig:wave_reset_yes}
-\end{figure}
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1]{toggling.png}
-\caption{When on1 and on2 will swap states, s3 (the signal used for the 7-segment decoding) changes from s1 to s2 or vice versa.}
-\label{fig:wave_toggle}
-\end{figure}
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1]{sum.png}
-\caption{The summation of the two input switch values (s1 and s2) is sent to the led bar (led[4:0]).}
-\label{fig:wave_sum}
-\end{figure}
-
-
-\clearpage
-
-\section{Technical Documentation}
-
-The following section shows schematics for the breadboard circuit that was built. The source code is also provided.
-
-\subsection{7-segment Displays Schematic}
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.54]{reset.png}
-\caption{Schematic for reset button.}
-\label{fig:reset_sch}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.54]{s1.png}
-\caption{Schematic for DIP switch 1. This controls display segment 1 (left).}
-\label{fig:s1_sch}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.54]{s2.png}
-\caption{Schematic for DIP switch 2. This controls display segment 2 (right).}
-\label{fig:s2_sch}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.7, angle=90]{seven_segment_all.png}
-\caption{Full schematic for dual 7-segment display. Note that on1 and on2 toggle the two displays on and off. Only one or the other is on at any given time.}
-\label{fig:seven_seg_sch}
-\end{figure} 
-
-
 \clearpage
 \subsection{System Verilog Code}
 
-% \small\begin{verbatim}
-\begin{lstlisting}[language=Verilog,numbers=left,basicstyle=\footnotesize]
+\subsubsection{Controller}
 
+\begin{lstlisting}[language=Verilog,numbers=left,basicstyle=\footnotesize]
+/* This is the project wrapper that inits all the
+individual components of the project
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 25, 2014
+*/
+module lab3_SL(   input logic clk, reset,
+                  input logic [3:0] col,
+                  output logic on1,on2,
+                  output logic [3:0] state,
+                  output logic [6:0] seg);
+   //wires
+   logic[3:0] newest;
+   logic[3:0] last;
+   logic[3:0] lastlast;
+   logic pressed;
+   logic wasPressed;
+   logic loop_clk;
+   logic[4:0] led;
+   logic[3:0] samples;
+   logic[3:0] laststate;
+   
+   // run the clk at a slower rate
+   clk_sm         subClk(  .clk(clk),
+                           .reset(reset),
+                           .loop_clk(loop_clk));  
+   
+   //keep track of the last 2 numbers
+   record_sm      memory(  .loop_clk(loop_clk),
+                           .reset(reset),
+                           .pressed(pressed),
+                           .newest(newest),
+                           .last(last),
+                           .lastlast(lastlast),
+                           .wasPressed(wasPressed));
+   
+   //fsm for deciding which row to check next
+   row_sm         row(  .loop_clk(loop_clk),
+                        .reset(reset),
+                        .state(state),
+                        .col(col));
+   
+   //sample the keys synchronously
+   sample_keys    sample(  .loop_clk(loop_clk),
+                           .reset(reset),
+                           .col(col),
+                           .samples(samples));
+   
+   //remember the last state
+   last_state     rememberState( .loop_clk(loop_clk),
+                                 .state(state),
+                                 .laststate(laststate));
+   
+   //read the rows and cols of the keypad and decode to hex
+   decode_keys    read( .laststate(laststate),
+                        .samples(samples),
+                        .pressed(pressed),
+                        .newest(newest));
+
+   // keeps track if key was pressed in the last time step
+   record_pressed recordPressed( .loop_clk(loop_clk),
+                                 .reset(reset),
+                                 .pressed(pressed),
+                                 .wasPressed(wasPressed));
+   
+   //seven segment display
+   seven_seg_displays      seven_seg(.clk(clk),.reset(reset),.s1(lastlast),
+                              .s2(last),.on1(on1),.on2(on2),.seg(seg),
+                              .led(led));
+            
+endmodule
+
+
+/* This keeps track of the last state
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 27, 2014
+*/
+module last_state(input logic loop_clk,
+                  input logic [3:0] state,
+                  output logic [3:0] laststate);
+      always_ff@(posedge loop_clk) begin
+         laststate <= state;
+      end
+endmodule
+
+
+/* This is a state machine that is used to keep
+track of which row is being checked
+
+Author: Sherman
+Email: slam@g.hmc.edu
+Date: Sep 25,2104
+*/
+module row_sm( input logic loop_clk, reset,
+               input logic [3:0] col,
+               output logic [3:0] state);
+   
+   //state encodings
+   parameter ROW1 = 4'b0001;
+   parameter ROW2 = 4'b0010;
+   parameter ROW3 = 4'b0100;
+   parameter ROW4 = 4'b1000;
+   
+   //next state
+   logic [3:0] next;
+   
+   always_ff@(posedge loop_clk) begin
+      if (reset)
+         state <= ROW1;
+      else if (col == 4'b0000)      //only switch rows when button not pressed.
+         state <= next;
+      else  
+         state <= state;   
+      
+   end         
+   
+   always_comb begin
+      //next state logic
+      case (state)
+         ROW1:       next = ROW2;
+         ROW2:       next = ROW3;
+         ROW3:       next = ROW4;
+         ROW4:       next = ROW1;
+         default:    next = ROW1;
+      endcase
+   end
+   
+endmodule
+
+
+/* This samples the keys at the rising edge of loop_clk.
+This is meant to prevent button bounce.
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 26,2014
+*/
+module sample_keys(  input logic loop_clk, reset,
+                     input logic [3:0] col, 
+                     output logic [3:0] samples);
+      always_ff@(posedge loop_clk) begin
+         if (reset)
+            samples <= 4'b0000;
+         else begin
+            samples <= col;
+         end
+      end
+endmodule
+
+
+/* This checks whether or not a button has been pressed.
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 25, 2014
+*/
+module decode_keys(  input logic [3:0] laststate,
+                  input logic [3:0] samples,
+                  output logic pressed,
+                  output logic [3:0] newest);
+   logic [4:0] key = 'b0;
+   always_comb begin
+      //check each row
+      case(laststate)
+         4'b0001: casez(samples)       // find the first key
+                  4'b1???: key = 5'hA;
+                  4'b01??: key = 5'h3;
+                  4'b001?: key = 5'h2;
+                  4'b0001: key = 5'h1;
+                  default: key = 5'h10;   // no key      
+               endcase  
+         4'b0010: casez(samples)       // find the first key
+                  4'b1???: key = 5'hB;
+                  4'b01??: key = 5'h6;
+                  4'b001?: key = 5'h5;
+                  4'b0001: key = 5'h4;
+                  default: key = 5'h10;   // no key      
+               endcase  
+         4'b0100: casez(samples)       // find the first key
+                  4'b1???: key = 5'hC;
+                  4'b01??: key = 5'h9;
+                  4'b001?: key = 5'h8;
+                  4'b0001: key = 5'h7;
+                  default: key = 5'h10;   // no key      
+               endcase        
+         4'b1000: casez(samples)       // find the first key
+                  4'b1???: key = 5'hD;
+                  4'b01??: key = 5'hF;
+                  4'b001?: key = 5'h0;
+                  4'b0001: key = 5'hE;
+                  default: key = 5'h10;   // no key      
+               endcase  
+         default:          key = 5'h10;
+      endcase
+      
+      //key is only pressed if we found a key
+      pressed = ~key[4];
+      newest = key[3:0];
+      
+      //TODO: change pressed to also depend on the state. Store pressed
+      // as a 4 bit number.
+   
+   end
+endmodule
+      
+               
+/* This keeps track of whether or not a key was pressed in
+the last time step
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 25, 2014
+*/
+module record_pressed(  input logic pressed, loop_clk, reset,
+                     output logic wasPressed);
+      always_ff@(posedge loop_clk) begin
+         if (reset == 1'b1)
+            wasPressed = 1'b0;
+         else
+            wasPressed <= pressed;
+      end
+   
+endmodule   
+
+
+/* This is a state machine that sorts the presses
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: Sep 27, 2014
+*/
+
+
+/* This is the state machine that records the last
+two values (last and lastlast) entered into the keypad. 
+
+Author: Sherman
+Email: slam@g.hmc.edu
+Date: Sep 25,2104
+*/
+module record_sm( input logic loop_clk, reset,
+                  input logic pressed, wasPressed,
+                  input logic [3:0] newest,
+                  output logic [3:0] last, lastlast);
+   // store
+   always_ff@(posedge loop_clk, posedge reset) begin
+      if (reset) begin
+         last = 'h0;
+         lastlast = 'h0; 
+      end
+      //record only the first instance of the press
+      else if (pressed & (~wasPressed)) begin
+         lastlast <= last;
+         last <= newest;
+      end
+      else begin
+         lastlast <= lastlast;
+         last <= last;
+      end
+   end
+endmodule
+
+
+/* This is the state machine that outputs a slower
+clk. This allows the program to run at a slower control
+loop rate than that of the on board clock.
+
+debounce math: 
+Scanning 1 row max: 2.9kHz
+Scanning 1 row with FOS of 2: 1.45kHz
+Scanning 4 rows: 5.8kHz
+Loop every 6897 clock cycles
+Toggle clk every 3448 clock cycles
+
+
+Author: Sherman
+Email: slam@g.hmc.edu
+Date: Sep 25,2104
+*/
+module clk_sm( input logic clk, reset,
+               output logic loop_clk);
+
+parameter HALF_PERIOD = 28'd3448; //5.9kHz loop rate
+logic [27:0] counter = '0;
+
+always_ff@(posedge clk, posedge reset) begin
+   if (reset == 1'b1) begin               
+      counter = '0;
+      loop_clk = 0;
+   end
+   else if (counter >= HALF_PERIOD) begin
+      counter = '0;
+      loop_clk = ~loop_clk;      //toggle loop_clk
+   end
+   else begin
+      counter = counter + 1'b1;
+      loop_clk = loop_clk;
+   end
+end
+
+
+endmodule
+
+\end{lstlisting}
+
+
+\subsubsection{7-segment display}
+
+\begin{lstlisting}[language=Verilog,numbers=left,basicstyle=\footnotesize]
 /* This is the main module. It selects which set of switch
    outputs to use and then decodes the number of the selected
    switch. This also sets the clock that time-multiplexes the 
@@ -335,7 +657,7 @@ The following section shows schematics for the breadboard circuit that was built
    Email: slam@g.hmc.edu
    Date: Sep 17, 2014
 */
-module lab2_SL(input logic clk, reset,
+module seven_seg_displays(input logic clk, reset,
                input logic [3:0] s1,s2, //DIP switches
                output logic on1, on2,   //if on1 is pulled LOW, LED set 1 is on.
                output logic [6:0] seg,
@@ -363,7 +685,7 @@ module lab2_SL(input logic clk, reset,
 endmodule
 
 
-/* This module time multiplexes by toggling on1.
+/* This module time multiplexes
 
    Author: Sherman Lam
    Email: slam@g.hmc.edu
@@ -371,7 +693,7 @@ endmodule
 */
 module multiplexer(  input logic clk, reset,
                      output logic on1);
-   // time multiplexer for switching bewteen displays
+   // time multiplexer for switching between displays
    logic [18:0] hPeriod = 19'd333333;  // 120Hz toggling
    logic [18:0] counter = 'b0;
       
@@ -428,36 +750,30 @@ module led7Decoder(  input logic [3:0] s,       //4 DIP switches
       
    end
 endmodule
-
-
-
 \end{lstlisting}
-% \end{verbatim}
+
 
 
 \clearpage
 
 \section{Results and Discussion}
 
-The system works as expected. The number set by the DIP switches on the breadboard is displayed on the left 7-segment display. The number set by the DIP switches on the $\mu$Mudd32 is displayed on the right 7-segment display. The FPGA flashes both displays at 60Hz. This switching is unnoticeable when viewed by the human eye. Since each display is operating at 50$\%$ duty cycle, the intensity of the display is about half that of a display being held on (100$\%$ duty cycle). In addition, when the reset button is pressed, display 1 (left) turns on and display 2 (right) turns off. This states is held until the reset button is released. The sum of the values on the two switches is correctly displayed on the LED bar. \\
-
+The system works as expected and can handle rapid key sequences without freezing. If at any point the user desires to clear the numbers, a reset button is available that resets the displays to 0.
 
 \section{Conclusion}
 
 \subsection{Time Spent}
 
 \begin{description}
-	\item[Programming, Simulating] 5hrs
-	\item[Breadboarding] 2hrs
+	\item[Programming, Simulating] 13hrs
+	\item[Breadboarding] 0.5hrs
 	\item[Writing Report] 5hrs
-	\item[Total Time Spent] 9.5hrs
+	\item[Total Time Spent] 18.5hrs
 \end{description}
 
 \subsection{Suggestions for lab}
 
-The current lab asks the student to use the DIP switches on the $\mu$Mudd32 in addition to 4 wires to control the two 7-segment displays. However, many people were asking if 4 wires meant an extra set of DIP switch. The instructions seem confusing in regards to this detail. Unless the lab's goal is to purposefully give semi-ambiguous instructions in order to force students to think (channeling E80, eh?), I would suggest explicitly giving instructions to use a second set of DIP switches. \\
-
-Also, using MOSFETs may make the switching much easier. Maybe you could consider stocking the E155 Lab with some?
+None. Very challenging.
 
 
 \end{document}

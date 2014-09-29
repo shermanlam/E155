@@ -29,7 +29,7 @@
 (DELAYFILE
   (SDFVERSION "2.1")
   (DESIGN "lab3_SL")
-  (DATE "09/27/2014 12:35:47")
+  (DATE "09/28/2014 21:38:41")
   (VENDOR "Altera")
   (PROGRAM "Quartus II 64-Bit")
   (VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition")
@@ -1226,7 +1226,7 @@
     (INSTANCE subClk\|counter\[9\]\~46)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (343:343:343) (434:434:434))
+        (PORT dataa (343:343:343) (432:432:432))
         (IOPATH dataa combout (461:461:461) (481:481:481))
         (IOPATH dataa cout (552:552:552) (416:416:416))
         (IOPATH datad combout (177:177:177) (155:155:155))
@@ -1323,11 +1323,11 @@
     (DELAY
       (ABSOLUTE
         (PORT dataa (345:345:345) (436:436:436))
-        (PORT datab (343:343:343) (426:426:426))
+        (PORT datab (342:342:342) (426:426:426))
         (PORT datac (536:536:536) (551:551:551))
         (PORT datad (303:303:303) (380:380:380))
-        (IOPATH dataa combout (392:392:392) (407:407:407))
-        (IOPATH datab combout (393:393:393) (412:412:412))
+        (IOPATH dataa combout (420:420:420) (428:428:428))
+        (IOPATH datab combout (432:432:432) (433:433:433))
         (IOPATH datac combout (324:324:324) (315:315:315))
         (IOPATH datad combout (177:177:177) (155:155:155))
       )
@@ -1338,13 +1338,13 @@
     (INSTANCE subClk\|LessThan0\~6)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (346:346:346) (437:437:437))
+        (PORT dataa (576:576:576) (603:603:603))
         (PORT datab (343:343:343) (427:427:427))
-        (PORT datac (533:533:533) (554:554:554))
+        (PORT datac (303:303:303) (388:388:388))
         (PORT datad (236:236:236) (254:254:254))
         (IOPATH dataa combout (471:471:471) (472:472:472))
         (IOPATH datab combout (393:393:393) (408:408:408))
-        (IOPATH datac combout (324:324:324) (316:316:316))
+        (IOPATH datac combout (327:327:327) (316:316:316))
         (IOPATH datad combout (177:177:177) (155:155:155))
       )
     )
@@ -1947,8 +1947,8 @@
         (PORT datab (990:990:990) (955:955:955))
         (PORT datac (822:822:822) (756:756:756))
         (PORT datad (236:236:236) (255:255:255))
-        (IOPATH dataa combout (421:421:421) (428:428:428))
-        (IOPATH datab combout (435:435:435) (424:424:424))
+        (IOPATH dataa combout (420:420:420) (428:428:428))
+        (IOPATH datab combout (432:432:432) (433:433:433))
         (IOPATH datac combout (324:324:324) (315:315:315))
         (IOPATH datad combout (177:177:177) (155:155:155))
       )

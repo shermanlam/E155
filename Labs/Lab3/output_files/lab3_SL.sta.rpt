@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for lab3_SL
-Sat Sep 27 12:35:44 2014
+Sun Sep 28 21:38:36 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -154,7 +154,7 @@ HTML report is unavailable in plain text report export.
 +------------------------+--------+---------------+
 ; Clock                  ; Slack  ; End Point TNS ;
 +------------------------+--------+---------------+
-; clk                    ; -3.902 ; -161.395      ;
+; clk                    ; -3.902 ; -161.735      ;
 ; clk_sm:subClk|loop_clk ; -2.014 ; -22.609       ;
 +------------------------+--------+---------------+
 
@@ -254,6 +254,11 @@ No paths to report.
 ; -3.642 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[7] ; clk          ; clk         ; 1.000        ; -0.081     ; 4.562      ;
 ; -3.642 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; clk          ; clk         ; 1.000        ; -0.081     ; 4.562      ;
 ; -3.582 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.081     ; 4.502      ;
+; -3.572 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.586     ; 3.987      ;
+; -3.569 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.576     ; 3.994      ;
+; -3.569 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.994      ;
+; -3.569 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.994      ;
+; -3.569 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.994      ;
 ; -3.564 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.576     ; 3.989      ;
 ; -3.564 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.989      ;
 ; -3.564 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.989      ;
@@ -291,11 +296,6 @@ No paths to report.
 ; -3.430 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[2] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; clk          ; clk         ; 1.000        ; 0.391      ; 4.822      ;
 ; -3.418 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; -0.100     ; 4.319      ;
 ; -3.418 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; clk          ; clk         ; 1.000        ; -0.100     ; 4.319      ;
-; -3.406 ; clk_sm:subClk|counter[9]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.586     ; 3.821      ;
-; -3.402 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.576     ; 3.827      ;
-; -3.402 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.827      ;
-; -3.402 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.827      ;
-; -3.402 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.576     ; 3.827      ;
 +--------+--------------------------------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
 
 
@@ -953,7 +953,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------+--------+---------------+
 ; Clock                  ; Slack  ; End Point TNS ;
 +------------------------+--------+---------------+
-; clk                    ; -3.639 ; -148.019      ;
+; clk                    ; -3.639 ; -149.117      ;
 ; clk_sm:subClk|loop_clk ; -1.776 ; -19.676       ;
 +------------------------+--------+---------------+
 
@@ -1057,6 +1057,10 @@ No paths to report.
 ; -3.299 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.757      ;
 ; -3.299 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.757      ;
 ; -3.299 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.757      ;
+; -3.280 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.544     ; 3.738      ;
+; -3.280 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.738      ;
+; -3.280 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.738      ;
+; -3.280 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.544     ; 3.738      ;
 ; -3.269 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.072     ; 4.199      ;
 ; -3.254 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; clk          ; clk         ; 1.000        ; -0.072     ; 4.184      ;
 ; -3.254 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[1] ; clk          ; clk         ; 1.000        ; -0.072     ; 4.184      ;
@@ -1065,6 +1069,7 @@ No paths to report.
 ; -3.254 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; clk          ; clk         ; 1.000        ; -0.072     ; 4.184      ;
 ; -3.254 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[7] ; clk          ; clk         ; 1.000        ; -0.072     ; 4.184      ;
 ; -3.254 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; clk          ; clk         ; 1.000        ; -0.072     ; 4.184      ;
+; -3.236 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.554     ; 3.684      ;
 ; -3.227 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.062     ; 4.167      ;
 ; -3.227 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.062     ; 4.167      ;
 ; -3.227 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.062     ; 4.167      ;
@@ -1090,11 +1095,6 @@ No paths to report.
 ; -3.147 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.062     ; 4.087      ;
 ; -3.147 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.062     ; 4.087      ;
 ; -3.147 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.062     ; 4.087      ;
-; -3.147 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.062     ; 4.087      ;
-; -3.130 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.554     ; 3.578      ;
-; -3.114 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; 0.374      ; 4.490      ;
-; -3.114 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; clk          ; clk         ; 1.000        ; 0.374      ; 4.490      ;
-; -3.114 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[7] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; 0.374      ; 4.490      ;
 +--------+--------------------------------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
 
 
@@ -1224,7 +1224,7 @@ No paths to report.
 ; 0.665 ; clk_sm:subClk|counter[4]                                ; clk_sm:subClk|counter[7]                                ; clk                    ; clk         ; 0.000        ; 0.544      ; 1.404      ;
 ; 0.670 ; clk_sm:subClk|counter[2]                                ; clk_sm:subClk|counter[2]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 0.957      ;
 ; 0.670 ; clk_sm:subClk|counter[5]                                ; clk_sm:subClk|counter[8]                                ; clk                    ; clk         ; 0.000        ; 0.544      ; 1.409      ;
-; 0.673 ; clk_sm:subClk|counter[9]                                ; clk_sm:subClk|counter[9]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 0.960      ;
+; 0.672 ; clk_sm:subClk|counter[9]                                ; clk_sm:subClk|counter[9]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 0.959      ;
 ; 0.675 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0]  ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3]  ; clk                    ; clk         ; 0.000        ; 0.537      ; 1.407      ;
 ; 0.676 ; clk_sm:subClk|counter[7]                                ; clk_sm:subClk|counter[7]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 0.963      ;
 ; 0.678 ; clk_sm:subClk|counter[6]                                ; clk_sm:subClk|counter[6]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 0.965      ;
@@ -1287,7 +1287,7 @@ No paths to report.
 ; 0.922 ; clk_sm:subClk|counter[3]                                ; clk_sm:subClk|counter[10]                               ; clk                    ; clk         ; 0.000        ; 0.544      ; 1.661      ;
 ; 0.985 ; clk_sm:subClk|counter[1]                                ; clk_sm:subClk|counter[2]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.272      ;
 ; 0.986 ; clk_sm:subClk|counter[0]                                ; clk_sm:subClk|counter[1]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.273      ;
-; 0.995 ; clk_sm:subClk|counter[9]                                ; clk_sm:subClk|counter[10]                               ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.282      ;
+; 0.994 ; clk_sm:subClk|counter[9]                                ; clk_sm:subClk|counter[10]                               ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.281      ;
 ; 0.997 ; clk_sm:subClk|counter[6]                                ; clk_sm:subClk|counter[7]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.284      ;
 ; 1.000 ; clk_sm:subClk|counter[7]                                ; clk_sm:subClk|counter[8]                                ; clk                    ; clk         ; 0.000        ; 0.092      ; 1.287      ;
 ; 1.001 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8]  ; seven_seg_displays:seven_seg|multiplexer:m1|counter[9]  ; clk                    ; clk         ; 0.000        ; 0.085      ; 1.281      ;
@@ -1741,7 +1741,7 @@ No synchronizer chains to report.
 +------------------------+--------+---------------+
 ; Clock                  ; Slack  ; End Point TNS ;
 +------------------------+--------+---------------+
-; clk                    ; -1.094 ; -40.176       ;
+; clk                    ; -1.094 ; -40.286       ;
 ; clk_sm:subClk|loop_clk ; -0.272 ; -2.176        ;
 +------------------------+--------+---------------+
 
@@ -1839,6 +1839,7 @@ No paths to report.
 ; -0.954 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.904      ;
 ; -0.954 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[7] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.904      ;
 ; -0.954 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.904      ;
+; -0.949 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.243     ; 1.693      ;
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[1] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[2] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
@@ -1846,16 +1847,16 @@ No paths to report.
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[6] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[7] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
 ; -0.915 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.865      ;
-; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.243     ; 1.655      ;
 ; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.238     ; 1.660      ;
 ; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.660      ;
 ; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.660      ;
 ; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.660      ;
-; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.036     ; 1.858      ;
+; -0.911 ; clk_sm:subClk|counter[13]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.243     ; 1.655      ;
 ; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.031     ; 1.863      ;
 ; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.863      ;
 ; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.863      ;
 ; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.863      ;
+; -0.907 ; clk_sm:subClk|counter[20]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.036     ; 1.858      ;
 ; -0.903 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[2] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; 0.154      ; 2.044      ;
 ; -0.903 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[2] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; clk          ; clk         ; 1.000        ; 0.154      ; 2.044      ;
 ; -0.902 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[5] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[0] ; clk          ; clk         ; 1.000        ; -0.037     ; 1.852      ;
@@ -1869,20 +1870,19 @@ No paths to report.
 ; -0.892 ; clk_sm:subClk|counter[1]                               ; clk_sm:subClk|counter[26]                              ; clk          ; clk         ; 1.000        ; -0.244     ; 1.635      ;
 ; -0.892 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.835      ;
 ; -0.892 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[4] ; clk          ; clk         ; 1.000        ; -0.044     ; 1.835      ;
-; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.036     ; 1.839      ;
+; -0.890 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.238     ; 1.639      ;
+; -0.890 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.639      ;
+; -0.890 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.639      ;
+; -0.890 ; clk_sm:subClk|counter[8]                               ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.238     ; 1.639      ;
 ; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.031     ; 1.844      ;
 ; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.844      ;
 ; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.844      ;
 ; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.844      ;
+; -0.888 ; clk_sm:subClk|counter[23]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.036     ; 1.839      ;
 ; -0.886 ; clk_sm:subClk|counter[0]                               ; clk_sm:subClk|counter[27]                              ; clk          ; clk         ; 1.000        ; -0.244     ; 1.629      ;
-; -0.871 ; clk_sm:subClk|counter[9]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.243     ; 1.615      ;
-; -0.867 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.036     ; 1.818      ;
 ; -0.867 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[12]                              ; clk          ; clk         ; 1.000        ; -0.031     ; 1.823      ;
 ; -0.867 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[3]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.823      ;
 ; -0.867 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[4]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.823      ;
-; -0.867 ; clk_sm:subClk|counter[17]                              ; clk_sm:subClk|counter[5]                               ; clk          ; clk         ; 1.000        ; -0.031     ; 1.823      ;
-; -0.865 ; clk_sm:subClk|counter[6]                               ; clk_sm:subClk|loop_clk                                 ; clk          ; clk         ; 1.000        ; -0.243     ; 1.609      ;
-; -0.861 ; seven_seg_displays:seven_seg|multiplexer:m1|counter[8] ; seven_seg_displays:seven_seg|multiplexer:m1|counter[3] ; clk          ; clk         ; 1.000        ; 0.154      ; 2.002      ;
 +--------+--------------------------------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
 
 
@@ -2532,8 +2532,8 @@ No synchronizer chains to report.
 ; Worst-case Slack        ; -3.902   ; -0.009 ; N/A      ; N/A     ; -3.000              ;
 ;  clk                    ; -3.902   ; -0.009 ; N/A      ; N/A     ; -3.000              ;
 ;  clk_sm:subClk|loop_clk ; -2.014   ; 0.187  ; N/A      ; N/A     ; -1.487              ;
-; Design-wide TNS         ; -184.004 ; -0.009 ; 0.0      ; 0.0     ; -107.266            ;
-;  clk                    ; -161.395 ; -0.009 ; N/A      ; N/A     ; -75.863             ;
+; Design-wide TNS         ; -184.344 ; -0.009 ; 0.0      ; 0.0     ; -107.266            ;
+;  clk                    ; -161.735 ; -0.009 ; N/A      ; N/A     ; -75.863             ;
 ;  clk_sm:subClk|loop_clk ; -22.609  ; 0.000  ; N/A      ; N/A     ; -31.403             ;
 +-------------------------+----------+--------+----------+---------+---------------------+
 
@@ -2772,7 +2772,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Sep 27 12:35:41 2014
+    Info: Processing started: Sun Sep 28 21:38:32 2014
 Info: Command: quartus_sta lab3_SL -c lab3_SL
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -2793,7 +2793,7 @@ Critical Warning (332148): Timing requirements not met
 Info (332146): Worst-case setup slack is -3.902
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.902            -161.395 clk 
+    Info (332119):    -3.902            -161.735 clk 
     Info (332119):    -2.014             -22.609 clk_sm:subClk|loop_clk 
 Info (332146): Worst-case hold slack is 0.426
     Info (332119):     Slack       End Point TNS Clock 
@@ -2816,7 +2816,7 @@ Critical Warning (332148): Timing requirements not met
 Info (332146): Worst-case setup slack is -3.639
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.639            -148.019 clk 
+    Info (332119):    -3.639            -149.117 clk 
     Info (332119):    -1.776             -19.676 clk_sm:subClk|loop_clk 
 Info (332146): Worst-case hold slack is 0.401
     Info (332119):     Slack       End Point TNS Clock 
@@ -2837,7 +2837,7 @@ Critical Warning (332148): Timing requirements not met
 Info (332146): Worst-case setup slack is -1.094
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.094             -40.176 clk 
+    Info (332119):    -1.094             -40.286 clk 
     Info (332119):    -0.272              -2.176 clk_sm:subClk|loop_clk 
 Info (332146): Worst-case hold slack is -0.009
     Info (332119):     Slack       End Point TNS Clock 
@@ -2854,9 +2854,9 @@ Info (332146): Worst-case minimum pulse width slack is -3.000
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 463 megabytes
-    Info: Processing ended: Sat Sep 27 12:35:44 2014
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 466 megabytes
+    Info: Processing ended: Sun Sep 28 21:38:36 2014
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 

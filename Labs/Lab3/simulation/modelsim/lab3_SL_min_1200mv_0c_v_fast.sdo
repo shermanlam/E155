@@ -29,7 +29,7 @@
 (DELAYFILE
   (SDFVERSION "2.1")
   (DESIGN "lab3_SL")
-  (DATE "09/27/2014 12:35:47")
+  (DATE "09/28/2014 21:38:41")
   (VENDOR "Altera")
   (PROGRAM "Quartus II 64-Bit")
   (VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition")
@@ -1226,7 +1226,7 @@
     (INSTANCE subClk\|counter\[9\]\~46)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (135:135:135) (187:187:187))
+        (PORT dataa (135:135:135) (186:186:186))
         (IOPATH dataa combout (165:165:165) (173:173:173))
         (IOPATH dataa cout (226:226:226) (171:171:171))
         (IOPATH datad combout (68:68:68) (63:63:63))
@@ -1338,9 +1338,9 @@
     (INSTANCE subClk\|LessThan0\~6)
     (DELAY
       (ABSOLUTE
-        (PORT dataa (138:138:138) (192:192:192))
+        (PORT dataa (215:215:215) (270:270:270))
         (PORT datab (137:137:137) (187:187:187))
-        (PORT datac (200:200:200) (245:245:245))
+        (PORT datac (124:124:124) (167:167:167))
         (PORT datad (89:89:89) (106:106:106))
         (IOPATH dataa combout (170:170:170) (163:163:163))
         (IOPATH datab combout (160:160:160) (167:167:167))

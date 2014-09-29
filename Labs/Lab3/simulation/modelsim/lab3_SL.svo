@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 64-Bit"
 // VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-// DATE "09/27/2014 12:35:47"
+// DATE "09/28/2014 21:38:41"
 
 // 
 // Device: Altera EP3C5E144C8 Package TQFP144
@@ -1773,7 +1773,7 @@ defparam \subClk|counter[11] .power_up = "low";
 // Location: LCCOMB_X12_Y15_N0
 cycloneiii_lcell_comb \subClk|LessThan0~5 (
 // Equation(s):
-// \subClk|LessThan0~5_combout  = ((!\subClk|counter [4] & (!\subClk|counter [5] & !\subClk|counter [3]))) # (!\subClk|counter [6])
+// \subClk|LessThan0~5_combout  = (((!\subClk|counter [6]) # (!\subClk|counter [3])) # (!\subClk|counter [5])) # (!\subClk|counter [4])
 
 	.dataa(\subClk|counter [4]),
 	.datab(\subClk|counter [5]),
@@ -1783,24 +1783,24 @@ cycloneiii_lcell_comb \subClk|LessThan0~5 (
 	.combout(\subClk|LessThan0~5_combout ),
 	.cout());
 // synopsys translate_off
-defparam \subClk|LessThan0~5 .lut_mask = 16'h01FF;
+defparam \subClk|LessThan0~5 .lut_mask = 16'h7FFF;
 defparam \subClk|LessThan0~5 .sum_lutc_input = "datac";
 // synopsys translate_on
 
 // Location: LCCOMB_X12_Y15_N2
 cycloneiii_lcell_comb \subClk|LessThan0~6 (
 // Equation(s):
-// \subClk|LessThan0~6_combout  = (\subClk|counter [9] & ((\subClk|counter [7]) # ((\subClk|counter [8]) # (!\subClk|LessThan0~5_combout ))))
+// \subClk|LessThan0~6_combout  = (\subClk|counter [9]) # ((\subClk|counter [8] & ((\subClk|counter [7]) # (!\subClk|LessThan0~5_combout ))))
 
-	.dataa(\subClk|counter [9]),
+	.dataa(\subClk|counter [8]),
 	.datab(\subClk|counter [7]),
-	.datac(\subClk|counter [8]),
+	.datac(\subClk|counter [9]),
 	.datad(\subClk|LessThan0~5_combout ),
 	.cin(gnd),
 	.combout(\subClk|LessThan0~6_combout ),
 	.cout());
 // synopsys translate_off
-defparam \subClk|LessThan0~6 .lut_mask = 16'hA8AA;
+defparam \subClk|LessThan0~6 .lut_mask = 16'hF8FA;
 defparam \subClk|LessThan0~6 .sum_lutc_input = "datac";
 // synopsys translate_on
 
@@ -2483,7 +2483,7 @@ defparam \subClk|LessThan0~4 .sum_lutc_input = "datac";
 // Location: LCCOMB_X12_Y14_N30
 cycloneiii_lcell_comb \subClk|LessThan0~7 (
 // Equation(s):
-// \subClk|LessThan0~7_combout  = (\subClk|LessThan0~4_combout  & (((!\subClk|counter [10] & !\subClk|LessThan0~6_combout )) # (!\subClk|counter [11])))
+// \subClk|LessThan0~7_combout  = (\subClk|LessThan0~4_combout  & (((!\subClk|LessThan0~6_combout ) # (!\subClk|counter [10])) # (!\subClk|counter [11])))
 
 	.dataa(\subClk|counter [11]),
 	.datab(\subClk|counter [10]),
@@ -2493,7 +2493,7 @@ cycloneiii_lcell_comb \subClk|LessThan0~7 (
 	.combout(\subClk|LessThan0~7_combout ),
 	.cout());
 // synopsys translate_off
-defparam \subClk|LessThan0~7 .lut_mask = 16'h5700;
+defparam \subClk|LessThan0~7 .lut_mask = 16'h7F00;
 defparam \subClk|LessThan0~7 .sum_lutc_input = "datac";
 // synopsys translate_on
 

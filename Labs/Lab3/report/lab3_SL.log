@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  26 SEP 2014 21:59
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  28 SEP 2014 21:46
 entering extended mode
 **lab3_SL.tex
 
@@ -228,7 +228,8 @@ File: listings.cfg 2014/03/04 1.5c listings configuration
 ))
 Package: listings 2014/03/04 1.5c (Carsten Heinz)
 
-No file lab3_SL.aux.
+(C:\Users\Sherman\Documents\HMC\Courses\2014-2015\E155\Labs\Lab3\report\lab3_SL
+.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
@@ -243,7 +244,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 16.
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 16.
@@ -300,324 +301,208 @@ Option `squaren' provided!
  Command \squaren defined by SIunits package!
 
 \c@lstlisting=\count121
-LaTeX Font Info:    Try loading font information for U+msa on input line 48.
+<board.jpg, id=1, 1842.885pt x 3276.24pt>
+File: board.jpg Graphic file (type jpg)
+ <use board.jpg>
+Package pdftex.def Info: board.jpg used on input line 52.
+(pdftex.def)             Requested size: 202.71797pt x 360.38751pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+
+ []
+
+[1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Sherman/Document
+s/HMC/Courses/2014-2015/E155/Labs/Lab3/report/board.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+
+ []
+
+<keypad_pinout.png, id=8, 521.69907pt x 545.03625pt>
+File: keypad_pinout.png Graphic file (type png)
+ <use keypad_pinout.png>
+Package pdftex.def Info: keypad_pinout.png used on input line 69.
+(pdftex.def)             Requested size: 182.5974pt x 190.76555pt.
+
+<keypad_sch.png, id=10, 696.35156pt x 353.82187pt>
+File: keypad_sch.png Graphic file (type png)
+ <use keypad_sch.png>
+Package pdftex.def Info: keypad_sch.png used on input line 76.
+(pdftex.def)             Requested size: 278.53569pt x 141.52623pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+<bounce_rise.jpg, id=11, 3276.24pt x 1842.885pt>
+File: bounce_rise.jpg Graphic file (type jpg)
+ <use bounce_rise.jpg>
+Package pdftex.def Info: bounce_rise.jpg used on input line 90.
+(pdftex.def)             Requested size: 360.38751pt x 202.71797pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<bounce_fall.jpg, id=12, 3276.24pt x 1842.885pt>
+File: bounce_fall.jpg Graphic file (type jpg)
+ <use bounce_fall.jpg>
+Package pdftex.def Info: bounce_fall.jpg used on input line 97.
+(pdftex.def)             Requested size: 360.38751pt x 202.71797pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
+
+ []
+
+[2 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/keyp
+ad_pinout.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 110.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 48.
+LaTeX Font Info:    Try loading font information for U+msb on input line 110.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+<flow.jpg, id=17, 3276.24pt x 1842.885pt>
+File: flow.jpg Graphic file (type jpg)
+ <use flow.jpg>
+Package pdftex.def Info: flow.jpg used on input line 115.
+(pdftex.def)             Requested size: 425.92616pt x 239.58347pt.
+ [3 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/key
+pad_sch.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/r
+eport/bounce_rise.jpg>] [4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E1
+55/Labs/Lab3/report/bounce_fall.jpg> <C:/Users/Sherman/Documents/HMC/Courses/20
+14-2015/E155/Labs/Lab3/report/flow.jpg>] <subclk.png, id=28, 724.95844pt x 146.
+04562pt>
+File: subclk.png Graphic file (type png)
 
+<use subclk.png>
+Package pdftex.def Info: subclk.png used on input line 131.
+(pdftex.def)             Requested size: 391.47173pt x 78.86345pt.
+ <bounce2.png, id=29, 834.86906pt x 127.97812pt>
+File: bounce2.png Graphic file (type png)
+
+<use bounce2.png>
+Package pdftex.def Info: bounce2.png used on input line 139.
+(pdftex.def)             Requested size: 450.82259pt x 69.10715pt.
+
+Overfull \hbox (17.20258pt too wide) in paragraph at lines 139--140
+ [][] 
  []
 
-
-LaTeX Warning: Reference `fig:board' on page 1 undefined on input line 50.
-
-
-LaTeX Warning: File `board.jpg' not found on input line 54.
-
-
-! Package pdftex.def Error: File `board.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.54 \includegraphics[scale=0.11]{board.jpg}
-                                            
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `bjt.png' not found on input line 67.
-
-
-! Package pdftex.def Error: File `bjt.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.67 \includegraphics[scale=0.5]{bjt.png}
-                                         
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `fig:bjt' on page 1 undefined on input line 72.
-
-[1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Reference `fig:2N3906_gain' on page 2 undefined on input line 82
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-
- []
-
-
-LaTeX Warning: File `2N3906_gain.png' not found on input line 103.
-
-
-! Package pdftex.def Error: File `2N3906_gain.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.103 \includegraphics[scale=1]{2N3906_gain.png}
-                                                
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Reference `table:7seg_decoder' on page 2 undefined on input line
- 113.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
-
- []
-
-[2]
-
-LaTeX Warning: Reference `fig:logic' on page 3 undefined on input line 145.
-
-
-LaTeX Warning: Reference `table:pinmap_ledbar' on page 3 undefined on input lin
-e 145.
-
-
-LaTeX Warning: Reference `table:pinmap_sevenseg' on page 3 undefined on input l
-ine 145.
-
-
-LaTeX Warning: Reference `table:pinmap_control' on page 3 undefined on input li
-ne 145.
-
-
-LaTeX Warning: Reference `table:pinmap_sw1' on page 3 undefined on input line 1
-45.
-
-
-LaTeX Warning: Reference `table:pinmap_sw2' on page 3 undefined on input line 1
-45.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-
- []
-
-
-LaTeX Warning: File `logic.jpg' not found on input line 150.
-
-
-! Package pdftex.def Error: File `logic.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.150 \includegraphics[scale=0.11]{logic.jpg}
-                                             
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] [4]
-
-LaTeX Warning: File `clk_works.png' not found on input line 236.
-
-
-! Package pdftex.def Error: File `clk_works.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.236 \includegraphics[scale=0.65]{clk_works.png}
-                                                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `mux_all.png' not found on input line 244.
-
-
-! Package pdftex.def Error: File `mux_all.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.244 \includegraphics[scale=0.7]{mux_all.png}
-                                              
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `no_reset.png' not found on input line 252.
-
-
-! Package pdftex.def Error: File `no_reset.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.252 \includegraphics[scale=0.75]{no_reset.png}
-                                                
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `yes_reset.png' not found on input line 260.
-
-
-! Package pdftex.def Error: File `yes_reset.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.260 \includegraphics[scale=0.8]{yes_reset.png}
-                                                
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `toggling.png' not found on input line 268.
-
-
-! Package pdftex.def Error: File `toggling.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.268 \includegraphics[scale=1]{toggling.png}
-                                             
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: File `sum.png' not found on input line 276.
-
-
-! Package pdftex.def Error: File `sum.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.276 \includegraphics[scale=1]{sum.png}
-                                        
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<keypad_decode.png, id=30, 654.94687pt x 144.54pt>
+File: keypad_decode.png Graphic file (type png)
+ <use keypad_decode.png>
+Package pdftex.def Info: keypad_decode.png used on input line 147.
+(pdftex.def)             Requested size: 353.66605pt x 78.05042pt.
+
+<mem.png, id=31, 490.08093pt x 156.585pt>
+File: mem.png Graphic file (type png)
+ <use mem.png>
+Package pdftex.def Info: mem.png used on input line 155.
+(pdftex.def)             Requested size: 264.63977pt x 84.55463pt.
+
+<rows.png, id=32, 588.69937pt x 137.01187pt>
+File: rows.png Graphic file (type png)
+ <use rows.png>
+Package pdftex.def Info: rows.png used on input line 163.
+(pdftex.def)             Requested size: 317.89291pt x 73.9853pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<state_change_on_button.png, id=33, 741.52031pt x 112.92188pt>
+File: state_change_on_button.png Graphic file (type png)
+
+<use state_change_on_button.png>
+Package pdftex.def Info: state_change_on_button.png used on input line 171.
+(pdftex.def)             Requested size: 400.415pt x 60.97688pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [5
 
-] [6]
-
-LaTeX Warning: File `reset.png' not found on input line 293.
-
-
-! Package pdftex.def Error: File `reset.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.293 \includegraphics[scale=0.54]{reset.png}
-                                             
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+ <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/subclk
+.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/b
+ounce2.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/re
+port/keypad_decode.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/
+Labs/Lab3/report/mem.png>] [6 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015
+/E155/Labs/Lab3/report/rows.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2
+015/E155/Labs/Lab3/report/state_change_on_button.png>]
+<reset.png, id=46, 369.63094pt x 377.15906pt>
+File: reset.png Graphic file (type png)
+ <use reset.png>
+Package pdftex.def Info: reset.png used on input line 220.
+(pdftex.def)             Requested size: 199.59772pt x 203.66286pt.
 
 
-LaTeX Warning: File `s1.png' not found on input line 301.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<s1.png, id=47, 494.59781pt x 348.55219pt>
+File: s1.png Graphic file (type png)
+ <use s1.png>
+Package pdftex.def Info: s1.png used on input line 228.
+(pdftex.def)             Requested size: 267.07883pt x 188.21536pt.
 
 
-! Package pdftex.def Error: File `s1.png' not found.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.301 \includegraphics[scale=0.54]{s1.png}
-                                          
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<s2.png, id=48, 470.50781pt x 335.00156pt>
+File: s2.png Graphic file (type png)
+ <use s2.png>
+Package pdftex.def Info: s2.png used on input line 236.
+(pdftex.def)             Requested size: 254.07042pt x 180.89813pt.
 
 
-LaTeX Warning: File `s2.png' not found on input line 309.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<seven_segment_all.png, id=49, 885.3075pt x 308.65312pt>
+File: seven_segment_all.png Graphic file (type png)
+
+<use seven_segment_all.png>
+Package pdftex.def Info: seven_segment_all.png used on input line 244.
+(pdftex.def)             Requested size: 619.71101pt x 216.0557pt.
 
 
-! Package pdftex.def Error: File `s2.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.309 \includegraphics[scale=0.54]{s2.png}
-                                          
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: Float too large for page by 8.61018pt on input line 247.
 
 
-LaTeX Warning: File `seven_segment_all.png' not found on input line 317.
-
-
-! Package pdftex.def Error: File `seven_segment_all.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.317 ...ale=0.7, angle=90]{seven_segment_all.png}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [7
 
-] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+] [8 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/re
+set.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/repor
+t/s1.png>] [9 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/
+report/s2.png>] [10 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs
+/Lab3/report/seven_segment_all.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11
+
+] [12] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang2.sty"
@@ -626,75 +511,63 @@ File: lstlang2.sty 2014/03/04 1.5c listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang3.sty"
 File: lstlang3.sty 2014/03/04 1.5c listings language file
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 329.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 339.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 329.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 339.
+ [13
 
-Overfull \hbox (10.38145pt too wide) in paragraph at lines 340--341
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 423.
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 351.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 351.
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 382.
- [8
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 423.
 
-] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 442--443
-
+Overfull \hbox (4.83144pt too wide) in paragraph at lines 451--452
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 458--459
-
+[14] [15] [16] [17]
+Overfull \hbox (10.38145pt too wide) in paragraph at lines 662--663
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[10
+LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <9> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 673.
+[18] [19] [20] [21
 
 ]
 (C:\Users\Sherman\Documents\HMC\Courses\2014-2015\E155\Labs\Lab3\report\lab3_SL
-.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+.aux) ) 
 Here is how much of TeX's memory you used:
- 4945 strings out of 493921
- 66716 string characters out of 3147276
- 175003 words of memory out of 3000000
- 8152 multiletter control sequences out of 15000+200000
- 14232 words of font info for 54 fonts, out of 3000000 for 9000
+ 5064 strings out of 493921
+ 68674 string characters out of 3147276
+ 181906 words of memory out of 3000000
+ 8267 multiletter control sequences out of 15000+200000
+ 14064 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,9n,43p,1136b,1707s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on lab3_SL.pdf (10 pages, 196534 bytes).
+ 27i,8n,43p,558b,1739s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on lab3_SL.pdf (21 pages, 5922227 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
+ 142 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
