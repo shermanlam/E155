@@ -32,7 +32,7 @@ Sherman Lam
 % ---------------------------------------
 \begin{center}
 \begin{Large}
-\textbf{Lab 2 Report: Time-Multiplexed 7-Segment Displays}
+\textbf{Lab 3 Report: Keypad Scanner}
 \end{Large}
 \end{center}
 
@@ -61,7 +61,7 @@ In this lab, I used created an interface between a keypad and the dual-display s
 
 The keypad has 4 rows and 4 columns, which allows me to represent all 16 hex values (see Figure \ref{fig:keypad_pinout}. When a particular button is pressed its row and column are connected. For example, the button for the number 5 is on row 1 and column 1. When that button is pressed, row 1 and col 1 will be in contact. If pin R1 was pulled to HIGH, pin C1 would also register a HIGH. \\
 
-To detect which button is pressed, each row is powered individually. Then the logic levels of the column s are read to determine if any buttons are pressed. Since the rows are being powered, they will always resolve to HIGH or LOW. However, to ensure that the columns also resolve to a logic level, pull-down resistors are placed on the column pins (C0 - C3). In this configuration, if a button is pressed, it will read HIGH, otherwise it will read low (See Figure \ref{fig:keypad_sch}). \\
+To detect which button is pressed, each row is powered individually. Then the logic levels of the columns are read to determine if any buttons are pressed. Since the rows are being powered, they will always resolve to HIGH or LOW. However, to ensure that the columns also resolve to a logic level, pull-down resistors are placed on the column pins (C0 - C3). In this configuration, if a button is pressed, it will read HIGH, otherwise it will read low (See Figure \ref{fig:keypad_sch}). \\
 
 
 \begin{figure}[h!]
@@ -94,7 +94,7 @@ One of the challenges with using the keypad is a phenomenon known as "button bou
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.11]{bounce_fall.jpg}
+\includegraphics[scale=0.14]{bounce_fall.jpg}
 \caption{Button bounce when the button is released.}
 \label{fig:bounce_fall}
 \end{figure} 
@@ -107,7 +107,14 @@ The general approach to interpreting data from the keypad is as follows. First r
 
 To cope with the challenge of button bounce, the control loop rate is run at a slow enough frequency to avoid sampling twice in the same button press. This means that if the button is sampled while the signal is bouncing as in Figure \ref{fig:bounce_rise}, either a HIGH or LOW will be sampled. However, the next sample will be taken after the signal has resolved to a steady value. So, to the controller no bouncing in the signal is visible. \\
 
-From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that longest observed button bounce duration is 340$\mu$s. So, the fastest the columns should be sampled (accounting for a factor of safety of 2) at a particular row is once every 680$\mu$s. Since there are 4 rows and I'm going to only sample the columns for a given row once every 4 samples, I can sample sequential rows at $\frac{680\mu s}{4}=170\mu s$. This corresponds with a frequency of 5.8kHz.
+From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that longest observed button bounce duration is 340$\mu$s. So, the fastest the columns should be sampled at a particular row (accounting for a factor of safety of 2) is once every 680$\mu$s. Since there are 4 rows and I'm going to only sample the columns for a given row once every 4 samples, I can sample sequential rows at $\frac{680\mu s}{4}=170\mu s$. This corresponds with a frequency of 5.8kHz.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]{fsm.jpg}
+\caption{Finite state machine which keeps track of which row is being scanned.}
+\label{fig:fsm}
+\end{figure} 
 
 
 \begin{figure}[h!]
@@ -128,7 +135,7 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{subclk.png}
+\includegraphics[scale=0.6]{subclk.png}
 \caption{To slow the sampling rate of the program, a "loop clk" was created to run at a slower rate than the on board clk. All flip-flops in the design are run based on this this slower clock signal. Note that the loop clock in actuality runs much slower than what is shown.}
 \label{fig:subclk}
 \end{figure} 
@@ -144,7 +151,7 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{keypad_decode.png}
+\includegraphics[scale=0.65]{keypad_decode.png}
 \caption{The keypad decoder works! The signal state[3:0] gives the row that's being powered and col[3:0] gives which row is being powered. The hex symbol is on the signal "newest."}
 \label{fig:keypad_decode}
 \end{figure} 
@@ -152,7 +159,7 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{mem.png}
+\includegraphics[scale=0.8]{mem.png}
 \caption{The program accurately remembers the last two numbers. "last" is the latest number entered. "lastlast" is the second to last number entered.}
 \label{fig:mem}
 \end{figure} 
@@ -160,7 +167,7 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{rows.png}
+\includegraphics[scale=0.7]{rows.png}
 \caption{The main finite-state-machine keeps track of which row is being powered. The state uses 1-hot encoding so that it can be directly routed to the output. "next" represents the next state. When the reset signal is pulled high, the state resets synchronously to 0001.}
 \label{fig:states}
 \end{figure} 
@@ -168,7 +175,7 @@ The code's logic was tested in ModelSim-Altera. The following show the results o
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{state_change_on_button.png}
+\includegraphics[scale=0.6]{state_change_on_button.png}
 \caption{When a button is pressed, the FSM is frozen in its current state. This prevents the program from registering a button that's being held down as multiple button presses.}
 \label{fig:button_held_down}
 \end{figure} 
@@ -225,22 +232,6 @@ s3{[}3{]} & s3{[}2{]} & s3{[}1{]} & s3{[}0{]} & (hex) & G & F & E & D & C & B & 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.54]{s1.png}
-\caption{Schematic for DIP switch 1. This controls display segment 1 (left).}
-\label{fig:s1_sch}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.54]{s2.png}
-\caption{Schematic for DIP switch 2. This controls display segment 2 (right).}
-\label{fig:s2_sch}
-\end{figure} 
-
-
-\begin{figure}[h!]
-\centering
 \includegraphics[scale=0.7, angle=90]{seven_segment_all.png}
 \caption{Full schematic for dual 7-segment display. Note that on1 and on2 toggle the two displays on and off. Only one or the other is on at any given time.}
 \label{fig:seven_seg_sch}
@@ -251,7 +242,7 @@ s3{[}3{]} & s3{[}2{]} & s3{[}1{]} & s3{[}0{]} & (hex) & G & F & E & D & C & B & 
 
 \subsection{Pin Mapping}
 
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -264,7 +255,7 @@ P70               & P66               & P67               & P69               \\
 \end{table}
 
 
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -276,21 +267,7 @@ P68             & P73             & P72             & P71             \\ \hline
 \label{table:pinmap_keypad_col}
 \end{table}
 
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\multicolumn{7}{|c|}{\textbf{7 - Segment Display Pin Mapping}} \\ \hline
-seg[0]/A   & seg[1]/B   & seg[3]/C   & seg[4]/D    & seg[5]/E    & seg[6]/F   & seg[7]/G   \\ \hline
-P2         & P1         & P4         & P10         & P11         & P3         & P7  \\ \hline
-\end{tabular}
-\caption{Pin mapping of 7-segment display}
-\label{table:pinmap_sevenseg}
-\end{table}
-
-
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -302,30 +279,16 @@ P87        & P86        & P88        & P60         \\ \hline
 \label{table:pinmap_control}
 \end{table}
 
-
-\begin{table}[h]
+\begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-\multicolumn{4}{|c|}{\textbf{Switch 1 Pin Mapping}} \\ \hline
-s1{[}3{]}  & s1{[}2{]}  & s1{[}1{]} & s1{[}0{]} \\ \hline
-P24        & P53        & P55       & P54       \\ \hline
+\multicolumn{7}{|c|}{\textbf{7 - Segment Display Pin Mapping}} \\ \hline
+seg[0]/A   & seg[1]/B   & seg[3]/C   & seg[4]/D    & seg[5]/E    & seg[6]/F   & seg[7]/G   \\ \hline
+P2         & P1         & P4         & P10         & P11         & P3         & P7  \\ \hline
 \end{tabular}
-\caption{Pin mapping for DIP switch set 1}
-\label{table:pinmap_sw1}
-\end{table}
-
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{4}{|c|}{\textbf{Switch 2 Pin Mapping}} \\ \hline
-s2{[}3{]}  & s2{[}2{]}  & s2{[}1{]} & s2{[}0{]} \\ \hline
-P51        & P50        & P49       & P44       \\ \hline
-\end{tabular}
-\caption{Pin mapping for DIP switch set 2}
-\label{table:pinmap_sw2}
+\caption{Pin mapping of 7-segment display}
+\label{table:pinmap_sevenseg}
 \end{table}
 
 

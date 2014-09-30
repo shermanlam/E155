@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  28 SEP 2014 21:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  29 SEP 2014 23:24
 entering extended mode
 **lab3_SL.tex
 
@@ -339,20 +339,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-<bounce_rise.jpg, id=11, 3276.24pt x 1842.885pt>
+<bounce_rise.jpg, id=11, 2843.62375pt x 1109.14375pt>
 File: bounce_rise.jpg Graphic file (type jpg)
  <use bounce_rise.jpg>
 Package pdftex.def Info: bounce_rise.jpg used on input line 90.
-(pdftex.def)             Requested size: 360.38751pt x 202.71797pt.
+(pdftex.def)             Requested size: 312.79958pt x 122.00618pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<bounce_fall.jpg, id=12, 3276.24pt x 1842.885pt>
+<bounce_fall.jpg, id=12, 2269.47874pt x 812.03375pt>
 File: bounce_fall.jpg Graphic file (type jpg)
  <use bounce_fall.jpg>
 Package pdftex.def Info: bounce_fall.jpg used on input line 97.
-(pdftex.def)             Requested size: 360.38751pt x 202.71797pt.
+(pdftex.def)             Requested size: 317.72485pt x 113.68394pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -368,7 +368,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 108--109
 
  []
 
+[3 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/keyp
+ad_sch.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/re
+port/bounce_rise.jpg> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/La
+bs/Lab3/report/bounce_fall.jpg>]
 LaTeX Font Info:    Try loading font information for U+msa on input line 110.
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -377,60 +382,74 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 110.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<flow.jpg, id=17, 3276.24pt x 1842.885pt>
+<fsm.jpg, id=21, 1635.10875pt x 1149.29375pt>
+File: fsm.jpg Graphic file (type jpg)
+ <use fsm.jpg>
+Package pdftex.def Info: fsm.jpg used on input line 114.
+(pdftex.def)             Requested size: 327.01596pt x 229.85468pt.
+
+<flow.jpg, id=22, 3276.24pt x 1842.885pt>
 File: flow.jpg Graphic file (type jpg)
  <use flow.jpg>
-Package pdftex.def Info: flow.jpg used on input line 115.
+Package pdftex.def Info: flow.jpg used on input line 122.
 (pdftex.def)             Requested size: 425.92616pt x 239.58347pt.
- [3 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/key
-pad_sch.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/r
-eport/bounce_rise.jpg>] [4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E1
-55/Labs/Lab3/report/bounce_fall.jpg> <C:/Users/Sherman/Documents/HMC/Courses/20
-14-2015/E155/Labs/Lab3/report/flow.jpg>] <subclk.png, id=28, 724.95844pt x 146.
-04562pt>
+ [4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/fsm
+.jpg> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/f
+low.jpg>]
+<subclk.png, id=29, 724.95844pt x 146.04562pt>
 File: subclk.png Graphic file (type png)
+ <use subclk.png>
+Package pdftex.def Info: subclk.png used on input line 138.
+(pdftex.def)             Requested size: 434.97841pt x 87.62804pt.
 
-<use subclk.png>
-Package pdftex.def Info: subclk.png used on input line 131.
-(pdftex.def)             Requested size: 391.47173pt x 78.86345pt.
- <bounce2.png, id=29, 834.86906pt x 127.97812pt>
-File: bounce2.png Graphic file (type png)
-
-<use bounce2.png>
-Package pdftex.def Info: bounce2.png used on input line 139.
-(pdftex.def)             Requested size: 450.82259pt x 69.10715pt.
-
-Overfull \hbox (17.20258pt too wide) in paragraph at lines 139--140
+Overfull \hbox (1.3584pt too wide) in paragraph at lines 138--139
  [][] 
  []
 
-<keypad_decode.png, id=30, 654.94687pt x 144.54pt>
+<bounce2.png, id=30, 834.86906pt x 127.97812pt>
+File: bounce2.png Graphic file (type png)
+ <use bounce2.png>
+Package pdftex.def Info: bounce2.png used on input line 146.
+(pdftex.def)             Requested size: 450.82259pt x 69.10715pt.
+
+Overfull \hbox (17.20258pt too wide) in paragraph at lines 146--147
+ [][] 
+ []
+
+<keypad_decode.png, id=31, 654.94687pt x 144.54pt>
 File: keypad_decode.png Graphic file (type png)
  <use keypad_decode.png>
-Package pdftex.def Info: keypad_decode.png used on input line 147.
-(pdftex.def)             Requested size: 353.66605pt x 78.05042pt.
+Package pdftex.def Info: keypad_decode.png used on input line 154.
+(pdftex.def)             Requested size: 425.71043pt x 93.94987pt.
 
-<mem.png, id=31, 490.08093pt x 156.585pt>
+<mem.png, id=32, 490.08093pt x 156.585pt>
 File: mem.png Graphic file (type png)
  <use mem.png>
-Package pdftex.def Info: mem.png used on input line 155.
-(pdftex.def)             Requested size: 264.63977pt x 84.55463pt.
-
-<rows.png, id=32, 588.69937pt x 137.01187pt>
-File: rows.png Graphic file (type png)
- <use rows.png>
-Package pdftex.def Info: rows.png used on input line 163.
-(pdftex.def)             Requested size: 317.89291pt x 73.9853pt.
+Package pdftex.def Info: mem.png used on input line 162.
+(pdftex.def)             Requested size: 392.06528pt x 125.26816pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<state_change_on_button.png, id=33, 741.52031pt x 112.92188pt>
+<rows.png, id=33, 588.69937pt x 137.01187pt>
+File: rows.png Graphic file (type png)
+ <use rows.png>
+Package pdftex.def Info: rows.png used on input line 170.
+(pdftex.def)             Requested size: 412.08675pt x 95.90765pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<state_change_on_button.png, id=34, 741.52031pt x 112.92188pt>
 File: state_change_on_button.png Graphic file (type png)
 
 <use state_change_on_button.png>
-Package pdftex.def Info: state_change_on_button.png used on input line 171.
-(pdftex.def)             Requested size: 400.415pt x 60.97688pt.
+Package pdftex.def Info: state_change_on_button.png used on input line 178.
+(pdftex.def)             Requested size: 444.91562pt x 67.75363pt.
+
+Overfull \hbox (11.29561pt too wide) in paragraph at lines 178--179
+ [][] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -440,46 +459,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
  <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/subclk
 .png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/b
 ounce2.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/re
-port/keypad_decode.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/
-Labs/Lab3/report/mem.png>] [6 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015
+port/keypad_decode.png>] [6 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E
+155/Labs/Lab3/report/mem.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015
 /E155/Labs/Lab3/report/rows.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2
 015/E155/Labs/Lab3/report/state_change_on_button.png>]
-<reset.png, id=46, 369.63094pt x 377.15906pt>
+<reset.png, id=47, 369.63094pt x 377.15906pt>
 File: reset.png Graphic file (type png)
  <use reset.png>
-Package pdftex.def Info: reset.png used on input line 220.
+Package pdftex.def Info: reset.png used on input line 227.
 (pdftex.def)             Requested size: 199.59772pt x 203.66286pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<s1.png, id=47, 494.59781pt x 348.55219pt>
-File: s1.png Graphic file (type png)
- <use s1.png>
-Package pdftex.def Info: s1.png used on input line 228.
-(pdftex.def)             Requested size: 267.07883pt x 188.21536pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<s2.png, id=48, 470.50781pt x 335.00156pt>
-File: s2.png Graphic file (type png)
- <use s2.png>
-Package pdftex.def Info: s2.png used on input line 236.
-(pdftex.def)             Requested size: 254.07042pt x 180.89813pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<seven_segment_all.png, id=49, 885.3075pt x 308.65312pt>
+<seven_segment_all.png, id=48, 885.3075pt x 308.65312pt>
 File: seven_segment_all.png Graphic file (type png)
 
 <use seven_segment_all.png>
-Package pdftex.def Info: seven_segment_all.png used on input line 244.
+Package pdftex.def Info: seven_segment_all.png used on input line 235.
 (pdftex.def)             Requested size: 619.71101pt x 216.0557pt.
 
 
-LaTeX Warning: Float too large for page by 8.61018pt on input line 247.
+LaTeX Warning: Float too large for page by 8.61018pt on input line 238.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -487,22 +488,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [7
 
 ] [8 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/report/re
-set.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/repor
-t/s1.png>] [9 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/
-report/s2.png>] [10 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs
-/Lab3/report/seven_segment_all.png>]
+set.png>] [9 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab3/r
+eport/seven_segment_all.png>] [10
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[11
-
-] [12] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+]
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang2.sty"
@@ -511,47 +501,47 @@ File: lstlang2.sty 2014/03/04 1.5c listings language file
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang3.sty"
 File: lstlang3.sty 2014/03/04 1.5c listings language file
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 339.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 302.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 339.
- [13
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 302.
+ [11
 
 ]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 423.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 386.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 423.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 386.
 
-Overfull \hbox (4.83144pt too wide) in paragraph at lines 451--452
+Overfull \hbox (4.83144pt too wide) in paragraph at lines 414--415
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[14] [15] [16] [17]
-Overfull \hbox (10.38145pt too wide) in paragraph at lines 662--663
+[12] [13] [14] [15]
+Overfull \hbox (10.38145pt too wide) in paragraph at lines 625--626
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 673.
-[18] [19] [20] [21
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 636.
+[16] [17] [18] [19
 
 ]
 (C:\Users\Sherman\Documents\HMC\Courses\2014-2015\E155\Labs\Lab3\report\lab3_SL
 .aux) ) 
 Here is how much of TeX's memory you used:
- 5064 strings out of 493921
- 68674 string characters out of 3147276
- 181906 words of memory out of 3000000
- 8267 multiletter control sequences out of 15000+200000
+ 5056 strings out of 493921
+ 68579 string characters out of 3147276
+ 181825 words of memory out of 3000000
+ 8260 multiletter control sequences out of 15000+200000
  14064 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,8n,43p,558b,1739s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -565,9 +555,9 @@ lic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
 9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on lab3_SL.pdf (21 pages, 5922227 bytes).
+Output written on lab3_SL.pdf (19 pages, 4144675 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
+ 133 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
