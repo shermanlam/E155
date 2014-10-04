@@ -13,9 +13,9 @@
 #define LST7 0x7
 #define LST8 0x8
 #define LST9 0x9
-#define LST10 0xA
+#define LST10 0xC
 #define LST11 0xB
-#define LST12 0xC
+#define LST12 0xA
 
 
 # Register use:
@@ -75,7 +75,7 @@ main:
 	add 	$t5, $0, $0 	# start a flag that indicates if the list is sorted.
 	addi	$t6, $0, 4		# load 4 into $t6
 while: 						# start of while loop
-	bne		$t5, $0, end	# if $t5~=0, the list is sorted
+	bne		$t5, $0, done	# if $t5~=0, the list is sorted
 	nop
 	addi	$t5, $0, 1		# set the flag to sorted
 	add 	$t0, $0, $0		# init i at 0 
@@ -94,7 +94,9 @@ for:						# start of for loop
 	sw 		$t3, 4($t7)		# put n1 in n2's spot
 	sw 		$t4, 0($t7)		# put n2 in n1's spot
 	add 	$t5, $0, $0 	# set the flag to 0 since the list is not sorted
-end:
+	j		for
+done:
 	nop
+	jr		$ra
 
 .end main
