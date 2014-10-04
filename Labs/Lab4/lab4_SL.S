@@ -28,7 +28,7 @@
 # 	$t6 = 4
 # 	$t7 = ADDR + i*4
 # 	$t8 = 
-# 	$s0	= ADDR
+# 	$s0	= 
 #   $s1 = number
 
 .ent main
@@ -73,9 +73,11 @@ main:
 	sw		$s1, 0($sp)		# load number into ram
 	
 	add 	$t5, $0, $0 	# start a flag that indicates if the list is sorted.
+	addi	$t6, $0, 4		# load 4 into $t6
 while: 						# start of while loop
 	bne		$t5, $0, end	# if $t5~=0, the list is sorted
 	nop
+	addi	$t5, $0, 1		# set the flag to sorted
 	add 	$t0, $0, $0		# init i at 0 
 for:						# start of for loop
 	sltiu	$t2, $t0, 11 	# make sure that the counter has not exceeded the length of the list
@@ -83,11 +85,11 @@ for:						# start of for loop
 	nop
 	mul		$t1, $t0, $t6	# calc i*4
 	add 	$t7, $sp, $t1	# calc stack pointer + i*4
-	lw		$t3, 0($t7)		# load the number stored at the bottom of the stack (lowest addr) [n1]
+	lw		$t3, 0($t7)		# load the number stored at the top of the stack (lowest addr) [n1]
 	lw 		$t4, 4($t7)		# load the 2nd to last number [n2]
 	add 	$t0, $t0, 1 	# increment the counter
-	slt 	$t2, $t3, $t4	# check if n1 < n2
-	bne		$t2, $0, for    # pass if it is in order
+	slt 	$t2, $t3, $t4	# check if n1 < n2 (out of order)
+	beq		$t2, $0, for    # pass if the numbers are in order ($t2=0)
 	nop
 	sw 		$t3, 4($t7)		# put n1 in n2's spot
 	sw 		$t4, 0($t7)		# put n2 in n1's spot
