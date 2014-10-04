@@ -45,7 +45,7 @@ Sherman Lam
 \section{Introduction}
 \label{sec:intro}
 
-In this lab, I used created an interface between a keypad and the dual-display system developed in Lab 2. When a number is pressed on the key pad, the number is recorded on the 2 displays. The most recently pressed number is shown on the "right" display (closer to the bottom of the board). The second most recently pressed number is shown on the "left" display (close to the top of the board). Figure \ref{fig:board} illustrates an example where "42" was entered into the keypad.
+In this lab, I created an interface between a keypad and the dual-display system developed in Lab 2. When a number is pressed on the key pad, the number is recorded on the 2 displays. The most recently pressed number is shown on the "right" display (closer to the bottom of the board). The second most recently pressed number is shown on the "left" display (close to the top of the board). If no buttons have been pressed, the displays initialize at 0. Figure \ref{fig:board} illustrates an example where "42" was entered into the keypad.
 
 \begin{figure}[h!]
 \centering
@@ -61,7 +61,7 @@ In this lab, I used created an interface between a keypad and the dual-display s
 
 The keypad has 4 rows and 4 columns, which allows me to represent all 16 hex values (see Figure \ref{fig:keypad_pinout}. When a particular button is pressed its row and column are connected. For example, the button for the number 5 is on row 1 and column 1. When that button is pressed, row 1 and col 1 will be in contact. If pin R1 was pulled to HIGH, pin C1 would also register a HIGH. \\
 
-To detect which button is pressed, each row is powered individually. Then the logic levels of the columns are read to determine if any buttons are pressed. Since the rows are being powered, they will always resolve to HIGH or LOW. However, to ensure that the columns also resolve to a logic level, pull-down resistors are placed on the column pins (C0 - C3). In this configuration, if a button is pressed, it will read HIGH, otherwise it will read low (See Figure \ref{fig:keypad_sch}). \\
+To detect which button is pressed, first each row is powered individually. Then the logic levels of the columns are read to determine if any buttons are pressed. Since the rows are being powered, they will always resolve to HIGH or LOW. However, to ensure that the columns also resolve to a logic level, pull-down resistors are placed on the column pins (C0 - C3). In this configuration, if a button is pressed, it will read HIGH, otherwise it will read low (See Figure \ref{fig:keypad_sch}). Pull-up resistors were not chosen because they would cause all the column pins to read HIGH regardless of whether or not its corresponding button is being pressed. \\
 
 
 \begin{figure}[h!]
@@ -103,11 +103,11 @@ One of the challenges with using the keypad is a phenomenon known as "button bou
 
 \subsection{Software}
 
-The general approach to interpreting data from the keypad is as follows. First row 0 is powered. The column pins are read. If a button in that row is pressed down, the row remains powered until the button is released. If no button is pressed, row 0 is turned off and then row 1 is powered. Repeat. When button presses do occur, they are decoded based on the row being powered and the column that is read as HIGH. If multiple columns are HIGH at the same time, the left-most button is taken as the one being pressed down. \\
+The general approach to interpreting data from the keypad is as follows. First row 0 is powered. The column pins are read. If a button in that row is pressed down, the row remains powered until the button is released. If no button is pressed, row 0 is turned off and then row 1 is powered. Repeat. This finite state machine is shown in Figure \ref{fig:fsm}. When button presses do occur, they are decoded based on the row being powered and the column that is read as HIGH. If multiple columns are HIGH at the same time, the left-most button is taken as the one being pressed down. \\
 
 To cope with the challenge of button bounce, the control loop rate is run at a slow enough frequency to avoid sampling twice in the same button press. This means that if the button is sampled while the signal is bouncing as in Figure \ref{fig:bounce_rise}, either a HIGH or LOW will be sampled. However, the next sample will be taken after the signal has resolved to a steady value. So, to the controller no bouncing in the signal is visible. \\
 
-From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that longest observed button bounce duration is 340$\mu$s. So, the fastest the columns should be sampled at a particular row (accounting for a factor of safety of 2) is once every 680$\mu$s. Since there are 4 rows and I'm going to only sample the columns for a given row once every 4 samples, I can sample sequential rows at $\frac{680\mu s}{4}=170\mu s$. This corresponds with a frequency of 5.8kHz.
+From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that longest observed button bounce duration is 340$\mu$s. So, if only 1 row was kept HIGH, the fastest the columns should be sampled to avoid button bounce (and accounting for a factor of safety of 2) is once every 680$\mu$s. Since there are 4 rows and I'm going to only sample the columns for a given row once every 4 samples, I can sample sequential rows at $\frac{680\mu s}{4}=170\mu s$. This corresponds with a frequency of 5.8kHz.
 
 \begin{figure}[h!]
 \centering
@@ -119,7 +119,7 @@ From Figures \ref{fig:bounce_fall} and \ref{fig:bounce_rise}, I can see that lon
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.13]{flow.jpg}
+\includegraphics[scale=0.18, angle=90]{flow.jpg}
 \caption{Control flow of the program.}
 \label{fig:flow}
 \end{figure} 
