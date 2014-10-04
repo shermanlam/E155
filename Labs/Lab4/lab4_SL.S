@@ -4,18 +4,18 @@
 .set noreorder # do not let the compiler reorganize your code
 
 # define globals
-#define LST1 0x1
-#define LST2 0x2
-#define LST3 0x3
-#define LST4 0x4
-#define LST5 0x5
-#define LST6 0x6
-#define LST7 0x7
-#define LST8 0x8
-#define LST9 0x9
-#define LST10 0xC
-#define LST11 0xB
-#define LST12 0xA
+#define LST1 0xC
+#define LST2 0xB
+#define LST3 0xA
+#define LST4 0x9
+#define LST5 0x8
+#define LST6 0x7
+#define LST7 0x6
+#define LST8 0x5
+#define LST9 0x4
+#define LST10 0x3
+#define LST11 0x2
+#define LST12 0x1
 
 
 # Register use:
@@ -95,8 +95,10 @@ for:						# start of for loop
 	sw 		$t4, 0($t7)		# put n2 in n1's spot
 	add 	$t5, $0, $0 	# set the flag to 0 since the list is not sorted
 	j		for
-done:
 	nop
-	jr		$ra
+done:
+	# addi	$sp, $sp, 48	# reset stack pointer
+	jr		$ra				# return to function call
+	nop
 
 .end main
