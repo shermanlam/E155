@@ -15,9 +15,9 @@
 #define LST4a   0x0
 #define LST4b   0x4
 #define LST5a   0x0000
-#define LST5b   0xFFFF
+#define LST5b   0x000F
 
-#define PINMODE     0xF00       # 1 = input, 0 = output
+#define PINMODE     0x0F00       # 1 = input, 0 = output
 
 
 # Register use:
@@ -59,9 +59,9 @@ main:
 	sw		s1, 0(sp)		# load number into ram
 
     # pin configuration
-    la      t8, TRISD       # load the address of TRISD into t8
-    addi    s1, zero, PINMODE     # load the pinmodes into s1
-    sw      s1, 0(t8)       # set which pins are inputs or outputs.
+    la      t8, TRISD           # load the address of TRISD into t8
+    addi    s1, zero, PINMODE   # load the pinmodes into s1
+    sw      s1, 0(t8)           # set which pins are inputs or outputs.
 
 	add 	t5, zero, 0 	# start a flag that indicates if the list is sorted.
 	addi	t6, zero, 4		# load 4 into $t6
