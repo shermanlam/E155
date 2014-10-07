@@ -63,7 +63,7 @@ In this lab, I implemented bubble sort in MIPS assembly. This was simulated in M
 
 \subsection{Sorting}
 
-Instead of implementing a max finder for part c of the lab and then use selection sort for part d of the lab, I chose to implement bubble sort for part d. I then simply used the sorting algorithm to find the max for part c of the lab. While this is not the most efficient way (from a coding standpoint) to find the max of a list, it simplified the lab to use one main piece of source code. In addition, bubble sort is simpler to implement than selection sort. \\
+Instead of implementing a max finder for part c of the lab and then use selection sort for part d of the lab, I chose to implement bubble sort for part d. I then simply used the sorting algorithm to find the max for part c of the lab. While this is not the most efficient way (from a computation standpoint) to find the max of a list, it simplified the lab to use one main piece of source code. In addition, bubble sort is simpler to implement than selection sort. \\
 
 Bubble sort is a very simple sorting algorithm. It is slow for sorting large lists but since we are sorting at most a list of 12 numbers, this algorithm is sufficient. In C, bubble sort is implemented as follows. \\
 
@@ -90,7 +90,7 @@ while (flag != 1){                      //keep sorting if not sorted
 
 \subsection{Using LEDs}
 
-In order to control the LED with the PIC32, HIGH and LOW logic levels must be written to pins RD1 through RD7. These 8 pins are connected to the 8 lower LEDs on the $\mu$Mudd32. On the PIC32, pins RD1 through RD7 are part of a larger group of pins. Microchip gave this group of pins the designation "PORTD". In memory, the state of PORTD is simply stored as a 32-bit number. To change the outputs of any pin in PORTD, the PORTD bits in memory can be written to either 1 or 0. Notice though that while PORTD is stored as a 32-bit number, Figure \ref{fig:TRISD} shows that there are only 16 pins in PORTD and so only the bottom 16 bits of PORTD are used. \\
+In order to control the LED with the PIC32, 1 or 0 must be written to pins RD0 through RD7. These 8 pins are connected to the 8 lower LEDs of the LED bar on the $\mu$Mudd32. On the PIC32, pins RD0 through RD7 are part of a larger group of pins. Microchip gave this group of pins the designation \enquote{PORTD}. In memory, the state of PORTD is simply stored as a 32-bit number. To change the outputs of any pin in PORTD, the PORTD bits in memory can be written to either 1 or 0. Notice though that while PORTD is stored as a 32-bit number, Figure \ref{fig:TRISD} shows that there are only 16 pins in PORTD and so only the bottom 16 bits of PORTD are used. \\
 
 \begin{figure}[h!]
 \centering
@@ -110,7 +110,7 @@ PIC32 has a similar method of doing this. However, it operates at a lower level 
 
 \subsubsection{Simulation}
 
-The following are some of the tests I ran to verify that the program was running correctly. On the left of each image is the list in the stack before it was sorted. The list on the right is the sorted list. Note that due to MPLAB and MPLAB-X's memory viewing system, larger addresses are towards the bottom. Since the stack grow from large to small addresses, the \enquote{top} of the stack is at the bottom of the image. So sorted lists will have the smallest number at the highest address / the bottom of the image / the top of the stack.
+The following are some of the tests I ran to verify that the program was running correctly. On the left of each image is the input list. The list on the right is the output. Note that due to MPLAB and MPLAB-X's memory viewing system, larger addresses are towards the bottom. Since the stack grow from large to small addresses, the \enquote{top} of the stack is actually at the bottom of the image. So, sorted lists will have the smallest number at the highest address / the bottom of the image / the top of the stack.
 
 \begin{figure}[h!]
 \centering
@@ -129,7 +129,7 @@ The following are some of the tests I ran to verify that the program was running
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.9]{sort3.png}
-\caption{The sort works on a list of randomly selected numbers with repeats.}
+\caption{The sort works on a list with repeating numbers.}
 \label{fig:sort3}
 \end{figure} 
 
@@ -166,7 +166,9 @@ Email: slam@g.hmc.edu
 .text           # store the code in the main program section of RAM
 .set noreorder  # do not let the compiler reorganize your code
 
-# define globals
+# define the numbers that are to be sorted. "a" designates the upper
+# 16 bits and "b" designates the lower 16-bits. This allows for easy
+# loading to the stack.
 #define LST1a   0x0
 #define LST1b   0x1
 #define LST2a   0x0
@@ -232,13 +234,13 @@ while:                      # start of while loop
     addi    t5, zero, 1     # set the flag to sorted
     add     t0, zero, zero  # init i at 0 
 for:                        # start of for loop
-    sltiu   t2, t0, 4       # make sure that the counter has not exceeded the length of the list
+    sltiu   t2, t0, 4       # check that i < length - 1
     beq     t2, zero, while # if the for loop is over, jump back to the while loop
     nop
     mul     t1, t0, t6      # calc i*4
     add     t7, sp, t1      # calc stack pointer + i*4
-    lw      t3, 0(t7)       # load the number stored at the top of the stack (lowest addr) [n1]
-    lw      t4, 4(t7)       # load the 2nd to last number [n2]
+    lw      t3, 0(t7)       # load the (i)th number [n1]
+    lw      t4, 4(t7)       # load the (i+1)th number [n2]
     add     t0, t0, 1       # increment the counter
     slt     t2, t3, t4      # check if n1 < n2 (out of order)
     beq     t2, zero, for   # pass if the numbers are in order ($t2=0)
@@ -256,7 +258,6 @@ done:
     nop
 
 .end main
-
 \end{lstlisting}
 
 
@@ -277,7 +278,9 @@ Email: slam@g.hmc.edu
 .text               # store the code in the main program section of RAM
 .set noreorder      # do not let the compiler reorganize your code
 
-# define globals
+# define the numbers that are to be sorted. "a" designates the upper
+# 16 bits and "b" designates the lower 16-bits. This allows for easy
+# loading to the stack.
 #define LST1a   0x0     # top 16 bits of the number
 #define LST1b   0xC     # bottom 16 ibts of the number
 #define LST2a   0x1     # top 16 bits of the number
@@ -314,7 +317,7 @@ Email: slam@g.hmc.edu
 #   $t7 = ADDR + i*4
 #   $t8 = 
 #   $s0 = 
-#   $s1 = number
+#   $s1 = number to load / store to memory
 
 .ent main
 
@@ -377,13 +380,13 @@ while:                      # start of while loop
     addi    $t5, $0, 1      # set the flag to sorted
     add     $t0, $0, $0     # init i at 0 
 for:                        # start of for loop
-    sltiu   $t2, $t0, 11    # make sure that the counter has not exceeded the length of the list
+    sltiu   $t2, $t0, 11    # check that i < length - 1
     beq     $t2, $0, while  # if the for loop is over, jump back to the while loop
     nop
     mul     $t1, $t0, $t6   # calc i*4
     add     $t7, $sp, $t1   # calc stack pointer + i*4
-    lw      $t3, 0($t7)     # load the number stored at the top of the stack (lowest addr) [n1]
-    lw      $t4, 4($t7)     # load the 2nd to last number [n2]
+    lw      $t3, 0($t7)     # load the (i)th number [n1]
+    lw      $t4, 4($t7)     # load the (i+1)th number [n2]
     add     $t0, $t0, 1     # increment the counter
     slt     $t2, $t3, $t4   # check if n1 < n2 (out of order)
     beq     $t2, $0, for    # pass if the numbers are in order ($t2=0)

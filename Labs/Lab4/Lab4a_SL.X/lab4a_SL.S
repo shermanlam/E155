@@ -15,7 +15,9 @@ Email: slam@g.hmc.edu
 .text           # store the code in the main program section of RAM
 .set noreorder  # do not let the compiler reorganize your code
 
-# define globals
+# define the numbers that are to be sorted. "a" designates the upper
+# 16 bits and "b" designates the lower 16-bits. This allows for easy
+# loading to the stack.
 #define LST1a   0x0
 #define LST1b   0x1
 #define LST2a   0x0
@@ -81,13 +83,13 @@ while:                      # start of while loop
     addi    t5, zero, 1     # set the flag to sorted
     add     t0, zero, zero  # init i at 0 
 for:                        # start of for loop
-    sltiu   t2, t0, 4       # make sure that the counter has not exceeded the length of the list
+    sltiu   t2, t0, 4       # check that i < length - 1
     beq     t2, zero, while # if the for loop is over, jump back to the while loop
     nop
     mul     t1, t0, t6      # calc i*4
     add     t7, sp, t1      # calc stack pointer + i*4
-    lw      t3, 0(t7)       # load the number stored at the top of the stack (lowest addr) [n1]
-    lw      t4, 4(t7)       # load the 2nd to last number [n2]
+    lw      t3, 0(t7)       # load the (i)th number [n1]
+    lw      t4, 4(t7)       # load the (i+1)th number [n2]
     add     t0, t0, 1       # increment the counter
     slt     t2, t3, t4      # check if n1 < n2 (out of order)
     beq     t2, zero, for   # pass if the numbers are in order ($t2=0)
