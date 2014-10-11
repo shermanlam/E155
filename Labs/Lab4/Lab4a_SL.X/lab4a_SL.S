@@ -27,7 +27,7 @@ Email: slam@g.hmc.edu
 #define LST4a   0x0
 #define LST4b   0x4
 #define LST5a   0x0000
-#define LST5b   0x000F
+#define LST5b   0x00FF
 
 #define PINMODE     0x0F00       # 1 = input, 0 = output
 
