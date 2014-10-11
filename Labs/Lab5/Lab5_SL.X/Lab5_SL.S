@@ -39,14 +39,14 @@ main:
 	# setup peripheral clock. Default is 1:8 but let's set it anyways
     # OSCCON:
     #   bit 20-19 = 11 -> 1:8 prescalar
-    la      t0, OSCCON      # OSCCON = oscillator control register
-    lw      t1, 0(t0)       # get the value of OSCCON
-    li      t2, 0xFFE7FFFF  # mask for clearing PBDIV, which is bits 20-19
-    and     t1, t1, t2      # use the mask to set PBDIV to 00
-    li      t2, 0x3         # load mask for setting PBDIV
-    sll     t2, t2, 19      # shift the mask to the right location
-    or      t1, t1, t2      # set desired PBDIV
-    sw      t1, 0(t0)       # load new value into OSCCON
+    #la      t0, OSCCON      # OSCCON = oscillator control register
+    #lw      t1, 0(t0)       # get the value of OSCCON
+    #li      t2, 0xFFE7FFFF  # mask for clearing PBDIV, which is bits 20-19
+    #and     t1, t1, t2      # use the mask to set PBDIV to 00
+    #li      t2, 0x3         # load mask for setting PBDIV
+    #sll     t2, t2, 19      # shift the mask to the right location
+    #or      t1, t1, t2      # set desired PBDIV
+    #sw      t1, 0(t0)       # load new value into OSCCON
     # THIS DOESN"T WORK. GETS OVERRIDED BY CONFIG BITS
 
     # setup timer 1 (for 1 unit of signal duration = 51.2us)
@@ -94,8 +94,8 @@ main:
         and     t4, t6, t2            # mask off to get duration
         srl     t4, t4, 16            # shift to lower 16bits to get duration
         andi    t3, t6, 0xFFFF        # mask off the note
-        #li      t6, 0x1               # load 2 into t6
-        #div     t3, t3, t6            # divide the note period by 2 for toggling interval
+        li      t6, 0x2               # load 2 into t6
+        mul     t4, t4, t6            # multiply duration by 2
 
     	# reset timer 1
         la      t0, TMR1          # get address of timer 1
