@@ -14,15 +14,16 @@ Microchip PIC32 Memory-Usage Report
 kseg0 Program-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.rodata                 0x9d000000          0x380         896  Read-only const 
-.text.general_exception 0x9d000380           0xdc         220   
-.text                   0x9d00045c           0xa0         160  App's exec code 
-.text._general_exceptio 0x9d0004fc           0x48          72   
-.text.exit              0x9d000544           0x34          52   
-.text                   0x9d000578           0x18          24  App's exec code 
-.dinit                  0x9d000590           0x10          16   
-.text._cleanup          0x9d0005a0            0x8           8   
-      Total kseg0_program_mem used  :       0x5a8        1448  0.3% of 0x80000
+.rodata                 0x9d000000          0x1c0         448  Read-only const 
+.text                   0x9d0001c0          0x130         304  App's exec code 
+.text.general_exception 0x9d0002f0           0xdc         220   
+.text._general_exceptio 0x9d0003cc           0x48          72   
+.text.exit              0x9d000414           0x34          52   
+.text                   0x9d000448           0x18          24  App's exec code 
+.rodata                 0x9d000460           0x18          24  Read-only const 
+.dinit                  0x9d000478           0x10          16   
+.text._cleanup          0x9d000488            0x8           8   
+      Total kseg0_program_mem used  :       0x490        1168  0.2% of 0x80000
 
 kseg0 Boot-Memory Usage
 section                    address  length [bytes]      (dec)  Description
@@ -42,25 +43,32 @@ section                    address  length [bytes]      (dec)  Description
 .reset                  0xbfc00000           0x20          32  Reset handler 
          Total kseg1_boot_mem used  :        0x20          32  2.7% of 0x490
         --------------------------------------------------------------------------
-         Total Program Memory used  :       0x5dc        1500  0.3% of 0x81e00
+         Total Program Memory used  :       0x4c4        1220  0.2% of 0x81e00
         --------------------------------------------------------------------------
 
+
+kseg0 Data-Memory Usage
+section                    address  length [bytes]      (dec)  Description
+-------                 ----------  -------------------------  -----------
+reserve_data_0_kseg0    0x80000000          0x200         512   
+         Total kseg0_data_mem used  :       0x200         512  100.0% of 0x200
 
 kseg1 Data-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.sbss                   0xa0000000            0x4           4  Small uninit data 
-         Total kseg1_data_mem used  :         0x4           4  0.0% of 0x10000
+reserve_data_0_kseg1    0xa0000000          0x200         512   
+.sbss                   0xa0000200            0x4           4  Small uninit data 
+         Total kseg1_data_mem used  :       0x204         516  0.8% of 0x10000
         --------------------------------------------------------------------------
-            Total Data Memory used  :         0x4           4  0.0% of 0x10000
+            Total Data Memory used  :       0x404        1028  1.6% of 0x10200
         --------------------------------------------------------------------------
 
 
 Dynamic Data-Memory Reservation
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-heap                    0xa0000008           0x10          16  Reserved for heap 
-stack                   0xa0000030         0xffc0       65472  Reserved for stack 
+heap                    0xa0000208           0x10          16  Reserved for heap 
+stack                   0xa0000230         0xfdc0       64960  Reserved for stack 
 
         --------------------------------------------------------------------------
 
@@ -78,22 +86,61 @@ Discarded input sections
 Memory Configuration
 
 Name             Origin             Length             Attributes
-kseg0_program_mem 0x9d000000         0x00080000         xr
+kseg0_data_mem   0x80000000         0x00000200
+kseg1_data_mem   0xa0000000         0x00010000         w !x
 kseg0_boot_mem   0x9fc00490         0x00000970
-exception_mem    0x9fc01000         0x00001000
 kseg1_boot_mem   0xbfc00000         0x00000490
+kseg0_program_mem 0x9d000000         0x00080000         xr
+exception_mem    0x9fc01000         0x00001000
 debug_exec_mem   0xbfc02000         0x00000ff0
 config3          0xbfc02ff0         0x00000004
 config2          0xbfc02ff4         0x00000004
 config1          0xbfc02ff8         0x00000004
 config0          0xbfc02ffc         0x00000004
-kseg1_data_mem   0xa0000000         0x00010000         w !x
 sfrs             0xbf800000         0x00100000
 configsfrs       0xbfc02ff0         0x00000010
 *default*        0x00000000         0xffffffff
 
 Linker script and memory map
 
+
+reserve_data_0_kseg0
+                0x80000000      0x200
+                0x80000000        0x2 SHORT 0x0
+                0x000001fd                . = 0x1fd
+ *fill*         0x80000002      0x1fb 
+                0x80000200                . = ALIGN (0x4)
+ *fill*         0x800001fd        0x3 
+
+reserve_data_0_kseg1
+                0xa0000000      0x200
+                0xa0000000        0x2 SHORT 0x0
+                0x000001fd                . = 0x1fd
+ *fill*         0xa0000002      0x1fb 
+                0xa0000200                . = ALIGN (0x4)
+ *fill*         0xa00001fd        0x3 
+
+reserve_boot_0x1fc02000_kseg0
+                0x9fc02000      0xff0
+                0x9fc02000        0x2 SHORT 0x0
+                0x00000500                . = 0x500
+ *fill*         0x9fc02002      0x4fe 
+                0x9fc02500                . = ALIGN (0x4)
+                0x9fc02500        0x2 SHORT 0x0
+                0x00000ff0                . = 0xff0
+ *fill*         0x9fc02502      0xaee 
+                0x9fc02ff0                . = ALIGN (0x4)
+
+reserve_boot_0x1fc02000_kseg1
+                0xbfc02000      0xff0
+                0xbfc02000        0x2 SHORT 0x0
+                0x00000500                . = 0x500
+ *fill*         0xbfc02002      0x4fe 
+                0xbfc02500                . = ALIGN (0x4)
+                0xbfc02500        0x2 SHORT 0x0
+                0x00000ff0                . = 0xff0
+ *fill*         0xbfc02502      0xaee 
+                0xbfc02ff0                . = ALIGN (0x4)
 LOAD build/default/debug/config.o
 LOAD build/default/debug/crt0.o
 LOAD build/default/debug/Lab5_SL.o
@@ -101,6 +148,7 @@ LOAD build/default/debug/lab5base.o
                 0x00000001                __MPLAB_BUILD = 0x1
                 0x00000001                __MPLAB_DEBUG = 0x1
                 0x00000001                __DEBUG = 0x1
+                0x00000001                __MPLAB_DEBUGGER_ICD3 = 0x1
                 0x00000400                PROVIDE (_min_stack_size, 0x400)
 LOAD c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
 START GROUP
@@ -504,72 +552,72 @@ END GROUP
  *(.gcc_except_table .gcc_except_table.*)
                 0x9fc00494                . = ALIGN (0x4)
 
-.dbg_data       0xa0000000        0x0
-                0xa0000000                . = (. + DEFINED (_DEBUGGER)?0x200:0x0)
+.dbg_data       0xa0000200        0x0
+                0xa0000200                . = (. + DEFINED (_DEBUGGER)?0x200:0x0)
 
-.jcr            0xa0000000        0x0
+.jcr            0xa0000200        0x0
  *(.jcr)
-                0xa0000000                . = ALIGN (0x4)
+                0xa0000200                . = ALIGN (0x4)
 
 .eh_frame
  *(.eh_frame)
-                0xa0000000                . = ALIGN (0x4)
+                0xa0000200                . = ALIGN (0x4)
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
-                0xa0000000                . = ALIGN (0x4)
+                0xa0000200                . = ALIGN (0x4)
 
-.persist        0xa0000000        0x0
-                0xa0000000                _persist_begin = .
+.persist        0xa0000200        0x0
+                0xa0000200                _persist_begin = .
  *(.persist .persist.*)
  *(.pbss .pbss.*)
-                0xa0000000                . = ALIGN (0x4)
-                0xa0000000                _persist_end = .
+                0xa0000200                . = ALIGN (0x4)
+                0xa0000200                _persist_end = .
 
-.data           0xa0000000        0x0
+.data           0xa0000200        0x0
  *(.gnu.linkonce.d.*)
  *(.data1)
-                0xa0000000                . = ALIGN (0x4)
-                0xa0000000                . = .
-                0xa0007ff0                _gp = (ALIGN (0x10) + 0x7ff0)
+                0xa0000200                . = ALIGN (0x4)
+                0xa0000200                . = .
+                0xa00081f0                _gp = (ALIGN (0x10) + 0x7ff0)
 
-.got            0xa0000000        0x0
+.got            0xa0000200        0x0
  *(.got.plt)
  *(.got)
-                0xa0000000                . = ALIGN (0x4)
+                0xa0000200                . = ALIGN (0x4)
 
-.sdata          0xa0000000        0x0
-                0xa0000000                _sdata_begin = .
+.sdata          0xa0000200        0x0
+                0xa0000200                _sdata_begin = .
  *(.sdata .sdata.* .gnu.linkonce.s.*)
-                0xa0000000                . = ALIGN (0x4)
-                0xa0000000                _sdata_end = .
+                0xa0000200                . = ALIGN (0x4)
+                0xa0000200                _sdata_end = .
 
 .lit8
  *(.lit8)
 
 .lit4
  *(.lit4)
-                0xa0000000                . = ALIGN (0x4)
-                0xa0000000                _data_end = .
-                0xa0000000                _bss_begin = .
+                0xa0000200                . = ALIGN (0x4)
+                0xa0000200                _data_end = .
+                0xa0000200                _bss_begin = .
 
-.sbss           0xa0000000        0x4
-                0xa0000000                _sbss_begin = .
+.sbss           0xa0000200        0x4
+                0xa0000200                _sbss_begin = .
  *(.dynsbss)
  *(.sbss .sbss.* .gnu.linkonce.sb.*)
- .sbss          0xa0000000        0x4 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
-                0xa0000000                _atexitptr
+ .sbss          0xa0000200        0x4 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+                0xa0000200                _atexitptr
  *(.scommon)
-                0xa0000004                _sbss_end = .
-                0xa0000004                . = ALIGN (0x4)
+                0xa0000204                _sbss_end = .
+                0xa0000204                . = ALIGN (0x4)
 
-.bss            0xa0000004        0x0
+.bss            0xa0000204        0x0
  *(.dynbss)
  *(COMMON)
-                0xa0000004                . = ALIGN ((. != 0x0)?0x4:0x1)
-                0xa0000004                . = ALIGN (0x4)
-                0xa0000004                _end = .
-                0xa0000004                _bss_end = .
+                0xa0000204                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0xa0000204                . = ALIGN (0x4)
+                0xa0000204                _end = .
+                0xa0000204                _bss_end = .
                 0x00010000                _bmxdudba_address = 0x10000
                 0x00010000                _bmxdupba_address = 0x10000
 
@@ -590,12 +638,12 @@ END GROUP
  *(.gptab.bss)
  *(.gptab.sbss)
 
-.mdebug.abi32   0xa0000004        0x0
+.mdebug.abi32   0xa0000204        0x0
  *(.mdebug.abi32)
- .mdebug.abi32  0xa0000004        0x0 build/default/debug/config.o
- .mdebug.abi32  0xa0000004        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
- .mdebug.abi32  0xa0000004        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
- .mdebug.abi32  0xa0000004        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+ .mdebug.abi32  0xa0000204        0x0 build/default/debug/config.o
+ .mdebug.abi32  0xa0000204        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+ .mdebug.abi32  0xa0000204        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+ .mdebug.abi32  0xa0000204        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
 
 .mdebug.abiN32
  *(.mdebug.abiN32)
@@ -697,14 +745,14 @@ END GROUP
  .debug_abbrev  0x0000006a       0x25 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
  .debug_abbrev  0x0000008f       0x25 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
 
-.debug_line     0x00000000      0x25c
+.debug_line     0x00000000      0x277
  *(.debug_line)
  .debug_line    0x00000000       0x1d build/default/debug/config.o
  .debug_line    0x0000001d       0x6f build/default/debug/crt0.o
- .debug_line    0x0000008c       0x5b build/default/debug/Lab5_SL.o
- .debug_line    0x000000e7       0x95 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
- .debug_line    0x0000017c       0x6e c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
- .debug_line    0x000001ea       0x72 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+ .debug_line    0x0000008c       0x76 build/default/debug/Lab5_SL.o
+ .debug_line    0x00000102       0x95 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+ .debug_line    0x00000197       0x6e c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+ .debug_line    0x00000205       0x72 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
 
 .debug_frame    0x00000000       0x70
  *(.debug_frame)
@@ -781,8 +829,8 @@ LOAD data_init
 .reginfo        0x00000000       0x18
  .reginfo       0x00000000       0x18 build/default/debug/config.o
 
-.stack          0xa0000030      0x400
- .stack         0xa0000030      0x400 stack
+.stack          0xa0000230      0x400
+ .stack         0xa0000230      0x400 stack
 
 .bss%z1         0x00000000        0x0
  .bss           0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
@@ -838,40 +886,42 @@ LOAD data_init
 .data%z18       0x00000000        0x0
  .data          0x00000000        0x0 build/default/debug/config.o
 
-.rodata         0x9d000000      0x380
+.rodata         0x9d000000      0x1c0
  .rodata        0x9d000000      0x1c0 build/default/debug/Lab5_SL.o
- .rodata        0x9d0001c0      0x1c0 build/default/debug/lab5base.o
+
+.text           0x9d0001c0      0x130
+ .text          0x9d0001c0      0x130 build/default/debug/Lab5_SL.o
+                0x9d0001c0                main
 
 .text.general_exception
-                0x9d000380       0xdc
+                0x9d0002f0       0xdc
  .text.general_exception
-                0x9d000380       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
-                0x9d000380                _general_exception_context
-
-.text           0x9d00045c       0xa0
- .text          0x9d00045c       0xa0 build/default/debug/Lab5_SL.o
-                0x9d00045c                main
+                0x9d0002f0       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
+                0x9d0002f0                _general_exception_context
 
 .text._general_exception_handler
-                0x9d0004fc       0x48
+                0x9d0003cc       0x48
  .text._general_exception_handler
-                0x9d0004fc       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
-                0x9d0004fc                _general_exception_handler
+                0x9d0003cc       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+                0x9d0003cc                _general_exception_handler
 
-.text.exit      0x9d000544       0x34
- .text.exit     0x9d000544       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
-                0x9d000544                exit
+.text.exit      0x9d000414       0x34
+ .text.exit     0x9d000414       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+                0x9d000414                exit
 
-.text           0x9d000578       0x18
- .text          0x9d000578       0x18 build/default/debug/crt0.o
+.text           0x9d000448       0x18
+ .text          0x9d000448       0x18 build/default/debug/crt0.o
 
-.dinit          0x9d000590       0x10
- .dinit         0x9d000590       0x10 data_init
+.rodata         0x9d000460       0x18
+ .rodata        0x9d000460       0x18 build/default/debug/lab5base.o
 
-.text._cleanup  0x9d0005a0        0x8
+.dinit          0x9d000478       0x10
+ .dinit         0x9d000478       0x10 data_init
+
+.text._cleanup  0x9d000488        0x8
  .text._cleanup
-                0x9d0005a0        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
-                0x9d0005a0                _cleanup
+                0x9d000488        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+                0x9d000488                _cleanup
 
 .text%z19       0x00000000        0x0
  .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)

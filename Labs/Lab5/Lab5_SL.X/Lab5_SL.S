@@ -9,10 +9,13 @@ Date: 10-9-2014
 # t0 = register address
 # t1 = register value
 # t2 = masking operations
-# t3 = note
+# t3 = note period
 # t4 = duration
 # t5 = address of note
 # t6 = algebra intermediate values
+# s0 = PORTB address
+# s1 = PORTB output
+
 
 
 # load a header file for pin / register definitions
@@ -42,8 +45,9 @@ main:
     and     t1, t1, t2      # use the mask to set PBDIV to 00
     li      t2, 0x3         # load mask for setting PBDIV
     sll     t2, t2, 19      # shift the mask to the right location
-    ori     t1, t1,         # set desired PBDIV
+    or      t1, t1, t2      # set desired PBDIV
     sw      t1, 0(t0)       # load new value into OSCCON
+    # THIS DOESN"T WORK. GETS OVERRIDED BY CONFIG BITS
 
     # setup timer 1 (for 1 unit of signal duration = 51.2us)
     # T1CON:
@@ -70,8 +74,15 @@ main:
     sw      t1, 0(t0)       # load new value to T2CON
 
     # init some variables
-    la      t0, _notes      # t0 = starting address of _notes
-    add     t5, zero, t0    # start the address off at the address of _notes
+    la      t5, _notes      # starting address of _notes
+
+    # init output
+    la      t0, TRISG       # load address of TRISG
+    lw      t1, 0(t0)       # get value of TRISB
+    andi    t1, t1, 0xFF00  # set RG7 as output
+    sw      t1, 0(t0)       # store to TRISB
+    la      s0, PORTG       # load address of PORTB
+    sw      zero, 0(s0)     # start at 0
 
     # start main loop for playing song
     play:
@@ -83,18 +94,51 @@ main:
         and     t4, t6, t2            # mask off to get duration
         srl     t4, t4, 16            # shift to lower 16bits to get duration
         andi    t3, t6, 0xFFFF        # mask off the note
+        #li      t6, 0x1               # load 2 into t6
+        #div     t3, t3, t6            # divide the note period by 2 for toggling interval
 
-    	# poll the timer until the duration has been met
+    	# reset timer 1
+        la      t0, TMR1          # get address of timer 1
+        sw      zero, 0(t0)       # reset timer to 0
+
+        # reset timer 2
+        la      t0, TMR2        # get address of timer 2
+        sw      zero, 0(t0)       # reset timer to 0
+
+        # poll the timer until the duration has been met
     	dur:
-    		nop
-           # while the duration is being held, keep playing the notes
+            la      t0, TMR1        # get address of timer 1
+            lw      t1, 0(t0)       # poll timer 1
+            beq     t1, t4, next    # check if timer 1 has reached duration
+            nop
+
+            # while the duration is being held, keep playing the notes
             note:
+                la      t0, TMR2        # get address of timer 2
+                lw      t1, 0(t0)       # poll timer 2
+                slt     t6, t1, t3      # check if time is less than the period
+                bne     t6, zero, dur   # check the note duration if not time to toggle speaker
+                nop
+                # toggle!
+                #la      t0, LATB        # load the address that holds last value of PORTB
+                #lw      t1, 0(t0)       # load the the last value of PORTB
+                li      t6, 0xFFFF      # load -1 into t6
+                xor     s1, s1, t6      # xor with -1. This inverts all the bits
+                andi    s1, s1, 0x0080  # use mask to only get RG7
+                la      s0, PORTG       # load address of PORTG
+                sw      s1, 0(s0)       # write the value to PORTG.
+                la      t0, TMR2        # get address of timer 2
+                sw      zero, 0(t0)     # reset timer 2
+                j       dur             # check duration
                 nop
 
         # figure out next offset
-        addi    t5, t5, 4           # get next note's address
-        j       play                # play the next note
-        nop
+        next:
+            la      t0, TMR1            # get address of timer 1
+            sw      zero, 0(t0)         # reset timer 1
+            addi    t5, t5, 4           # get next note's address
+            j       play                # play the next note
+            nop
 
     end:
     	nop
@@ -108,116 +152,115 @@ main:
 # Song notes
 	.section .rodata  # Store this information in FLASH instead of RAM
 _notes:		.HWORD 0x3b4, 0x989	# Data
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x58c, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x954, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x58c, 0x989
-            .HWORD 0x4f1, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x5e0, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x4aa, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x58c, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x954, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x58c, 0x989
-            .HWORD 0x4f1, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x58c, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x3b4, 0x1c9c
-            .HWORD 0x63a, 0x989
-            .HWORD 0x37e, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x428, 0x1c9c
-            .HWORD 0x6fd, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x1c9c
-            .HWORD 0x768, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x4f1, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x1da, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x000, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x58c, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x954, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x58c, 0x989
-            .HWORD 0x4f1, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x5e0, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x4aa, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x3ec, 0x989
-            .HWORD 0x3b4, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x428, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x58c, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x954, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x58c, 0x989
-            .HWORD 0x4f1, 0x1312
-            .HWORD 0x000, 0x989
-            .HWORD 0x768, 0x989
-            .HWORD 0x4aa, 0x989
-            .HWORD 0x4f1, 0x989
-            .HWORD 0x58c, 0x2625
-            .HWORD 0x000, 0x000	# end of music
-	
+	.HWORD	0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x58c, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x954, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x58c, 0x989
+	.HWORD 0x4f1, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x5e0, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x4aa, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x58c, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x954, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x58c, 0x989
+	.HWORD 0x4f1, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x58c, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x3b4, 0x1c9c
+	.HWORD 0x63a, 0x989
+	.HWORD 0x37e, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x428, 0x1c9c
+	.HWORD 0x6fd, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x1c9c
+	.HWORD 0x768, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x4f1, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x1da, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x000, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x58c, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x954, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x58c, 0x989
+	.HWORD 0x4f1, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x5e0, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x4aa, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x3ec, 0x989
+	.HWORD 0x3b4, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x428, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x58c, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x954, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x58c, 0x989
+	.HWORD 0x4f1, 0x1312
+	.HWORD 0x000, 0x989
+	.HWORD 0x768, 0x989
+	.HWORD 0x4aa, 0x989
+	.HWORD 0x4f1, 0x989
+	.HWORD 0x58c, 0x2625
+	.HWORD 0x000, 0x000	# end of music
 
