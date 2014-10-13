@@ -55,359 +55,478 @@ Sherman Lam
 \section{Introduction}
 \label{sec:intro}
 
-In this lab, I implemented bubble sort in MIPS assembly. This was simulated in MPLAB-X and then tested on the PIC32 microcontroller located on the $\mu$Mudd32.
+In this lab, I used the PIC32 on the $\mu$Mudd32 to play a song that was loaded onto the PIC's flash memory. Two song segments were programmed into the PIC: Fur Elise and Reluctant Hero (from the anime, Attack on Titan). The PIC generated a square wave and drove the speaker through a LM380 audio amplifier.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.13]{board.jpg}
+\caption{Complete development board with audio buffer / amplifier at the top of the breadboard.}
+\label{fig:board}
+\end{figure} 
 
 
 
 \section{Design and Testing Methodology}
 
-\subsection{Sorting}
+\subsection{Algorithm}
 
-Instead of implementing a max finder for part c of the lab and then use selection sort for part d of the lab, I chose to implement bubble sort for part d. I then simply used the sorting algorithm to find the max for part c of the lab. While this is not the most efficient way (from a computation standpoint) to find the max of a list, it simplified the lab to use one main piece of source code. In addition, bubble sort is simpler to implement than selection sort. \\
+The music playing algorithm follows the following procedure outline:
 
-Bubble sort is a very simple sorting algorithm. It is slow for sorting large lists but since we are sorting at most a list of 12 numbers, this algorithm is sufficient. In C, bubble sort is implemented as follows. \\
+\begin{enumerate}
+	\item Setup timer 1
+	\item Setup timer 2
+	\item Load first period and duration from flash memory. Parse
+	\item While the note duration has not been met, play the note
+	\item Repeat from step 3 with new note.
+\end{enumerate}
 
-\begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
-bool flag;                              //1 = sorted, 0 = not sorted
-int length = 12;                        //length of the list
-while (flag != 1){                      //keep sorting if not sorted
-    flag = 1;                           
-    for (int i=0; i<length-1; i++){     
-        n1 = array[i];                  //assume the list exists somewhere
-        n2 = array[i+1];
-        if (n1 > n2){
-            pass;
+Here is some sudo-code that describes the method in slightly more detail.
+
+\begin{lstlisting}[numbers=left,language=C,basicstyle=\footnotesize]
+main(){
+    // setup timers
+    T1CON = 11xx_xxxx_xx11_xxx0;    // x = don't care
+    T2CON = 11xx_xxxx_x010_xx0x;
+
+    // setup outputs
+    TRISG = 1111_1111_0111_1111;    // make port 7 an output
+
+    // start playing the song
+    int i = 0;
+    while(true){
+        int word = _notes[i];
+
+        // check for end of song
+        if (word == 0){
+            break;
         }
-        else{                           //swap if they are out of order
-            array[i] = n2;              
-            array[i+1] = n1;
-            flag = 0;                   //signal that list isn't sorted
+
+        int halfPeriod = word[15:8];
+        int duration = word[7:0];
+
+        // play for duration
+        TMR1 = 0
+        TMR2 = 0
+        while(TMR1 < duration){
+            //toggle according to the period
+            if (TMR2 >= halfPeriod){
+                //toggle output
+                PORTG[7] = ~PORTG[7];
+                TMR2 = 0;
+            }
         }
+        //move to next note
+        i++;
     }
 }
+
 \end{lstlisting}
 
 
-\subsection{Using LEDs}
+\subsection{Timing}
 
-In order to control the LED with the PIC32, 1 or 0 must be written to pins RD0 through RD7. These 8 pins are connected to the 8 lower LEDs of the LED bar on the $\mu$Mudd32. On the PIC32, pins RD0 through RD7 are part of a larger group of pins. Microchip gave this group of pins the designation \enquote{PORTD}. In memory, the state of PORTD is simply stored as a 32-bit number. To change the outputs of any pin in PORTD, the PORTD bits in memory can be written to either 1 or 0. Notice though that while PORTD is stored as a 32-bit number, Figure \ref{fig:TRISD} shows that there are only 16 pins in PORTD and so only the bottom 16 bits of PORTD are used. \\
+The clock on the $\mu$Mudd32 operates at 40Hz. The prescalar for the PIC's peripheral clock was set to 1:8. This means that the peripheral clock will run at $\frac{40MHz}{8} = 5MHz$. \\
+
+Timer 1's prescalar is set to 1:256. This makes this timer run at $\frac{5MHz}{256} = 19.5kHz$ or a period of 5.12$\mu s$. This timer is used to keep track of the duration of each note. Let each count of timer 1 be $\tau_{0}$. The duration, $\tau_{0}$, of each type of note is given in Figure \ref{fig:freq_and_dur}. \\
+
+Timer 2's prescalar is set to 1:4. This allows the timer to run at $\frac{5MHz}{4} = 1.25MHz$ or a period of 0.8$\mu s$. Timer 2 is used to keep track of the period of each note. Let each count of timer 1 be $\tau_{1}$. The period, in units of $\tau_{1}$, are given in Figure \ref{fig:freq_and_dur}. Let's use A4 to check the timing. This has a frequency of $440Hz$ and period of 0x58C$\tau_{1}$. Converting the period to seconds yields $1420(0.8\mu s) = 1.136ms$. This corresponds to a frequency of $880Hz$. Note that this is double the real frequency of the note. Also note that to generate a square wave with frequency $F$, the pin needs to be toggled at a frequency of $2F$. Thus, Figure \ref{fig:freq_and_dur} lists the toggling period of the pin. \\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.9,angle=90]{TRISD_and_PORTD.png}
-\caption{Table from datasheet which shows which values of TRISD and PORTD are used. This also shows which pins PORTD is mapped to.}
-\label{fig:TRISD}
+\includegraphics[scale=0.8]{notes_and_duration.png}
+\caption{Mapping from note frequency and duration to periods of timers 1 and 2.}
+\label{fig:freq_and_dur}
 \end{figure} 
 
-However, to use these pins they must first be set to outputs or inputs. Those who have used an Arduino before will be familiar with this concept. On an Arduino, all pins must be set to inputs or outputs prior to use with the "pinmode" command. \\
 
-PIC32 has a similar method of doing this. However, it operates at a lower level than Arduino. This is TRIS. Specifically, TRISD is used to control the mode of the pins in PORTD. TRISD is also a 32-bit number but only the bottom 16 bits are used (see Figure \ref{fig:TRISD} for the pin-to-bit mapping). When a bit in TRISD is 0, the corresponding pin is configured as an output, and vice versa (see PIC32 datasheet). 
+
+\subsection{Using a Speaker}
+
+The output pins of the PIC32 can only output 25mA (from PIC32 datasheet). However, the speaker draws much more. A 2W speaker operating at 5V would need to draw $\frac{2W}{5V} = 400mA$. This would surely burn out an I/O pin on the PIC32. So, I used an audio amplifier to drive the speaker. The lab recommends using the LM386. From the LM386 datasheet, I found a recommended circuit (see Figure \ref{fig:amp_sch}). \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.7]{amp.png}
+\caption{Basic amplifier configuration.}
+\label{fig:amp_sch}
+\end{figure} 
  
+However, the lab was out of LM386 ICs so I used an LM380 amplifier. The LM380 is similar in function to the LM386 but has different pin layouts. Using the pinout for the LM380 from Figure \ref{fig:LM380_pin}, I replicated the circuit presented in Figure \ref{fig:amp_sch}. \\
+ 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{LM380_pin.png}
+\caption{Basic amplifier configuration.}
+\label{fig:LM380_pin}
+\end{figure} 
 
 
 \clearpage
-
-
-\subsubsection{Simulation}
-
-The following are some of the tests I ran to verify that the program was running correctly. On the left of each image is the input list. The list on the right is the output. Note that due to MPLAB and MPLAB-X's memory viewing system, larger addresses are towards the bottom. Since the stack grow from large to small addresses, the \enquote{top} of the stack is actually at the bottom of the image. So, sorted lists will have the smallest number at the highest address / the bottom of the image / the top of the stack.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.9]{sort1.png}
-\caption{A sorted list should remain sorted.}
-\label{fig:sort1}
-\end{figure} 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.9]{sort2.png}
-\caption{The sort works on a inverted list.}
-\label{fig:sort2}
-\end{figure} 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.9]{sort3.png}
-\caption{The sort works on a list with repeating numbers.}
-\label{fig:sort3}
-\end{figure} 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.9]{sort4.png}
-\caption{The sorts works on lists with negative numbers (in two's compliment).}
-\label{fig:sort4}
-\end{figure} 
-
-\clearpage
-
 
 
 \section{Technical Documentation}
 
-\subsection{MIPS Code - Finding the Max}
+\subsection{MIPS Code - Playing a Song from Flash Memory}
 
 \begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
-/*
-This uses bubble sort to sort a list of 5, 32-bit numbers. It then
-writes the largest number to the LEDs.
+/* This code plays music!
 
 Author: Sherman Lam
-Date: 10/5/14
 Email: slam@g.hmc.edu
+Date: 10-9-2014
 */
 
-#include <P32xxxx.h>    # header file that defines TRISD and PORTD
 
-.global main            # start the main function
+# REGISTER USE
+# t0 = register address
+# t1 = register value
+# t2 = masking operations
+# t3 = note period
+# t4 = duration
+# t5 = address of note
+# t6 = algebra intermediate values
+# s0 = PORTB address
+# s1 = PORTB output
+
+
+
+# load a header file for pin / register definitions
+#include <P32xxxx.h>
+
+# Define constants
+#define PBDIV 0x3       # prescaler for peripheral clock. 0x3 = 1:8
+
+# Define main function
+.global main
 
 # Compiler instructions
-.text           # store the code in the main program section of RAM
-.set noreorder  # do not let the compiler reorganize your code
+.text # store the code in the main program section of RAM
+.set noreorder # do not let the compiler reorganize your code
 
-# define the numbers that are to be sorted. "a" designates the upper
-# 16 bits and "b" designates the lower 16-bits. This allows for easy
-# loading to the stack.
-#define LST1a   0x0
-#define LST1b   0x1
-#define LST2a   0x0
-#define LST2b   0x2
-#define LST3a   0x0
-#define LST3b   0x3
-#define LST4a   0x0
-#define LST4b   0x4
-#define LST5a   0x0000
-#define LST5b   0x000F
-
-#define PINMODE     0x0F00       # 1 = input, 0 = output
-
-
-# Register use:
-#   $t0 = counter (i)
-#   $t1 = i*4
-#   $t2 = slt results
-#   $t3 = lower number (n1)
-#   $t4 = upper number (n2)
-#   $t5 = flag. 1 if list is sorted. 0 if not.
-#   $t6 = 4
-#   $t7 = stack pointer + i*4
-#   $t8 = address of PORTD and TRISD
-#   $s0 = 
-#   $s1 = number to load / store to memory
-
-.ent main
-
+# Main program
+.ent main # Start function block
 main:
-    # load 5 numbers into the stack
-    lui     s1, LST1a       # load first half of the number into reg
-    ori     s1, LST1b       # load second half of the number into reg
-    addi    sp, sp, -4      # add mem
-    sw      s1, 0(sp)       # load number into ram
-    lui     s1, LST2a       # load first half of the number into reg
-    ori     s1, LST2b       # load second half of the number into reg
-    addi    sp, sp, -4      # add mem
-    sw      s1, 0(sp)       # load number into ram
-    lui     s1, LST3a       # load first half of the number into reg
-    ori     s1, LST3b       # load second half of the number into reg
-    addi    sp, sp, -4      # add mem
-    sw      s1, 0(sp)       # load number into ram
-    lui     s1, LST4a       # load first half of the number into reg
-    ori     s1, LST4b       # load second half of the number into reg
-    addi    sp, sp, -4      # add mem
-    sw      s1, 0(sp)       # load number into ram
-    lui     s1, LST5a       # load first half of the number into reg
-    ori     s1, LST5b       # load second half of the number into reg
-    addi    sp, sp, -4      # add mem
-    sw      s1, 0(sp)       # load number into ram
-
-    # pin configuration
-    la      t8, TRISD           # load the address of TRISD into t8
-    addi    s1, zero, PINMODE   # load the pinmodes into s1
-    sw      s1, 0(t8)           # set which pins are inputs or outputs.
-
-    add     t5, zero, 0     # start a flag that indicates if the list is sorted.
-    addi    t6, zero, 4     # load 4 into $t6
-while:                      # start of while loop
-    bne     t5, zero, done  # if $t5!=0, the list is sorted
-    nop
-    addi    t5, zero, 1     # set the flag to sorted
-    add     t0, zero, zero  # init i at 0 
-for:                        # start of for loop
-    sltiu   t2, t0, 4       # check that i < length - 1
-    beq     t2, zero, while # if the for loop is over, jump back to the while loop
-    nop
-    mul     t1, t0, t6      # calc i*4
-    add     t7, sp, t1      # calc stack pointer + i*4
-    lw      t3, 0(t7)       # load the (i)th number [n1]
-    lw      t4, 4(t7)       # load the (i+1)th number [n2]
-    add     t0, t0, 1       # increment the counter
-    slt     t2, t3, t4      # check if n1 < n2 (out of order)
-    beq     t2, zero, for   # pass if the numbers are in order ($t2=0)
-    nop
-    sw      t3, 4(t7)       # put n1 in n2's spot
-    sw      t4, 0(t7)       # put n2 in n1's spot
-    add     t5, zero, zero  # set the flag to 0 since the list is not sorted
-    j       for
-    nop
-done:
-    lw      s1, 0(sp)       # load the largest number in $s1
-    la      t8, PORTD       # load the address of PORTD into $t8
-    sw      s1, 0(t8)       # store the number in PORTD -> write to LEDs
-    jr      ra              # return to function call
     nop
 
+    # setup peripheral clock. Default is 1:8 but let's set it anyways
+    # OSCCON:
+    #   bit 20-19 = 11 -> 1:8 prescalar
+    #la      t0, OSCCON      # OSCCON = oscillator control register
+    #lw      t1, 0(t0)       # get the value of OSCCON
+    #li      t2, 0xFFE7FFFF  # mask for clearing PBDIV, which is bits 20-19
+    #and     t1, t1, t2      # use the mask to set PBDIV to 00
+    #li      t2, 0x3         # load mask for setting PBDIV
+    #sll     t2, t2, 19      # shift the mask to the right location
+    #or      t1, t1, t2      # set desired PBDIV
+    #sw      t1, 0(t0)       # load new value into OSCCON
+    # THIS DOESN"T WORK. GETS OVERRIDED BY CONFIG BITS
+
+    # setup timer 1 (for 1 unit of signal duration = 51.2us)
+    # T1CON:
+    #   bit 15  = 1     -> on
+    #       14  = 1     -> freeze on debug exception
+    #       5-4 = 11    -> 1:256 prescaler
+    #       1   = 0     -> use peripheral clock
+    la      t0, T1CON       # load address of T1CON
+    lw      t1, 0(t0)       # get the value of T1CON
+    andi    t1, t1, 0xFFFD  # use a mask to set the 0 bit
+    ori     t1, t1, 0xC030  # use a mask to set the 1 bits
+    sw      t1, 0(t0)       # load new value to T1CON
+
+    # setup timer 2 (for half signal period = 0.8us)
+    # T2CON:
+    #   bit 15  = 1     -> on
+    #       14  = 1     -> freeze on debug exception
+    #       6-4 = 010   -> 1:256 prescaler
+    #       1   = 0     -> use peripheral clock
+    la      t0, T2CON       # load address of T2CON
+    lw      t1, 0(t0)       # get the value of T2CON
+    andi    t1, t1, 0xFFAD  # use a mask to set the 0 bits
+    ori     t1, t1, 0xC020  # use a mask to set the 1 bits
+    sw      t1, 0(t0)       # load new value to T2CON
+
+    # init some variables
+    la      t5, _notes      # starting address of _notes
+
+    # init output
+    la      t0, TRISG       # load address of TRISG
+    lw      t1, 0(t0)       # get value of TRISB
+    andi    t1, t1, 0xFF00  # set RG7 as output
+    sw      t1, 0(t0)       # store to TRISB
+    la      s0, PORTG       # load address of PORTB
+    sw      zero, 0(s0)     # start at 0
+
+    # start main loop for playing song
+    play:
+        nop
+        # read the note and duration. If there is no note, end
+        lw      t6, 0(t5)             # load notes and duration into algebra register
+        beq     t6, zero, end         # branch if there are no more notes
+        li      t2, 0xFFFF0000        # mask for duration
+        and     t4, t6, t2            # mask off to get duration
+        srl     t4, t4, 16            # shift to lower 16bits to get duration
+        andi    t3, t6, 0xFFFF        # mask off the note
+        li      t6, 0x2               # load 2 into t6
+        mul     t4, t4, t6            # multiply duration by 2
+
+        # reset timer 1
+        la      t0, TMR1          # get address of timer 1
+        sw      zero, 0(t0)       # reset timer to 0
+
+        # reset timer 2
+        la      t0, TMR2        # get address of timer 2
+        sw      zero, 0(t0)       # reset timer to 0
+
+        # poll the timer until the duration has been met
+        dur:
+            la      t0, TMR1        # get address of timer 1
+            lw      t1, 0(t0)       # poll timer 1
+            beq     t1, t4, next    # check if timer 1 has reached duration
+            nop
+
+            # while the duration is being held, keep playing the notes
+            note:
+                la      t0, TMR2        # get address of timer 2
+                lw      t1, 0(t0)       # poll timer 2
+                slt     t6, t1, t3      # check if time is less than the period
+                bne     t6, zero, dur   # if not time to toggle speaker, check duration
+                nop
+                # toggle!
+                li      t6, 0xFFFF      # load -1 into t6
+                xor     s1, s1, t6      # xor with -1. This inverts all the bits
+                andi    s1, s1, 0x0080  # use mask to only get RG7
+                la      s0, PORTG       # load address of PORTG
+                sw      s1, 0(s0)       # write the value to PORTG.
+                la      t0, TMR2        # get address of timer 2
+                sw      zero, 0(t0)     # reset timer 2
+                j       dur             # check duration
+                nop
+
+        # figure out next offset
+        next:
+            la      t0, TMR1            # get address of timer 1
+            sw      zero, 0(t0)         # reset timer 1
+            addi    t5, t5, 4           # get next note's address
+            j       play                # play the next note
+            nop
+
+    end:
+        nop
+        jr      ra                  # jump to return address.
+
+
+# end the function
 .end main
 \end{lstlisting}
 
-
-\subsection{MIPS Code - Sorting a List}
+\subsubsection{Loading Fur Elise to Flash}
 
 \begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
-/*
-This uses bubble sort to sort a list of 12, 32-bit numbers
-
-Author: Sherman Lam
-Date: 10/5/14
-Email: slam@g.hmc.edu
-*/
-
-.global main        # start the main function
-
-# Compiler instructions
-.text               # store the code in the main program section of RAM
-.set noreorder      # do not let the compiler reorganize your code
-
-# define the numbers that are to be sorted. "a" designates the upper
-# 16 bits and "b" designates the lower 16-bits. This allows for easy
-# loading to the stack.
-#define LST1a   0x0     # top 16 bits of the number
-#define LST1b   0xC     # bottom 16 ibts of the number
-#define LST2a   0x1     # top 16 bits of the number
-#define LST2b   0xB     # bottom 16 ibts of the number
-#define LST3a   0x0     # top 16 bits of the number
-#define LST3b   0xA     # bottom 16 ibts of the number
-#define LST4a   0x0     # top 16 bits of the number
-#define LST4b   0x9     # bottom 16 ibts of the number
-#define LST5a   0x0     # top 16 bits of the number
-#define LST5b   0x8     # bottom 16 ibts of the number
-#define LST6a   0x0     # top 16 bits of the number
-#define LST6b   0x7     # bottom 16 ibts of the number
-#define LST7a   0x0     # top 16 bits of the number
-#define LST7b   0x6     # bottom 16 ibts of the number
-#define LST8a   0x0     # top 16 bits of the number
-#define LST8b   0x5     # bottom 16 ibts of the number
-#define LST9a   0x0     # top 16 bits of the number
-#define LST9b   0x4     # bottom 16 ibts of the number
-#define LST10a  0x0     # top 16 bits of the number
-#define LST10b  0x3     # bottom 16 ibts of the number
-#define LST11a  0x0     # top 16 bits of the number
-#define LST11b  0x2     # bottom 16 ibts of the number
-#define LST12a  0xFFFF     # top 16 bits of the number
-#define LST12b  0xFFFF     # bottom 16 ibts of the number
-
-# Register use:
-#   $t0 = counter (i)
-#   $t1 = i*4
-#   $t2 = slt results
-#   $t3 = lower number (n1)
-#   $t4 = upper number (n2)
-#   $t5 = flag. 1 if list is sorted. 0 if not.
-#   $t6 = 4
-#   $t7 = ADDR + i*4
-#   $t8 = 
-#   $s0 = 
-#   $s1 = number to load / store to memory
-
-.ent main
-
-main:
-    # load 12 numbers into the stack
-    lui     $s1, LST1a      # load first half of the number into reg
-    ori     $s1, LST1b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST2a      # load first half of the number into reg
-    ori     $s1, LST2b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST3a      # load first half of the number into reg
-    ori     $s1, LST3b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST4a      # load first half of the number into reg
-    ori     $s1, LST4b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST5a      # load first half of the number into reg
-    ori     $s1, LST5b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST6a      # load first half of the number into reg
-    ori     $s1, LST6b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST7a      # load first half of the number into reg
-    ori     $s1, LST7b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST8a      # load first half of the number into reg
-    ori     $s1, LST8b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST9a      # load first half of the number into reg
-    ori     $s1, LST9b      # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST10a     # load first half of the number into reg
-    ori     $s1, LST10b     # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST11a     # load first half of the number into reg
-    ori     $s1, LST11b     # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    lui     $s1, LST12a     # load first half of the number into reg
-    ori     $s1, LST12b     # load second half of the number into reg
-    addi    $sp, $sp, -4    # add mem
-    sw      $s1, 0($sp)     # load number into ram
-    
-    add     $t5, $0, $0     # start a flag that indicates if the list is sorted.
-    addi    $t6, $0, 4      # load 4 into $t6
-while:                      # start of while loop
-    bne     $t5, $0, done   # if $t5!=0, the list is sorted
-    nop
-    addi    $t5, $0, 1      # set the flag to sorted
-    add     $t0, $0, $0     # init i at 0 
-for:                        # start of for loop
-    sltiu   $t2, $t0, 11    # check that i < length - 1
-    beq     $t2, $0, while  # if the for loop is over, jump back to the while loop
-    nop
-    mul     $t1, $t0, $t6   # calc i*4
-    add     $t7, $sp, $t1   # calc stack pointer + i*4
-    lw      $t3, 0($t7)     # load the (i)th number [n1]
-    lw      $t4, 4($t7)     # load the (i+1)th number [n2]
-    add     $t0, $t0, 1     # increment the counter
-    slt     $t2, $t3, $t4   # check if n1 < n2 (out of order)
-    beq     $t2, $0, for    # pass if the numbers are in order ($t2=0)
-    nop
-    sw      $t3, 4($t7)     # put n1 in n2's spot
-    sw      $t4, 0($t7)     # put n2 in n1's spot
-    add     $t5, $0, $0     # set the flag to 0 since the list is not sorted
-    j       for
-    nop
-done:
-    
-    jr      $ra             # return to function call
-    nop
-
-.end main
+# Song notes
+    .section .rodata  # Store this information in FLASH instead of RAM
+_notes:
+    .HWORD 0x3b4, 0x989 # Data
+    .HWORD  0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x58c, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x954, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x58c, 0x989
+    .HWORD 0x4f1, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x5e0, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x4aa, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x58c, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x954, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x58c, 0x989
+    .HWORD 0x4f1, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x58c, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x3b4, 0x1c9c
+    .HWORD 0x63a, 0x989
+    .HWORD 0x37e, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x428, 0x1c9c
+    .HWORD 0x6fd, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x1c9c
+    .HWORD 0x768, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x4f1, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x1da, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x000, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x58c, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x954, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x58c, 0x989
+    .HWORD 0x4f1, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x5e0, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x4aa, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x3ec, 0x989
+    .HWORD 0x3b4, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x428, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x58c, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x954, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x58c, 0x989
+    .HWORD 0x4f1, 0x1312
+    .HWORD 0x000, 0x989
+    .HWORD 0x768, 0x989
+    .HWORD 0x4aa, 0x989
+    .HWORD 0x4f1, 0x989
+    .HWORD 0x58c, 0x2625
+    .HWORD 0x000, 0x000
 \end{lstlisting}
 
+\subsubsection{Loading Reluctant Heros (from Attack on Titan anime) to Flash Memory}
+\begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
+# Song notes
+    .section .rodata  # Store this information in FLASH instead of RAM
+_notes:
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
+    
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x2c6, 0x1312    # A5
+
+    .HWORD 0x31d, 0x1312    # G4
+    .HWORD 0x31d, 0x1312    # G4
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x34c, 0x1312    # F4#
+
+    .HWORD 0x3b4, 0x1312    # E4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x1312    # D4
+
+    .HWORD 0x3b4, 0x1312     # E4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x1312    # D4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x3b4, 0x1312     # E4
+    
+
+    .HWORD 0x0, 0x0         # stop
+\end{lstlisting}
+
+\clearpage
+
+\subsection{Timer 1 and Timer 2 Registers}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{T1CON.png}
+\caption{Control Register for T1CON.}
+\label{fig:t1con}
+\end{figure} 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{T2CON.png}
+\caption{Control Register for T2CON.}
+\label{fig:t2con}
+\end{figure} 
+
+
+\clearpage
 
 \section{Results and Discussion}
 
-The sorting works! For part c of the lab, the max number is successfully displayed on the LEDs. For part d of the lab, the sorted list can be monitored through MPLAB-X's memory viewer.
+Music playing works! Since the tempo was arbitrary chosen when \ref{fig:freq_and_dur} was created, Fur Elise was too fast. So, I doubled the periods to slow down the song to an appropriate pace. \\
+
+I also converted the first several measures of "Reluctant Hero" into units of $\tau_{0}$ and $\tau_{1}$. This also plays as expected.
 
 
 \section{Conclusion}
@@ -415,14 +534,14 @@ The sorting works! For part c of the lab, the max number is successfully display
 \subsection{Time Spent}
 
 \begin{description}
-	\item[Programming, Simulating] 1.5
-	\item[Writing Report]
-	\item[Total Time Spent] 
+	\item[Programming, Simulating] 6 hrs
+ 	\item[Writing Report] 3hrs
+	\item[Total Time Spent] 9hrs
 \end{description}
 
 \subsection{Suggestions for lab}
 
-Use MPLAB-X instead of MPLAB. The interface is easier to use, cleaner, and not as buggy. Writing a lab to use MPLAB-X would be helpful.
+No suggestions for the lab.
 
 \end{document}
 

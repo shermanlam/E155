@@ -1,6 +1,7 @@
 # Song notes
 	.section .rodata  # Store this information in FLASH instead of RAM
-_notes:		.HWORD 0x3b4, 0x989	# Data
+_notes:
+    .HWORD 0x3b4, 0x989	# Data
 	.HWORD	0x3ec, 0x989
 	.HWORD 0x3b4, 0x989
 	.HWORD 0x3ec, 0x989

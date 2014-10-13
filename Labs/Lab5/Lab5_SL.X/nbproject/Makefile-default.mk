@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=config.c crt0.S Lab5_SL.S lab5base.S
+SOURCEFILES_QUOTED_IF_SPACED=config.c crt0.S Lab5_SL.S lab5base.S lab5_Reluctant_Heros.S
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/config.o ${OBJECTDIR}/crt0.o ${OBJECTDIR}/Lab5_SL.o ${OBJECTDIR}/lab5base.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/config.o.d ${OBJECTDIR}/crt0.o.d ${OBJECTDIR}/Lab5_SL.o.d ${OBJECTDIR}/lab5base.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/config.o ${OBJECTDIR}/crt0.o ${OBJECTDIR}/Lab5_SL.o ${OBJECTDIR}/lab5base.o ${OBJECTDIR}/lab5_Reluctant_Heros.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/config.o.d ${OBJECTDIR}/crt0.o.d ${OBJECTDIR}/Lab5_SL.o.d ${OBJECTDIR}/lab5base.o.d ${OBJECTDIR}/lab5_Reluctant_Heros.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/config.o ${OBJECTDIR}/crt0.o ${OBJECTDIR}/Lab5_SL.o ${OBJECTDIR}/lab5base.o
+OBJECTFILES=${OBJECTDIR}/config.o ${OBJECTDIR}/crt0.o ${OBJECTDIR}/Lab5_SL.o ${OBJECTDIR}/lab5base.o ${OBJECTDIR}/lab5_Reluctant_Heros.o
 
 # Source Files
-SOURCEFILES=config.c crt0.S Lab5_SL.S lab5base.S
+SOURCEFILES=config.c crt0.S Lab5_SL.S lab5base.S lab5_Reluctant_Heros.S
 
 
 CFLAGS=
@@ -109,6 +109,13 @@ ${OBJECTDIR}/lab5base.o: lab5base.S  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/lab5base.o.ok ${OBJECTDIR}/lab5base.o.err 
 	@${FIXDEPS} "${OBJECTDIR}/lab5base.o.d" "${OBJECTDIR}/lab5base.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lab5base.o.d"  -o ${OBJECTDIR}/lab5base.o lab5base.S  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/lab5base.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1
 	
+${OBJECTDIR}/lab5_Reluctant_Heros.o: lab5_Reluctant_Heros.S  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o.d 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o.ok ${OBJECTDIR}/lab5_Reluctant_Heros.o.err 
+	@${FIXDEPS} "${OBJECTDIR}/lab5_Reluctant_Heros.o.d" "${OBJECTDIR}/lab5_Reluctant_Heros.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lab5_Reluctant_Heros.o.d"  -o ${OBJECTDIR}/lab5_Reluctant_Heros.o lab5_Reluctant_Heros.S  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/lab5_Reluctant_Heros.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1
+	
 else
 ${OBJECTDIR}/crt0.o: crt0.S  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -130,6 +137,13 @@ ${OBJECTDIR}/lab5base.o: lab5base.S  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/lab5base.o 
 	@${RM} ${OBJECTDIR}/lab5base.o.ok ${OBJECTDIR}/lab5base.o.err 
 	@${FIXDEPS} "${OBJECTDIR}/lab5base.o.d" "${OBJECTDIR}/lab5base.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lab5base.o.d"  -o ${OBJECTDIR}/lab5base.o lab5base.S  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/lab5base.o.asm.d",--gdwarf-2
+	
+${OBJECTDIR}/lab5_Reluctant_Heros.o: lab5_Reluctant_Heros.S  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o.d 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o 
+	@${RM} ${OBJECTDIR}/lab5_Reluctant_Heros.o.ok ${OBJECTDIR}/lab5_Reluctant_Heros.o.err 
+	@${FIXDEPS} "${OBJECTDIR}/lab5_Reluctant_Heros.o.d" "${OBJECTDIR}/lab5_Reluctant_Heros.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lab5_Reluctant_Heros.o.d"  -o ${OBJECTDIR}/lab5_Reluctant_Heros.o lab5_Reluctant_Heros.S  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/lab5_Reluctant_Heros.o.asm.d",--gdwarf-2
 	
 endif
 

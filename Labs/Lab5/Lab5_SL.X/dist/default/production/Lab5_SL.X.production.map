@@ -14,16 +14,16 @@ Microchip PIC32 Memory-Usage Report
 kseg0 Program-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.rodata                 0x9d000000          0x1c0         448  Read-only const 
-.text                   0x9d0001c0          0x110         272  App's exec code 
-.text.general_exception 0x9d0002d0           0xdc         220   
-.rodata                 0x9d0003ac           0xb4         180  Read-only const 
-.text._general_exceptio 0x9d000460           0x48          72   
-.text.exit              0x9d0004a8           0x34          52   
-.text                   0x9d0004dc           0x18          24  App's exec code 
-.dinit                  0x9d0004f4           0x10          16   
-.text._cleanup          0x9d000504            0x8           8   
-      Total kseg0_program_mem used  :       0x50c        1292  0.2% of 0x80000
+.rodata                 0x9d000000          0x380         896  Read-only const 
+.text                   0x9d000380          0x110         272  App's exec code 
+.text.general_exception 0x9d000490           0xdc         220   
+.text._general_exceptio 0x9d00056c           0x48          72   
+.text.exit              0x9d0005b4           0x34          52   
+.text                   0x9d0005e8           0x18          24  App's exec code 
+.rodata                 0x9d000600           0x14          20  Read-only const 
+.dinit                  0x9d000614           0x10          16   
+.text._cleanup          0x9d000624            0x8           8   
+      Total kseg0_program_mem used  :       0x62c        1580  0.3% of 0x80000
 
 kseg0 Boot-Memory Usage
 section                    address  length [bytes]      (dec)  Description
@@ -43,7 +43,7 @@ section                    address  length [bytes]      (dec)  Description
 .reset                  0xbfc00000           0x20          32  Reset handler 
          Total kseg1_boot_mem used  :        0x20          32  2.7% of 0x490
         --------------------------------------------------------------------------
-         Total Program Memory used  :       0x540        1344  0.3% of 0x81e00
+         Total Program Memory used  :       0x660        1632  0.3% of 0x81e00
         --------------------------------------------------------------------------
 
 
@@ -70,6 +70,7 @@ Discarded input sections
  .reginfo       0x00000000       0x18 build/default/production/crt0.o
  .reginfo       0x00000000       0x18 build/default/production/Lab5_SL.o
  .reginfo       0x00000000       0x18 build/default/production/lab5base.o
+ .reginfo       0x00000000       0x18 build/default/production/lab5_Reluctant_Heros.o
  .reginfo       0x00000000       0x18 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
  .reginfo       0x00000000       0x18 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
  .reginfo       0x00000000       0x18 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
@@ -99,6 +100,7 @@ LOAD build/default/production/config.o
 LOAD build/default/production/crt0.o
 LOAD build/default/production/Lab5_SL.o
 LOAD build/default/production/lab5base.o
+LOAD build/default/production/lab5_Reluctant_Heros.o
                 0x00000001                __MPLAB_BUILD = 0x1
                 0x00000400                PROVIDE (_min_stack_size, 0x400)
 LOAD c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
@@ -814,83 +816,93 @@ LOAD data_init
  .data          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
 
 .bss%z11        0x00000000        0x0
- .bss           0x00000000        0x0 build/default/production/lab5base.o
+ .bss           0x00000000        0x0 build/default/production/lab5_Reluctant_Heros.o
 
 .data%z12       0x00000000        0x0
- .data          0x00000000        0x0 build/default/production/lab5base.o
+ .data          0x00000000        0x0 build/default/production/lab5_Reluctant_Heros.o
 
 .bss%z13        0x00000000        0x0
- .bss           0x00000000        0x0 build/default/production/Lab5_SL.o
+ .bss           0x00000000        0x0 build/default/production/lab5base.o
 
 .data%z14       0x00000000        0x0
- .data          0x00000000        0x0 build/default/production/Lab5_SL.o
+ .data          0x00000000        0x0 build/default/production/lab5base.o
 
 .bss%z15        0x00000000        0x0
- .bss           0x00000000        0x0 build/default/production/crt0.o
+ .bss           0x00000000        0x0 build/default/production/Lab5_SL.o
 
 .data%z16       0x00000000        0x0
- .data          0x00000000        0x0 build/default/production/crt0.o
+ .data          0x00000000        0x0 build/default/production/Lab5_SL.o
 
 .bss%z17        0x00000000        0x0
- .bss           0x00000000        0x0 build/default/production/config.o
+ .bss           0x00000000        0x0 build/default/production/crt0.o
 
 .data%z18       0x00000000        0x0
+ .data          0x00000000        0x0 build/default/production/crt0.o
+
+.bss%z19        0x00000000        0x0
+ .bss           0x00000000        0x0 build/default/production/config.o
+
+.data%z20       0x00000000        0x0
  .data          0x00000000        0x0 build/default/production/config.o
 
-.rodata         0x9d000000      0x1c0
- .rodata        0x9d000000      0x1c0 build/default/production/lab5base.o
+.rodata         0x9d000000      0x380
+ .rodata        0x9d000000      0x1c0 build/default/production/Lab5_SL.o
+ .rodata        0x9d0001c0      0x1c0 build/default/production/lab5base.o
 
-.text           0x9d0001c0      0x110
- .text          0x9d0001c0      0x110 build/default/production/Lab5_SL.o
-                0x9d0001c0                main
+.text           0x9d000380      0x110
+ .text          0x9d000380      0x110 build/default/production/Lab5_SL.o
+                0x9d000380                main
 
 .text.general_exception
-                0x9d0002d0       0xdc
+                0x9d000490       0xdc
  .text.general_exception
-                0x9d0002d0       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
-                0x9d0002d0                _general_exception_context
-
-.rodata         0x9d0003ac       0xb4
- .rodata        0x9d0003ac       0xb4 build/default/production/Lab5_SL.o
+                0x9d000490       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
+                0x9d000490                _general_exception_context
 
 .text._general_exception_handler
-                0x9d000460       0x48
+                0x9d00056c       0x48
  .text._general_exception_handler
-                0x9d000460       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
-                0x9d000460                _general_exception_handler
+                0x9d00056c       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+                0x9d00056c                _general_exception_handler
 
-.text.exit      0x9d0004a8       0x34
- .text.exit     0x9d0004a8       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
-                0x9d0004a8                exit
+.text.exit      0x9d0005b4       0x34
+ .text.exit     0x9d0005b4       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+                0x9d0005b4                exit
 
-.text           0x9d0004dc       0x18
- .text          0x9d0004dc       0x18 build/default/production/crt0.o
+.text           0x9d0005e8       0x18
+ .text          0x9d0005e8       0x18 build/default/production/crt0.o
 
-.dinit          0x9d0004f4       0x10
- .dinit         0x9d0004f4       0x10 data_init
+.rodata         0x9d000600       0x14
+ .rodata        0x9d000600       0x14 build/default/production/lab5_Reluctant_Heros.o
 
-.text._cleanup  0x9d000504        0x8
+.dinit          0x9d000614       0x10
+ .dinit         0x9d000614       0x10 data_init
+
+.text._cleanup  0x9d000624        0x8
  .text._cleanup
-                0x9d000504        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
-                0x9d000504                _cleanup
-
-.text%z19       0x00000000        0x0
- .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
-
-.text%z20       0x00000000        0x0
- .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+                0x9d000624        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+                0x9d000624                _cleanup
 
 .text%z21       0x00000000        0x0
- .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+ .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
 
 .text%z22       0x00000000        0x0
- .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
+ .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
 
 .text%z23       0x00000000        0x0
- .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
+ .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
 
 .text%z24       0x00000000        0x0
- .text          0x00000000        0x0 build/default/production/lab5base.o
+ .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
 
 .text%z25       0x00000000        0x0
+ .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o
+
+.text%z26       0x00000000        0x0
+ .text          0x00000000        0x0 build/default/production/lab5_Reluctant_Heros.o
+
+.text%z27       0x00000000        0x0
+ .text          0x00000000        0x0 build/default/production/lab5base.o
+
+.text%z28       0x00000000        0x0
  .text          0x00000000        0x0 build/default/production/config.o
