@@ -42,7 +42,7 @@ Sherman Lam
 % ---------------------------------------
 \begin{center}
 \begin{Large}
-\textbf{Lab 4 Report: Microcontroller Sorting}
+\textbf{Lab 5 Report: Digital Audio}
 \end{Large}
 \end{center}
 
@@ -68,9 +68,22 @@ In this lab, I used the PIC32 on the $\mu$Mudd32 to play a song that was loaded 
 
 \section{Design and Testing Methodology}
 
+
+\subsection{Generating Waves}
+
+Ideally, the speaker will be driven by a sine wave so that the output tone will be a clean note. However, generating a sine wave is difficult. It can be done through a DAC (digital-to-analog converter) but this is an extra IC that I would need to interface with. Instead, a square wave with the desired frequency can be used to drive the speaker. This is easy to implement and only requires toggling between 1 and 0 on an output pin. \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{square.png}
+\caption{Square wave approximation of a sine wave. Source: http://upload.wikimedia.org/wikipedia/commons/f/f8/SquareWave.gif}
+\label{fig:square}
+\end{figure} 
+
+
 \subsection{Algorithm}
 
-The music playing algorithm follows the following procedure outline:
+The music playing algorithm is as follows:
 
 \begin{enumerate}
 	\item Setup timer 1
@@ -80,7 +93,7 @@ The music playing algorithm follows the following procedure outline:
 	\item Repeat from step 3 with new note.
 \end{enumerate}
 
-Here is some sudo-code that describes the method in slightly more detail.
+Here is some pseudocode / C-code that describes the method in slightly more detail.
 
 \begin{lstlisting}[numbers=left,language=C,basicstyle=\footnotesize]
 main(){
@@ -129,7 +142,7 @@ The clock on the $\mu$Mudd32 operates at 40Hz. The prescalar for the PIC's perip
 
 Timer 1's prescalar is set to 1:256. This makes this timer run at $\frac{5MHz}{256} = 19.5kHz$ or a period of 5.12$\mu s$. This timer is used to keep track of the duration of each note. Let each count of timer 1 be $\tau_{0}$. The duration, $\tau_{0}$, of each type of note is given in Figure \ref{fig:freq_and_dur}. \\
 
-Timer 2's prescalar is set to 1:4. This allows the timer to run at $\frac{5MHz}{4} = 1.25MHz$ or a period of 0.8$\mu s$. Timer 2 is used to keep track of the period of each note. Let each count of timer 1 be $\tau_{1}$. The period, in units of $\tau_{1}$, are given in Figure \ref{fig:freq_and_dur}. Let's use A4 to check the timing. This has a frequency of $440Hz$ and period of 0x58C$\tau_{1}$. Converting the period to seconds yields $1420(0.8\mu s) = 1.136ms$. This corresponds to a frequency of $880Hz$. Note that this is double the real frequency of the note. Also note that to generate a square wave with frequency $F$, the pin needs to be toggled at a frequency of $2F$. Thus, Figure \ref{fig:freq_and_dur} lists the toggling period of the pin. \\
+Timer 2's prescalar is set to 1:4. This allows the timer to run at $\frac{5MHz}{4} = 1.25MHz$ or a period of 0.8$\mu s$. Timer 2 is used to keep track of the period of each note. Let each count of timer 1 be $\tau_{1}$. The periods of each note, in units of $\tau_{1}$, are given in Figure \ref{fig:freq_and_dur}. Let's consider A4 to check the timing. This has a frequency of $440Hz$ and a listed period of 0x58C$\tau_{1}$. Converting the period to seconds yields $1420(0.8\mu s) = 1.136ms$. This corresponds to a frequency of $880Hz$. Note that this is double the real frequency of the note. Also note that to generate a square wave with frequency $F$, the pin needs to be toggled at a frequency of $2F$ - the pin needs to be pulled to 1 and then to 0 for each period. Thus, Figure \ref{fig:freq_and_dur} lists the toggling period of the pin, not the signaling frequency. \\
 
 \begin{figure}[h!]
 \centering
@@ -169,7 +182,7 @@ However, the lab was out of LM386 ICs so I used an LM380 amplifier. The LM380 is
 \subsection{MIPS Code - Playing a Song from Flash Memory}
 
 \begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
-/* This code plays music!
+/* This code plays music! The music is loaded into flash.
 
 Author: Sherman Lam
 Email: slam@g.hmc.edu
@@ -185,16 +198,13 @@ Date: 10-9-2014
 # t4 = duration
 # t5 = address of note
 # t6 = algebra intermediate values
-# s0 = PORTB address
-# s1 = PORTB output
+# s0 = PORTG address
+# s1 = PORTG output
 
 
 
 # load a header file for pin / register definitions
 #include <P32xxxx.h>
-
-# Define constants
-#define PBDIV 0x3       # prescaler for peripheral clock. 0x3 = 1:8
 
 # Define main function
 .global main
@@ -206,20 +216,6 @@ Date: 10-9-2014
 # Main program
 .ent main # Start function block
 main:
-    nop
-
-    # setup peripheral clock. Default is 1:8 but let's set it anyways
-    # OSCCON:
-    #   bit 20-19 = 11 -> 1:8 prescalar
-    #la      t0, OSCCON      # OSCCON = oscillator control register
-    #lw      t1, 0(t0)       # get the value of OSCCON
-    #li      t2, 0xFFE7FFFF  # mask for clearing PBDIV, which is bits 20-19
-    #and     t1, t1, t2      # use the mask to set PBDIV to 00
-    #li      t2, 0x3         # load mask for setting PBDIV
-    #sll     t2, t2, 19      # shift the mask to the right location
-    #or      t1, t1, t2      # set desired PBDIV
-    #sw      t1, 0(t0)       # load new value into OSCCON
-    # THIS DOESN"T WORK. GETS OVERRIDED BY CONFIG BITS
 
     # setup timer 1 (for 1 unit of signal duration = 51.2us)
     # T1CON:
@@ -251,17 +247,18 @@ main:
     # init output
     la      t0, TRISG       # load address of TRISG
     lw      t1, 0(t0)       # get value of TRISB
-    andi    t1, t1, 0xFF00  # set RG7 as output
-    sw      t1, 0(t0)       # store to TRISB
-    la      s0, PORTG       # load address of PORTB
+    andi    t1, t1, 0xFF7F  # set RG7 as output
+    sw      t1, 0(t0)       # store to TRISG
+    la      s0, PORTG       # load address of PORTG
     sw      zero, 0(s0)     # start at 0
 
     # start main loop for playing song
     play:
-        nop
+    
         # read the note and duration. If there is no note, end
         lw      t6, 0(t5)             # load notes and duration into algebra register
         beq     t6, zero, end         # branch if there are no more notes
+        nop
         li      t2, 0xFFFF0000        # mask for duration
         and     t4, t6, t2            # mask off to get duration
         srl     t4, t4, 16            # shift to lower 16bits to get duration
@@ -321,12 +318,14 @@ main:
 
 \subsubsection{Loading Fur Elise to Flash}
 
+This piece of code was provided in the lab and plays Fur Elise. The values are loaded into flash memory as a word.
+
 \begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
 # Song notes
     .section .rodata  # Store this information in FLASH instead of RAM
 _notes:
     .HWORD 0x3b4, 0x989 # Data
-    .HWORD  0x3ec, 0x989
+    .HWORD 0x3ec, 0x989
     .HWORD 0x3b4, 0x989
     .HWORD 0x3ec, 0x989
     .HWORD 0x3b4, 0x989
@@ -439,7 +438,10 @@ _notes:
     .HWORD 0x000, 0x000
 \end{lstlisting}
 
-\subsubsection{Loading Reluctant Heros (from Attack on Titan anime) to Flash Memory}
+\subsubsection{Loading Reluctant Heroes (from Attack on Titan anime) to Flash Memory}
+
+This piece of code loads notes and durations for the first 9 measures of ``Reluctant Heroes." Below, each block of notes belongs to its own measure.
+
 \begin{lstlisting}[numbers=left,basicstyle=\footnotesize]
 # Song notes
     .section .rodata  # Store this information in FLASH instead of RAM
@@ -478,32 +480,33 @@ _notes:
     .HWORD 0x4f1, 0x989     # B4
     .HWORD 0x428, 0x1312    # D4
     .HWORD 0x4f1, 0x989     # B4
-    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x428, 0x989     # D4
     .HWORD 0x3b4, 0x989     # E4
 
     .HWORD 0x34c, 0x1312    # F4#
     .HWORD 0x4f1, 0x989     # B4
     .HWORD 0x428, 0x1312    # D4
-    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x428, 0x989     # D4
     .HWORD 0x467, 0x989     # C4#
     .HWORD 0x428, 0x1312    # D4
 
-    .HWORD 0x3b4, 0x1312     # E4
+    .HWORD 0x3b4, 0x1312    # E4
     .HWORD 0x428, 0x1312    # D4
-    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x428, 0x989     # D4
     .HWORD 0x467, 0x989     # C4#
     .HWORD 0x428, 0x1312    # D4
 
     .HWORD 0x34c, 0x1312    # F4#
-    .HWORD 0x3b4, 0x1312     # E4
+    .HWORD 0x3b4, 0x1312    # E4
     
-
     .HWORD 0x0, 0x0         # stop
 \end{lstlisting}
 
 \clearpage
 
 \subsection{Timer 1 and Timer 2 Registers}
+
+The following tables were obtained from the PIC32 datasheet. They indicate the function of each part of the control registers for Timer 1 and Timer 2. Refer to the datasheet for more indepth descriptions of each part. The important ones used in this lab are ON and TCKPS. ON turns the timer on and TCKPS sets the prescalar of each clock.
 
 \begin{figure}[h!]
 \centering
@@ -526,7 +529,9 @@ _notes:
 
 Music playing works! Since the tempo was arbitrary chosen when \ref{fig:freq_and_dur} was created, Fur Elise was too fast. So, I doubled the periods to slow down the song to an appropriate pace. \\
 
-I also converted the first several measures of "Reluctant Hero" into units of $\tau_{0}$ and $\tau_{1}$. This also plays as expected.
+I also converted the first several measures of "Reluctant Hero" into units of $\tau_{0}$ and $\tau_{1}$. This also plays as expected. \\
+
+In addition, I was unable to set the peripheral clock through modifying the control register OSCCON directly through assembly code. Rather, they must be set through the configuration bits. This is because the configuration bits take priority and prevent the assembly code from changing OSCCON.
 
 
 \section{Conclusion}

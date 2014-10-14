@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  12 OCT 2014 17:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.16)  13 OCT 2014 19:48
 entering extended mode
 **lab5_SL.tex
 
@@ -347,160 +347,182 @@ File: board.jpg Graphic file (type jpg)
  <use board.jpg>
 Package pdftex.def Info: board.jpg used on input line 62.
 (pdftex.def)             Requested size: 239.58347pt x 425.92616pt.
- [1
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+
+ []
+
+[1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Sherman/Document
 s/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/board.jpg>]
+<square.png, id=9, 513.41812pt x 194.22563pt>
+File: square.png Graphic file (type png)
+ <use square.png>
+Package pdftex.def Info: square.png used on input line 78.
+(pdftex.def)             Requested size: 308.05324pt x 116.53627pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]\OT1/cmr/m/n/10.95 Figure 2: Square wave ap-prox-i-ma-tion of a sine wave. So
+urce:
+ []
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 86.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 99.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 86.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 110.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
+ [2 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/squ
+are.png>]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 123.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 110.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 123.
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
-
-<notes_and_duration.png, id=17, 455.45157pt x 532.23843pt>
-File: notes_and_duration.png Graphic file (type png)
-
-<use notes_and_duration.png>
-Package pdftex.def Info: notes_and_duration.png used on input line 136.
-(pdftex.def)             Requested size: 364.36174pt x 425.79132pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-<amp.png, id=19, 523.9575pt x 349.305pt>
+<notes_and_duration.png, id=19, 455.45157pt x 532.23843pt>
+File: notes_and_duration.png Graphic file (type png)
+
+<use notes_and_duration.png>
+Package pdftex.def Info: notes_and_duration.png used on input line 149.
+(pdftex.def)             Requested size: 364.36174pt x 425.79132pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+
+ []
+
+<amp.png, id=20, 523.9575pt x 349.305pt>
 File: amp.png Graphic file (type png)
  <use amp.png>
-Package pdftex.def Info: amp.png used on input line 149.
+Package pdftex.def Info: amp.png used on input line 162.
 (pdftex.def)             Requested size: 366.76775pt x 244.51183pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
-<LM380_pin.png, id=20, 334.24875pt x 191.9672pt>
+[3] <LM380_pin.png, id=27, 334.24875pt x 191.9672pt>
 File: LM380_pin.png Graphic file (type png)
  <use LM380_pin.png>
-Package pdftex.def Info: LM380_pin.png used on input line 158.
+Package pdftex.def Info: LM380_pin.png used on input line 171.
 (pdftex.def)             Requested size: 267.39935pt x 153.57396pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3] [4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/
-notes_and_duration.png>] [5 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E
-155/Labs/Lab5/Report/amp.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015
-/E155/Labs/Lab5/Report/LM380_pin.png>] [6
+[4 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/note
+s_and_duration.png>] [5 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/
+Labs/Lab5/Report/amp.png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E15
+5/Labs/Lab5/Report/LM380_pin.png>] [6
 
 ]
-Overfull \hbox (38.13155pt too wide) in paragraph at lines 263--264
+Overfull \hbox (38.13155pt too wide) in paragraph at lines 259--260
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[7]
-Overfull \hbox (4.83144pt too wide) in paragraph at lines 291--292
+
+Overfull \hbox (4.83144pt too wide) in paragraph at lines 288--289
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (49.23158pt too wide) in paragraph at lines 292--293
+Overfull \hbox (49.23158pt too wide) in paragraph at lines 289--290
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.38145pt too wide) in paragraph at lines 296--297
+Overfull \hbox (10.38145pt too wide) in paragraph at lines 293--294
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[8] [9] [10] [11] <T1CON.png, id=55, 483.30562pt x 306.39468pt>
+[7] [8] [9] [10] [11] <T1CON.png, id=57, 483.30562pt x 306.39468pt>
 File: T1CON.png Graphic file (type png)
 
 <use T1CON.png>
-Package pdftex.def Info: T1CON.png used on input line 510.
+Package pdftex.def Info: T1CON.png used on input line 513.
 (pdftex.def)             Requested size: 386.64502pt x 245.11607pt.
- <T2CON.png, id=56, 479.54156pt x 305.64188pt>
+ <T2CON.png, id=58, 479.54156pt x 305.64188pt>
 File: T2CON.png Graphic file (type png)
  <use T2CON.png>
-Package pdftex.def Info: T2CON.png used on input line 517.
+Package pdftex.def Info: T2CON.png used on input line 520.
 (pdftex.def)             Requested size: 383.63377pt x 244.51381pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [12
 
  <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/T1CON.
-png> <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Report/T2
-CON.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 527--528
+png>] [13 <C:/Users/Sherman/Documents/HMC/Courses/2014-2015/E155/Labs/Lab5/Repo
+rt/T2CON.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 530--531
 
  []
 
-[13
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
+
+ []
+
+[14
 
 ]
 (C:\Users\Sherman\Documents\HMC\Courses\2014-2015\E155\Labs\Lab5\Report\lab5_SL
-.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+.aux) ) 
 Here is how much of TeX's memory you used:
- 6093 strings out of 493921
- 81106 string characters out of 3147276
- 229179 words of memory out of 3000000
- 9294 multiletter control sequences out of 15000+200000
+ 6043 strings out of 493921
+ 80598 string characters out of 3147276
+ 227002 words of memory out of 3000000
+ 9244 multiletter control sequences out of 15000+200000
  14064 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 30i,6n,51p,796b,1457s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on lab5_SL.pdf (13 pages, 1639408 bytes).
+ 30i,6n,51p,909b,1567s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on lab5_SL.pdf (14 pages, 1670106 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
