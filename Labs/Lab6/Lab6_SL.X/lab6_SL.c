@@ -20,8 +20,10 @@ Email: slam@g.hmc.edu
 Date: 10-16-14
 */
 void initUART(void){
+    // set I/O pins
     TRISFbits.TRISF5 = 0;
     TRISFbits.TRISF4 = 1;
+    
         //call all the individual init functions
 	initMODE();
 	initSTA();
@@ -30,56 +32,77 @@ void initUART(void){
 
 
 /* 
-This inits the control register U2MODE
+This inits the control register U2MODE. From lecture slides.
 
-bit 15 (ON) = 1 ->		turn UART on
-bit 14 (FRZ) = 1 -> 	freeze when in debug mode
-bit 13 (SIDL) = 1 ->	Stop in idle mode
-bit 11 (RTSMD) = 1 ->	Simplex Mode
-bit 9-8 (UEN) = ??
-bit 7 (WAKE) = 1 ->		Wake if start bit detected
-bit 2-1 (PDSEL) = 00 ->	8 bit data, no parity
-bit 0 (STSEL) = 0 ->	1 stop bit
+bit 31-16: unused
+bit 15: ON = 1: enable UART
+bit 14: FRZ = 0: don't care when CPU in normal state
+bit 13: SIDL = 0: don't care when CPU in normal state
+bit 12: IREN = 0: disable IrDA
+bit 11: RTSMD = 0: don't care if not using flow control
+bit 10: unused
+bit 9-8: UEN = 00: enable U1TX and U1RX, disable U1CTSb and U1RTSb
+bit 7: WAKE = 0: do not wake on UART if in sleep mode
+bit 6: LPBACK = 0: disable loopback mode
+bit 5: ABAUD = 0: don't auto detect baud rate
+bit 4: RXINV = 0: U1RX idle state is high
+bit 3: BRGH = 0: standard speed mode
+bit 2-1: PDSEL = 00: 8-bit data, no parity
+bit 0: STSEL = 0: 1 stop bit
 
 Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: 10-16-14
 */
 void initMODE(void){
-	//U2MODE = U2MODE & 0b1111111111111000;	//set 0s
-	//U2MODE = U2MODE | 0b1110100010000000;	//set 1s
     U2MODE = 0x8000;
 }
 
 
 /*
-This inits the control register U2STA
+This inits the control register U2STA. From lecture
 
-bit 12 (URXEN) = 1 ->	enable receive
-bit 10 (UTXEN) = 1 -> 	enable transmit
+bit 31-25: unused
+bit 24-16: write 0 when not using auto address detect
+bit 15-14: UTXISEL = 00: interrupt when TX buffer not full
+bit 13: UTXINV = 0: U1TX idle state is high
+bit 12: URXEN = 1: enable receiver
+bit 11: UTXBRK = 0: disable break transmission
+bit 10: UTXEN = 1: enable transmitter
+bit 9: UTXBF: don't care (read-only)
+bit 8: TRMT: don't care (read-only)
+bit 7-6: URXISEL = 00: interrupt when receive buffer not empty
+bit 5: ADDEN = 0: disable address detect
+bit 4: RIDLE: don't care (read-only)
+bit 3: PERR: don't care (read-only)
+bit 2: FERR: don't care (read-only)
+bit 1: OERR = 0: reset receive buffer overflow flag
+bit 0: URXDA: don't care (read-only)
 
 Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: 10-16-14
 */
-void initSTA(void){
-	//U2STA = U2STA & 0b1111111111111111;		//set 0s
-	//U2STA = U2STA | 0b0001010000000000;		//set 1s
+void initSTA(void){ 
     U2STA = 0x1400;
 }
 
 
 /*
-This inits the control register BRG
+This inits the control register BRG. From lecture slides
 
-bit 15-0 = 115k -> with 20MHz clk, 113.6 baud rate
+Want rate of 115.2 Kbaud
+Assuming PIC peripheral clock Fpb = Fosc / 2 = 20 MHz
+based on default instructions in lab 1.
+U3BRG = (Fpb / 4*baud rate) - 1
+-> U3BRG = 10 (decimal)
+Actual baud rate 113636.4 (-1.2% error)
 
 Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: 10-16-14
 */
 void initBRG(void){
-	//U2BRG = 115000;
     U2BRG = 10;
 }
 
