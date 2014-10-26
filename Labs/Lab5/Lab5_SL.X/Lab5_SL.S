@@ -140,9 +140,8 @@ main:
             nop
 
     end:
-        nop
         jr      ra                  # jump to return address.
-
+        nop
 
 # end the function
 .end main
@@ -151,6 +150,7 @@ main:
 # Song notes
     .section .rodata  # Store this information in FLASH instead of RAM
 _notes:
+/*
     .HWORD 0x3b4, 0x989 # Data
     .HWORD  0x3ec, 0x989
     .HWORD 0x3b4, 0x989
@@ -263,3 +263,59 @@ _notes:
     .HWORD 0x4f1, 0x989
     .HWORD 0x58c, 0x2625
     .HWORD 0x000, 0x000
+*/
+# Reluctant Hero
+    .HWORD 0x428, 0x989     # D4
+	.HWORD 0x467, 0x989     # C4#
+	.HWORD 0x428, 0x989     # D4
+ 	.HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x2c6, 0x1312    # A5
+
+    .HWORD 0x31d, 0x1312    # G4
+    .HWORD 0x31d, 0x1312    # G4
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x34c, 0x1312    # F4#
+
+    .HWORD 0x3b4, 0x1312    # E4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x3b4, 0x989     # E4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x4f1, 0x989     # B4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x1312    # D4
+
+    .HWORD 0x3b4, 0x1312     # E4
+    .HWORD 0x428, 0x1312    # D4
+    .HWORD 0x428, 0x989    # D4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x1312    # D4
+
+    .HWORD 0x34c, 0x1312    # F4#
+    .HWORD 0x3b4, 0x1312     # E4
+
+    .HWORD 0x0, 0x0         # stop

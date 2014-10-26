@@ -14,16 +14,16 @@ Microchip PIC32 Memory-Usage Report
 kseg0 Program-Memory Usage
 section                    address  length [bytes]      (dec)  Description
 -------                 ----------  -------------------------  -----------
-.rodata                 0x9d000000          0x380         896  Read-only const 
-.text                   0x9d000380          0x110         272  App's exec code 
-.text.general_exception 0x9d000490           0xdc         220   
-.text._general_exceptio 0x9d00056c           0x48          72   
-.text.exit              0x9d0005b4           0x34          52   
-.text                   0x9d0005e8           0x18          24  App's exec code 
-.rodata                 0x9d000600           0x14          20  Read-only const 
-.dinit                  0x9d000614           0x10          16   
-.text._cleanup          0x9d000624            0x8           8   
-      Total kseg0_program_mem used  :       0x62c        1580  0.3% of 0x80000
+.rodata                 0x9d000000          0x1c0         448  Read-only const 
+.text                   0x9d0001c0          0x110         272  App's exec code 
+.text.general_exception 0x9d0002d0           0xdc         220   
+.rodata                 0x9d0003ac          0x168         360  Read-only const 
+.text._general_exceptio 0x9d000514           0x48          72   
+.text.exit              0x9d00055c           0x34          52   
+.text                   0x9d000590           0x18          24  App's exec code 
+.dinit                  0x9d0005a8           0x10          16   
+.text._cleanup          0x9d0005b8            0x8           8   
+      Total kseg0_program_mem used  :       0x5c0        1472  0.3% of 0x80000
 
 kseg0 Boot-Memory Usage
 section                    address  length [bytes]      (dec)  Description
@@ -43,7 +43,7 @@ section                    address  length [bytes]      (dec)  Description
 .reset                  0xbfc00000           0x20          32  Reset handler 
          Total kseg1_boot_mem used  :        0x20          32  2.7% of 0x490
         --------------------------------------------------------------------------
-         Total Program Memory used  :       0x660        1632  0.3% of 0x81e00
+         Total Program Memory used  :       0x5f4        1524  0.3% of 0x81e00
         --------------------------------------------------------------------------
 
 
@@ -845,43 +845,43 @@ LOAD data_init
 .data%z20       0x00000000        0x0
  .data          0x00000000        0x0 build/default/production/config.o
 
-.rodata         0x9d000000      0x380
- .rodata        0x9d000000      0x1c0 build/default/production/Lab5_SL.o
- .rodata        0x9d0001c0      0x1c0 build/default/production/lab5base.o
+.rodata         0x9d000000      0x1c0
+ .rodata        0x9d000000      0x1c0 build/default/production/lab5base.o
 
-.text           0x9d000380      0x110
- .text          0x9d000380      0x110 build/default/production/Lab5_SL.o
-                0x9d000380                main
+.text           0x9d0001c0      0x110
+ .text          0x9d0001c0      0x110 build/default/production/Lab5_SL.o
+                0x9d0001c0                main
 
 .text.general_exception
-                0x9d000490       0xdc
+                0x9d0002d0       0xdc
  .text.general_exception
-                0x9d000490       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
-                0x9d000490                _general_exception_context
+                0x9d0002d0       0xdc c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(general-exception.o)
+                0x9d0002d0                _general_exception_context
+
+.rodata         0x9d0003ac      0x168
+ .rodata        0x9d0003ac       0xb4 build/default/production/Lab5_SL.o
+ .rodata        0x9d000460       0xb4 build/default/production/lab5_Reluctant_Heros.o
 
 .text._general_exception_handler
-                0x9d00056c       0x48
+                0x9d000514       0x48
  .text._general_exception_handler
-                0x9d00056c       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
-                0x9d00056c                _general_exception_handler
+                0x9d000514       0x48 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+                0x9d000514                _general_exception_handler
 
-.text.exit      0x9d0005b4       0x34
- .text.exit     0x9d0005b4       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
-                0x9d0005b4                exit
+.text.exit      0x9d00055c       0x34
+ .text.exit     0x9d00055c       0x34 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(exit.o)
+                0x9d00055c                exit
 
-.text           0x9d0005e8       0x18
- .text          0x9d0005e8       0x18 build/default/production/crt0.o
+.text           0x9d000590       0x18
+ .text          0x9d000590       0x18 build/default/production/crt0.o
 
-.rodata         0x9d000600       0x14
- .rodata        0x9d000600       0x14 build/default/production/lab5_Reluctant_Heros.o
+.dinit          0x9d0005a8       0x10
+ .dinit         0x9d0005a8       0x10 data_init
 
-.dinit          0x9d000614       0x10
- .dinit         0x9d000614       0x10 data_init
-
-.text._cleanup  0x9d000624        0x8
+.text._cleanup  0x9d0005b8        0x8
  .text._cleanup
-                0x9d000624        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
-                0x9d000624                _cleanup
+                0x9d0005b8        0x8 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)
+                0x9d0005b8                _cleanup
 
 .text%z21       0x00000000        0x0
  .text          0x00000000        0x0 c:/program files (x86)/microchip/xc32/v1.33/bin/bin/../../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libc.a(stdclean_simple.o)

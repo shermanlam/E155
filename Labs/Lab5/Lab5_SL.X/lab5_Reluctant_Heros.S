@@ -1,10 +1,10 @@
 # Song notes
-	.section .rodata  # Store this information in FLASH instead of RAM
+    .section .rodata  # Store this information in FLASH instead of RAM
 _notes:
     .HWORD 0x428, 0x989     # D4
-	.HWORD 0x467, 0x989     # C4#
-	.HWORD 0x428, 0x989     # D4
- 	.HWORD 0x3b4, 0x989     # E4
+    .HWORD 0x467, 0x989     # C4#
+    .HWORD 0x428, 0x989     # D4
+    .HWORD 0x3b4, 0x989     # E4
 
     .HWORD 0x34c, 0x1312    # F4#
     .HWORD 0x4f1, 0x989     # B4
