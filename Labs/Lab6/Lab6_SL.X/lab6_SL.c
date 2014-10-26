@@ -305,6 +305,9 @@ int parse(char* str){
         i++;
     } while(c != 0);  // check for null terminator
 
+
+    //
+
     return domath(a1,a2,op);
 }
 
@@ -328,12 +331,12 @@ void main(void){
             //read the string
             char str[80];
             getstrserial(str);
-            printf("\n\rYou typed: %s\n\r", str);
+            printf("\rYou typed: %s\n\r", str);
 
             //clean and parse the string
             char str1[80];
             clean(str,str1);
-            printf("\n\rCleaned string: %s\n\r", str1);
+            //printf("\n\rCleaned string: %s\n\r", str1);
             int result = parse(str1);
             printf("Answer: %d \n\r", result);
 
