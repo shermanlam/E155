@@ -278,8 +278,6 @@ int domath(int a1, int a2, char op){
  */
 int parse(char* str){
     int i = 0;          // for indexing through string
-    char n1[8];         // first num
-    char n2[8];         // second num
     char c;             // a char
     int a1 = 0;         // number argument 1
     int a2 = 0;         // number argument 2
@@ -289,6 +287,11 @@ int parse(char* str){
         c = str[i];
         if (isNum(c)){
             a1 += a1*10+(c-48);
+        }
+        //throw an error if a number was not entered
+        else if (!isOp(c)){
+            printf("Equation invalid \n");
+            return 0;
         }
         i++;
     } while(isNum(c));  // check for number
@@ -302,11 +305,13 @@ int parse(char* str){
         if (isNum(c)){
             a2 += a2*10+(c-48);
         }
+        //throw an error if a number was not entered
+        else if (!(c==0)){
+            printf("Equation invalid \n");
+            return 0;
+        }
         i++;
     } while(c != 0);  // check for null terminator
-
-
-    //
 
     return domath(a1,a2,op);
 }
@@ -326,7 +331,7 @@ void main(void){
 	//loop
 	while(1){
             //prompt the user for an equation
-            sendstrserial("Please enter an equation: \n\r");
+            sendstrserial("Please enter an equation \n\r");
 
             //read the string
             char str[80];
