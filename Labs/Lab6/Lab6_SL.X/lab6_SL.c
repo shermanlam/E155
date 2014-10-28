@@ -131,26 +131,11 @@ Email: slam@g.hmc.edu
 Date: 10-23-14
 */
 void getstrserial(char* str){
-	//index for storing to buffer
-	int i = 0;
-
-	while(1){
-		//read the next char
-            //printf("Reading next\n");
-		char data = getcharserial();
-
-		//check if this is the end of the string (signalled by carriage return)
-		if (data == '\r'){
-                        str[i] = 0;         //null terminate string
-			return;
-		}
-
-		//write to buffer
-		else{
-			str[i] = data;
-			i++;
-		}
-	}
+    int i = 0;
+    do { // read an entire string until detecting
+    str[i] = getcharserial(); // carriage return
+    } while (str[i++] != '\r'); // look for carraige return
+    str[i-1] = 0; // null-terminate the string
 }
 
 
