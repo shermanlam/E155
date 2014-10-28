@@ -312,11 +312,14 @@ void parse(char* str){
     int a1 = 0;         // number argument 1
     int a2 = 0;         // number argument 2
     char op = 0;        // operator
+    int update1 = 0;    // whether a1 was set
+    int update2 = 0;    // whether a2 was set
     //get the first number
     do{
         c = str[i];
         if (isNum(c)){
             a1 += a1*10+(c-48);
+            update1 = 1;
         }
         //throw an error if a number was not entered
         else if (!isOp(c)){
@@ -334,6 +337,7 @@ void parse(char* str){
         c = str[i];
         if (isNum(c)){
             a2 += a2*10+(c-48);
+            update2 = 1;
         }
         //throw an error if a number was not entered
         else if (!(c==0)){
@@ -343,7 +347,13 @@ void parse(char* str){
         i++;
     } while(c != 0);  // check for null terminator
 
-    domath(a1,a2,op);
+    printf("a1: %d, a2: %d, op: %d \n",a1,a2,op);
+    if(update1 && update2){
+        domath(a1,a2,op);
+    }
+    else{
+        printf("Incomplete equation \n");
+    }
 }
 
 
