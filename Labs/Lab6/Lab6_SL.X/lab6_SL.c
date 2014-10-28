@@ -300,7 +300,9 @@ void parse(char* str){
     do{
         c = str[i];
         if (isNum(c)){
-            a1 += a1*10+(c-48);
+            a1 *= 10;
+            a1 += (c-48);
+            //a1 += a1*10+(c-48);
             update1 = 1;
         }
         //throw an error if a number was not entered
@@ -318,7 +320,10 @@ void parse(char* str){
     do{
         c = str[i];
         if (isNum(c)){
-            a2 += a2*10+(c-48);
+            a2 *= 10;
+            a2 += (c-48);
+            //a2 += a2*10+(c-48);
+            //printf("a2: %d, c: %d \n",a2,c);
             update2 = 1;
         }
         //throw an error if a number was not entered
@@ -331,6 +336,7 @@ void parse(char* str){
 
     // if we have all the variables, do the math. Else, print error
     if(update1 && update2){
+        //printf("a1: %d,a2: %d,op: %d \n", a1,a2,op);
         domath(a1,a2,op);
     }
     else{
