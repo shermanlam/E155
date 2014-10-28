@@ -283,6 +283,10 @@ void domath(int a1, int a2, char op){
         answer = a1 * a2;
     }
     else if (op == 47){      // /
+        if (a2==0){
+            printf("Cannot divide by 0 \n");
+            return;
+        }
         answer = a1 / a2;
     }
     else{
