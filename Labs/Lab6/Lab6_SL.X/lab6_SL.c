@@ -9,7 +9,7 @@ char getcharserial(void);
 void getstrserial(char*);
 void sendcharserial(char);
 void sendstrserial(char*);
-int parse(char*);
+void parse(char*);
 
 
 /*
@@ -271,23 +271,26 @@ int isOp(char c){
  Email: slam@g.hmc.edu
  Date: 10-25-14
  */
-int domath(int a1, int a2, char op){
+void domath(int a1, int a2, char op){
+    int answer = 0;
     if (op == 43){      // +
-        return a1 + a2;
+        answer = a1 + a2;
     }
-    if (op == 45){      // -
-        return a1 - a2;
+    else if (op == 45){      // -
+        answer = a1 - a2;
     }
-    if (op == 42){      // *
-        return a1 * a2;
+    else if (op == 42){      // *
+        answer = a1 * a2;
     }
-    if (op == 47){      // /
-        return a1 / a2;
+    else if (op == 47){      // /
+        answer = a1 / a2;
     }
     else{
         printf("Operation: %c is not supported.\n\r");
-        return 0;
+        return;
     }
+
+    printf("Answer: %d \n",answer);
 }
 
 
@@ -299,7 +302,7 @@ int domath(int a1, int a2, char op){
  Email: slam@g.hmc.edu
  Date: 10-24-14
  */
-int parse(char* str){
+void parse(char* str){
     int i = 0;          // for indexing through string
     char c;             // a char
     int a1 = 0;         // number argument 1
@@ -314,7 +317,7 @@ int parse(char* str){
         //throw an error if a number was not entered
         else if (!isOp(c)){
             printf("Equation invalid \n");
-            return 0;
+            return;
         }
         i++;
     } while(isNum(c));  // check for number
@@ -331,12 +334,12 @@ int parse(char* str){
         //throw an error if a number was not entered
         else if (!(c==0)){
             printf("Equation invalid \n");
-            return 0;
+            return;
         }
         i++;
     } while(c != 0);  // check for null terminator
 
-    return domath(a1,a2,op);
+    domath(a1,a2,op);
 }
 
 
@@ -364,11 +367,7 @@ void main(void){
             //clean and parse the string
             char str1[80];
             clean(str,str1);
-            //printf("\n\rCleaned string: %s\n\r", str1);
-            int result = parse(str1);
-            printf("Answer: %d \n\r", result);
-
-            //send back the results
+            parse(str1);
             
         }
 }
