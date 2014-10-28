@@ -9,7 +9,11 @@ char getcharserial(void);
 void getstrserial(char*);
 void sendcharserial(char);
 void sendstrserial(char*);
+void clean(char*, char*);
 void parse(char*);
+int isNum(char);
+int isOp(char);
+void domath(int, int, char);
 
 
 /*
@@ -24,7 +28,7 @@ void initUART(void){
     TRISFbits.TRISF5 = 0;
     TRISFbits.TRISF4 = 1;
     
-        //call all the individual init functions
+    //call all the individual init functions
 	initMODE();
 	initSTA();
 	initBRG();
@@ -60,7 +64,7 @@ void initMODE(void){
 
 
 /*
-This inits the control register U2STA. From lecture
+This inits the control register U2STA. From lecture slides.
 
 bit 31-25: unused
 bit 24-16: write 0 when not using auto address detect
@@ -89,7 +93,7 @@ void initSTA(void){
 
 
 /*
-This inits the control register BRG. From lecture slides
+This inits the control register BRG. From lecture slides.
 
 Want rate of 115.2 Kbaud
 Assuming PIC peripheral clock Fpb = Fosc / 2 = 20 MHz
@@ -132,10 +136,10 @@ Date: 10-23-14
 */
 void getstrserial(char* str){
     int i = 0;
-    do { // read an entire string until detecting
-    str[i] = getcharserial(); // carriage return
-    } while (str[i++] != '\r'); // look for carraige return
-    str[i-1] = 0; // null-terminate the string
+    do {                            // read an entire string until detecting
+        str[i] = getcharserial();   // carriage return
+    } while (str[i++] != '\r');     // look for carraige return
+    str[i-1] = 0;                   // null-terminate the string
 }
 
 
@@ -194,19 +198,19 @@ void clean(char* input, char* output){
     int j = 0;      // index for iterating through output
     do{
         c = input[i];
-        if (c == ' '){}         //check if char is whitespace.
-        else if ((int)c == 127){       // backspace
-            j--;
+        if (c == ' '){}             //check if char is whitespace.
+        else if ((int)c == 127){    // check backspace
+            j--;                    // decrement index to overwrite last value
             if (j<0){
                 j=0;
             }
         }
-        else{
+        else{                       // if good, write
             output[j] = c;
             j++;
         }
         i++;
-    } while (c != 0);
+    } while (c != 0);               // break if we see null terminator
 
     //write null terminator
     output[j] = 0;
@@ -222,7 +226,7 @@ void clean(char* input, char* output){
  Date: 10-25-14
  */
 int isNum(char c){
-    return ((48<=c) && (c<=57));
+    return ((48<=c) && (c<=57));        // check ascii bounds
 }
 
 
@@ -251,7 +255,7 @@ int isOp(char c){
  */
 void domath(int a1, int a2, char op){
     int answer = 0;
-    if (op == 43){      // +
+    if (op == 43){           // +
         answer = a1 + a2;
     }
     else if (op == 45){      // -
@@ -325,7 +329,7 @@ void parse(char* str){
         i++;
     } while(c != 0);  // check for null terminator
 
-    //printf("a1: %d, a2: %d, op: %d \n",a1,a2,op);
+    // if we have all the variables, do the math. Else, print error
     if(update1 && update2){
         domath(a1,a2,op);
     }
@@ -360,6 +364,5 @@ void main(void){
             char str1[80];
             clean(str,str1);
             parse(str1);
-            
         }
 }
