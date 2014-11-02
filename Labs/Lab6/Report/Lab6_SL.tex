@@ -455,7 +455,7 @@ void parse(char* str){
     do{
         c = str[i];
         if (isNum(c)){
-            a1 += a1*10+(c-48);
+            a1 = a1*10+(c-48);
             update1 = 1;
         }
         //throw an error if a number was not entered
@@ -473,7 +473,7 @@ void parse(char* str){
     do{
         c = str[i];
         if (isNum(c)){
-            a2 += a2*10+(c-48);
+            a2 = a2*10+(c-48);
             update2 = 1;
         }
         //throw an error if a number was not entered

@@ -280,7 +280,6 @@ void domath(int a1, int a2, char op){
 }
 
 
-
 /*
  This method parses the string and chooses which operation to perform
 
