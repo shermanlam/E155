@@ -1,5 +1,5 @@
 Flow report for lab7_SL
-Sat Nov 01 23:37:55 2014
+Sun Nov 02 10:26:08 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -38,15 +38,15 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +------------------------------------+------------------------------------------+
-; Flow Status                        ; Successful - Sat Nov 01 23:37:55 2014    ;
+; Flow Status                        ; Successful - Sun Nov 02 10:26:08 2014    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; lab7_SL                                  ;
 ; Top-level Entity Name              ; lab7_SL                                  ;
 ; Family                             ; Cyclone III                              ;
 ; Device                             ; EP3C5E144C8                              ;
 ; Timing Models                      ; Final                                    ;
-; Total logic elements               ; 229 / 5,136 ( 4 % )                      ;
-;     Total combinational functions  ; 229 / 5,136 ( 4 % )                      ;
+; Total logic elements               ; 63 / 5,136 ( 1 % )                       ;
+;     Total combinational functions  ; 63 / 5,136 ( 1 % )                       ;
 ;     Dedicated logic registers      ; 21 / 5,136 ( < 1 % )                     ;
 ; Total registers                    ; 21                                       ;
 ; Total pins                         ; 29 / 95 ( 31 % )                         ;
@@ -62,7 +62,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/01/2014 23:37:36 ;
+; Start date & time ; 11/02/2014 10:25:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab7_SL             ;
 +-------------------+---------------------+
@@ -73,7 +73,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 31264775087902.141491025614596  ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 31264775087902.141495275149000  ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl               ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog) ; <None>        ; --          ; --             ;
 ; IP_TOOL_NAME                        ; ALTPLL                          ; --            ; --          ; --             ;
@@ -98,12 +98,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:05     ; 1.0                     ; 361 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:07     ; 1.0                     ; 491 MB              ; 00:00:07                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 320 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 359 MB              ; 00:00:02                           ;
+; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 358 MB              ; 00:00:02                           ;
+; Fitter                    ; 00:00:07     ; 2.0                     ; 494 MB              ; 00:00:07                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 326 MB              ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 340 MB              ; 00:00:02                           ;
 ; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 293 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:18     ; --                      ; --                  ; 00:00:15                           ;
+; Total                     ; 00:00:15     ; --                      ; --                  ; 00:00:13                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

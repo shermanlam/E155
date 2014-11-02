@@ -23,7 +23,9 @@ module vga(input  logic       clk,
                         r_int, g_int, b_int, r, g, b, x, y);
 	
   // user-defined module to determine pixel color
-  videoGen videoGen(x, y, r_int, g_int, b_int);
+  //videoGen videoGen(x, y, r_int, g_int, b_int);
+  videoGen2 videoGen(.x(x),.y(y),.xpt(xpt),.ypt(ypt),.r(r_int),.g(g_int),.b(b_int));
+  
 endmodule
 
 module vgaController #(parameter HMAX   = 10'd800,
@@ -68,6 +70,7 @@ module vgaController #(parameter HMAX   = 10'd800,
   assign {r,g,b} = valid ? {r_int,g_int,b_int} : 24'b0;
 endmodule
 
+
 module videoGen(input  logic [9:0] x, y,
            		 output logic [7:0] r_int, g_int, b_int);
 	
@@ -82,6 +85,77 @@ module videoGen(input  logic [9:0] x, y,
   assign {r_int, g_int, b_int} = (y[3]==0) ? {{8{pixel}},16'h0000} : 
 	                                           {16'h0000,{8{pixel}}}; 
 endmodule
+
+
+/*
+Module for generating a pixel value for a given x, y position
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: 11-2-14
+*/
+module videoGen2(	input	logic [9:0] x,y,xpt,ypt,
+						output logic [7:0] r,g,b);
+	//background rgb values
+	logic [7:0] r_bkg,g_bkg,b_bkg;
+	//pointer rgb value
+	logic [7:0] r_ptr,g_ptr,b_ptr;
+	
+	background 	gen_bkg(.x(x),.y(y),.r(r_bkg),.g(g_bkg),.b(b_bkg));
+	mouse			gen_ptr(.x(x),.y(y),.ypt(ypt),.xpt(xpt),
+								.r(r_ptr),.g(g_ptr),.b(b_ptr));
+	
+	//or the outputs;
+	assign r = r_bkg | r_ptr;
+	assign g = g_bkg | g_ptr;
+	assign b = b_bkg | b_ptr;
+						
+endmodule
+
+
+/*
+Module for generating a plain color background
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: 11-2-14
+*/
+module background(input 	logic [9:0] x,y,
+						output	logic [7:0] r,g,b);
+					
+	assign r = 8'd0;
+	assign g = 8'd255;
+	assign b = 8'd0;
+	
+endmodule
+
+
+/*
+Module for generating a mouse
+
+Author: Sherman Lam
+Email: slam@g.hmc.edu
+Date: 11-2-14
+*/
+module mouse(	input 	logic [9:0] x,y,xpt,ypt,
+					output	logic [7:0] r,g,b);
+	
+	//size of mouse - rect box for now
+	parameter width = 8'd10;
+	parameter height = 8'd10;
+	
+	logic inrange;
+	
+	always_comb begin
+		inrange = (x>=xpt) & (x<xpt+width) & (y>=ypt) & (y<ypt+height);
+		r = inrange? 8'd255 : 8'd0;
+		g = inrange? 8'd255 : 8'd0;
+		b = inrange? 8'd255 : 8'd0;
+	end
+	
+endmodule
+
+
 
 module chargenrom(input  logic [7:0] ch,
                   input  logic [2:0] xoff, yoff,

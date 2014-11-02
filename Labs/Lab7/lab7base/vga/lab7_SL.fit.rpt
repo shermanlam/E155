@@ -1,5 +1,5 @@
 Fitter report for lab7_SL
-Sat Nov 01 23:37:48 2014
+Sun Nov 02 10:26:00 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -68,15 +68,15 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +------------------------------------+------------------------------------------+
-; Fitter Status                      ; Successful - Sat Nov 01 23:37:48 2014    ;
+; Fitter Status                      ; Successful - Sun Nov 02 10:26:00 2014    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; lab7_SL                                  ;
 ; Top-level Entity Name              ; lab7_SL                                  ;
 ; Family                             ; Cyclone III                              ;
 ; Device                             ; EP3C5E144C8                              ;
 ; Timing Models                      ; Final                                    ;
-; Total logic elements               ; 229 / 5,136 ( 4 % )                      ;
-;     Total combinational functions  ; 229 / 5,136 ( 4 % )                      ;
+; Total logic elements               ; 63 / 5,136 ( 1 % )                       ;
+;     Total combinational functions  ; 63 / 5,136 ( 1 % )                       ;
 ;     Dedicated logic registers      ; 21 / 5,136 ( < 1 % )                     ;
 ; Total registers                    ; 21                                       ;
 ; Total pins                         ; 29 / 95 ( 31 % )                         ;
@@ -154,12 +154,12 @@ applicable agreement for further details.
 ; Number detected on machine ; 4           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
+; Average used               ; 2.00        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     1 processor            ; 100.0%      ;
-;     2-4 processors         ; < 0.1%      ;
+;     2-4 processors         ;  11.1%      ;
 +----------------------------+-------------+
 
 
@@ -205,8 +205,8 @@ applicable agreement for further details.
 ; Type                ; Value                  ;
 +---------------------+------------------------+
 ; Placement (by node) ;                        ;
-;     -- Requested    ; 0 / 320 ( 0.00 % )     ;
-;     -- Achieved     ; 0 / 320 ( 0.00 % )     ;
+;     -- Requested    ; 0 / 154 ( 0.00 % )     ;
+;     -- Achieved     ; 0 / 154 ( 0.00 % )     ;
 ;                     ;                        ;
 ; Routing (by net)    ;                        ;
 ;     -- Requested    ; 0 / 0 ( 0.00 % )       ;
@@ -229,7 +229,7 @@ applicable agreement for further details.
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 ; Partition Name                 ; # Nodes ; # Preserved Nodes ; Preservation Level Used ; Netlist Type Used ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
-; Top                            ; 309     ; 0                 ; N/A                     ; Source File       ;
+; Top                            ; 143     ; 0                 ; N/A                     ; Source File       ;
 ; hard_block:auto_generated_inst ; 11      ; 0                 ; N/A                     ; Source File       ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 
@@ -240,57 +240,57 @@ applicable agreement for further details.
 The pin-out file can be found in C:/Users/slam/Desktop/lab7base2/vga/lab7_SL.pin.
 
 
-+--------------------------------------------------------------------------------------+
-; Fitter Resource Usage Summary                                                        ;
-+---------------------------------------------+----------------------------------------+
-; Resource                                    ; Usage                                  ;
-+---------------------------------------------+----------------------------------------+
-; Total logic elements                        ; 229 / 5,136 ( 4 % )                    ;
-;     -- Combinational with no register       ; 208                                    ;
-;     -- Register only                        ; 0                                      ;
-;     -- Combinational with a register        ; 21                                     ;
-;                                             ;                                        ;
-; Logic element usage by number of LUT inputs ;                                        ;
-;     -- 4 input functions                    ; 168                                    ;
-;     -- 3 input functions                    ; 21                                     ;
-;     -- <=2 input functions                  ; 40                                     ;
-;     -- Register only                        ; 0                                      ;
-;                                             ;                                        ;
-; Logic elements by mode                      ;                                        ;
-;     -- normal mode                          ; 203                                    ;
-;     -- arithmetic mode                      ; 26                                     ;
-;                                             ;                                        ;
-; Total registers*                            ; 21 / 5,560 ( < 1 % )                   ;
-;     -- Dedicated logic registers            ; 21 / 5,136 ( < 1 % )                   ;
-;     -- I/O registers                        ; 0 / 424 ( 0 % )                        ;
-;                                             ;                                        ;
-; Total LABs:  partially or completely used   ; 18 / 321 ( 6 % )                       ;
-; User inserted logic elements                ; 0                                      ;
-; Virtual pins                                ; 0                                      ;
-; I/O pins                                    ; 29 / 95 ( 31 % )                       ;
-;     -- Clock pins                           ; 1 / 4 ( 25 % )                         ;
-;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )                          ;
-;                                             ;                                        ;
-; Global signals                              ; 1                                      ;
-; M9Ks                                        ; 0 / 46 ( 0 % )                         ;
-; Total block memory bits                     ; 0 / 423,936 ( 0 % )                    ;
-; Total block memory implementation bits      ; 0 / 423,936 ( 0 % )                    ;
-; Embedded Multiplier 9-bit elements          ; 0 / 46 ( 0 % )                         ;
-; PLLs                                        ; 1 / 2 ( 50 % )                         ;
-; Global clocks                               ; 1 / 10 ( 10 % )                        ;
-; JTAGs                                       ; 0 / 1 ( 0 % )                          ;
-; CRC blocks                                  ; 0 / 1 ( 0 % )                          ;
-; ASMI blocks                                 ; 0 / 1 ( 0 % )                          ;
-; Impedance control blocks                    ; 0 / 4 ( 0 % )                          ;
-; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%                           ;
-; Peak interconnect usage (total/H/V)         ; 1% / 1% / 2%                           ;
-; Maximum fan-out node                        ; vga:vga1|vgaController:vgaCont|Add3~10 ;
-; Maximum fan-out                             ; 77                                     ;
-; Highest non-global fan-out signal           ; vga:vga1|vgaController:vgaCont|Add3~10 ;
-; Highest non-global fan-out                  ; 76                                     ;
-; Total fan-out                               ; 941                                    ;
-; Average fan-out                             ; 2.95                                   ;
-+---------------------------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Usage Summary                                                                                                                ;
++---------------------------------------------+------------------------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                                          ;
++---------------------------------------------+------------------------------------------------------------------------------------------------+
+; Total logic elements                        ; 63 / 5,136 ( 1 % )                                                                             ;
+;     -- Combinational with no register       ; 42                                                                                             ;
+;     -- Register only                        ; 0                                                                                              ;
+;     -- Combinational with a register        ; 21                                                                                             ;
+;                                             ;                                                                                                ;
+; Logic element usage by number of LUT inputs ;                                                                                                ;
+;     -- 4 input functions                    ; 20                                                                                             ;
+;     -- 3 input functions                    ; 5                                                                                              ;
+;     -- <=2 input functions                  ; 38                                                                                             ;
+;     -- Register only                        ; 0                                                                                              ;
+;                                             ;                                                                                                ;
+; Logic elements by mode                      ;                                                                                                ;
+;     -- normal mode                          ; 30                                                                                             ;
+;     -- arithmetic mode                      ; 33                                                                                             ;
+;                                             ;                                                                                                ;
+; Total registers*                            ; 21 / 5,560 ( < 1 % )                                                                           ;
+;     -- Dedicated logic registers            ; 21 / 5,136 ( < 1 % )                                                                           ;
+;     -- I/O registers                        ; 0 / 424 ( 0 % )                                                                                ;
+;                                             ;                                                                                                ;
+; Total LABs:  partially or completely used   ; 5 / 321 ( 2 % )                                                                                ;
+; User inserted logic elements                ; 0                                                                                              ;
+; Virtual pins                                ; 0                                                                                              ;
+; I/O pins                                    ; 29 / 95 ( 31 % )                                                                               ;
+;     -- Clock pins                           ; 1 / 4 ( 25 % )                                                                                 ;
+;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )                                                                                  ;
+;                                             ;                                                                                                ;
+; Global signals                              ; 1                                                                                              ;
+; M9Ks                                        ; 0 / 46 ( 0 % )                                                                                 ;
+; Total block memory bits                     ; 0 / 423,936 ( 0 % )                                                                            ;
+; Total block memory implementation bits      ; 0 / 423,936 ( 0 % )                                                                            ;
+; Embedded Multiplier 9-bit elements          ; 0 / 46 ( 0 % )                                                                                 ;
+; PLLs                                        ; 1 / 2 ( 50 % )                                                                                 ;
+; Global clocks                               ; 1 / 10 ( 10 % )                                                                                ;
+; JTAGs                                       ; 0 / 1 ( 0 % )                                                                                  ;
+; CRC blocks                                  ; 0 / 1 ( 0 % )                                                                                  ;
+; ASMI blocks                                 ; 0 / 1 ( 0 % )                                                                                  ;
+; Impedance control blocks                    ; 0 / 4 ( 0 % )                                                                                  ;
+; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%                                                                                   ;
+; Peak interconnect usage (total/H/V)         ; 0% / 0% / 0%                                                                                   ;
+; Maximum fan-out node                        ; vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0]~clkctrl ;
+; Maximum fan-out                             ; 21                                                                                             ;
+; Highest non-global fan-out signal           ; vga:vga1|vgaController:vgaCont|r[0]~5                                                          ;
+; Highest non-global fan-out                  ; 16                                                                                             ;
+; Total fan-out                               ; 304                                                                                            ;
+; Average fan-out                             ; 1.99                                                                                           ;
++---------------------------------------------+------------------------------------------------------------------------------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
 
@@ -302,26 +302,26 @@ The pin-out file can be found in C:/Users/slam/Desktop/lab7base2/vga/lab7_SL.pin
 +---------------------------------------------+---------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                 ; Low                            ;
 ;                                             ;                     ;                                ;
-; Total logic elements                        ; 229 / 5136 ( 4 % )  ; 0 / 5136 ( 0 % )               ;
-;     -- Combinational with no register       ; 208                 ; 0                              ;
+; Total logic elements                        ; 63 / 5136 ( 1 % )   ; 0 / 5136 ( 0 % )               ;
+;     -- Combinational with no register       ; 42                  ; 0                              ;
 ;     -- Register only                        ; 0                   ; 0                              ;
 ;     -- Combinational with a register        ; 21                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic element usage by number of LUT inputs ;                     ;                                ;
-;     -- 4 input functions                    ; 168                 ; 0                              ;
-;     -- 3 input functions                    ; 21                  ; 0                              ;
-;     -- <=2 input functions                  ; 40                  ; 0                              ;
+;     -- 4 input functions                    ; 20                  ; 0                              ;
+;     -- 3 input functions                    ; 5                   ; 0                              ;
+;     -- <=2 input functions                  ; 38                  ; 0                              ;
 ;     -- Register only                        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic elements by mode                      ;                     ;                                ;
-;     -- normal mode                          ; 203                 ; 0                              ;
-;     -- arithmetic mode                      ; 26                  ; 0                              ;
+;     -- normal mode                          ; 30                  ; 0                              ;
+;     -- arithmetic mode                      ; 33                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Total registers                             ; 21                  ; 0                              ;
 ;     -- Dedicated logic registers            ; 21 / 5136 ( < 1 % ) ; 0 / 5136 ( 0 % )               ;
 ;     -- I/O registers                        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total LABs:  partially or completely used   ; 18 / 321 ( 6 % )    ; 0 / 321 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 5 / 321 ( 2 % )     ; 0 / 321 ( 0 % )                ;
 ;                                             ;                     ;                                ;
 ; Virtual pins                                ; 0                   ; 0                              ;
 ; I/O pins                                    ; 29                  ; 0                              ;
@@ -338,8 +338,8 @@ The pin-out file can be found in C:/Users/slam/Desktop/lab7base2/vga/lab7_SL.pin
 ;     -- Registered Output Connections        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Internal Connections                        ;                     ;                                ;
-;     -- Total Connections                    ; 934                 ; 30                             ;
-;     -- Registered Connections               ; 148                 ; 0                              ;
+;     -- Total Connections                    ; 297                 ; 30                             ;
+;     -- Registered Connections               ; 110                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; External Connections                        ;                     ;                                ;
 ;     -- Top                                  ; 0                   ; 23                             ;
@@ -662,14 +662,12 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-----------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node              ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                            ; Library Name ;
 +-----------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------------+--------------+
-; |lab7_SL                                ; 229 (0)     ; 21 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 29   ; 0            ; 208 (0)      ; 0 (0)             ; 21 (0)           ; |lab7_SL                                                                       ;              ;
-;    |vga:vga1|                           ; 229 (0)     ; 21 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 208 (0)      ; 0 (0)             ; 21 (0)           ; |lab7_SL|vga:vga1                                                              ;              ;
+; |lab7_SL                                ; 63 (0)      ; 21 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 29   ; 0            ; 42 (0)       ; 0 (0)             ; 21 (0)           ; |lab7_SL                                                                       ;              ;
+;    |vga:vga1|                           ; 63 (0)      ; 21 (0)                    ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 42 (0)       ; 0 (0)             ; 21 (0)           ; |lab7_SL|vga:vga1                                                              ;              ;
 ;       |pll:vgapll|                      ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |lab7_SL|vga:vga1|pll:vgapll                                                   ;              ;
 ;          |altpll:altpll_component|      ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |lab7_SL|vga:vga1|pll:vgapll|altpll:altpll_component                           ;              ;
 ;             |pll_altpll:auto_generated| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |lab7_SL|vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated ;              ;
-;       |vgaController:vgaCont|           ; 53 (53)     ; 21 (21)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 32 (32)      ; 0 (0)             ; 21 (21)          ; |lab7_SL|vga:vga1|vgaController:vgaCont                                        ;              ;
-;       |videoGen:videoGen|               ; 176 (1)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 176 (1)      ; 0 (0)             ; 0 (0)            ; |lab7_SL|vga:vga1|videoGen:videoGen                                            ;              ;
-;          |chargenrom:chargenromb|       ; 175 (175)   ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 175 (175)    ; 0 (0)             ; 0 (0)            ; |lab7_SL|vga:vga1|videoGen:videoGen|chargenrom:chargenromb                     ;              ;
+;       |vgaController:vgaCont|           ; 63 (63)     ; 21 (21)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 42 (42)      ; 0 (0)             ; 21 (21)          ; |lab7_SL|vga:vga1|vgaController:vgaCont                                        ;              ;
 +-----------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -727,9 +725,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 ; clk                                                                                    ; PIN_88             ; 1       ; Clock        ; no     ; --                   ; --               ; --                        ;
 ; vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ; PLL_2              ; 21      ; Clock        ; yes    ; Global Clock         ; GCLK8            ; --                        ;
-; vga:vga1|vgaController:vgaCont|LessThan0~1                                             ; LCCOMB_X23_Y18_N6  ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; vga:vga1|vgaController:vgaCont|LessThan1~1                                             ; LCCOMB_X22_Y18_N28 ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; vga:vga1|vgaController:vgaCont|always0~0                                               ; LCCOMB_X22_Y18_N30 ; 10      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; vga:vga1|vgaController:vgaCont|LessThan0~1                                             ; LCCOMB_X29_Y10_N30 ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; vga:vga1|vgaController:vgaCont|LessThan1~1                                             ; LCCOMB_X32_Y11_N28 ; 10      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; vga:vga1|vgaController:vgaCont|always0~0                                               ; LCCOMB_X32_Y11_N22 ; 10      ; Clock enable ; no     ; --                   ; --               ; --                        ;
 +----------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -747,235 +745,52 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------------------------------------------------------------------+---------+
 ; Name                                                                                                    ; Fan-Out ;
 +---------------------------------------------------------------------------------------------------------+---------+
-; vga:vga1|vgaController:vgaCont|Add3~10                                                                  ; 76      ;
-; vga:vga1|vgaController:vgaCont|Add3~6                                                                   ; 74      ;
-; vga:vga1|vgaController:vgaCont|Add3~8                                                                   ; 68      ;
-; vga:vga1|vgaController:vgaCont|Add3~12                                                                  ; 63      ;
-; vga:vga1|vgaController:vgaCont|Add3~2                                                                   ; 49      ;
-; vga:vga1|vgaController:vgaCont|vcnt[0]                                                                  ; 46      ;
-; vga:vga1|vgaController:vgaCont|Add3~4                                                                   ; 42      ;
-; vga:vga1|vgaController:vgaCont|Add3~14                                                                  ; 35      ;
-; vga:vga1|vgaController:vgaCont|Add3~16                                                                  ; 26      ;
+; vga:vga1|vgaController:vgaCont|r[0]~5                                                                   ; 16      ;
 ; vga:vga1|vgaController:vgaCont|always0~0                                                                ; 10      ;
 ; vga:vga1|vgaController:vgaCont|LessThan1~1                                                              ; 10      ;
 ; vga:vga1|vgaController:vgaCont|LessThan0~1                                                              ; 10      ;
-; vga:vga1|vgaController:vgaCont|b[0]~3                                                                   ; 8       ;
-; vga:vga1|vgaController:vgaCont|r[0]~0                                                                   ; 8       ;
-; vga:vga1|videoGen:videoGen|Add0~0                                                                       ; 8       ;
+; vga:vga1|vgaController:vgaCont|valid~2                                                                  ; 9       ;
+; vga:vga1|vgaController:vgaCont|vcnt[9]                                                                  ; 6       ;
+; vga:vga1|vgaController:vgaCont|hcnt[6]                                                                  ; 6       ;
+; vga:vga1|vgaController:vgaCont|hcnt[5]                                                                  ; 6       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[1]                                                                  ; 5       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[2]                                                                  ; 5       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[4]                                                                  ; 5       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[3]                                                                  ; 5       ;
-; vga:vga1|vgaController:vgaCont|vcnt[9]                                                                  ; 5       ;
-; vga:vga1|vgaController:vgaCont|hcnt[6]                                                                  ; 5       ;
-; vga:vga1|vgaController:vgaCont|hcnt[5]                                                                  ; 5       ;
-; vga:vga1|vgaController:vgaCont|hcnt[1]                                                                  ; 4       ;
+; vga:vga1|vgaController:vgaCont|hcnt[9]                                                                  ; 5       ;
+; vga:vga1|vgaController:vgaCont|hcnt[8]                                                                  ; 5       ;
+; vga:vga1|vgaController:vgaCont|hcnt[7]                                                                  ; 5       ;
+; vga:vga1|vgaController:vgaCont|hcnt[4]                                                                  ; 5       ;
+; vga:vga1|vgaController:vgaCont|hcnt[3]                                                                  ; 5       ;
+; vga:vga1|vgaController:vgaCont|vcnt[0]                                                                  ; 4       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[8]                                                                  ; 4       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[7]                                                                  ; 4       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[6]                                                                  ; 4       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[5]                                                                  ; 4       ;
-; vga:vga1|vgaController:vgaCont|hcnt[9]                                                                  ; 4       ;
-; vga:vga1|vgaController:vgaCont|hcnt[8]                                                                  ; 4       ;
-; vga:vga1|vgaController:vgaCont|hcnt[7]                                                                  ; 4       ;
-; vga:vga1|vgaController:vgaCont|hcnt[4]                                                                  ; 4       ;
-; vga:vga1|vgaController:vgaCont|hcnt[3]                                                                  ; 4       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~16                                            ; 3       ;
 ; vga:vga1|vgaController:vgaCont|LessThan9~0                                                              ; 3       ;
 ; vga:vga1|vgaController:vgaCont|hsync~2                                                                  ; 3       ;
 ; vga:vga1|vgaController:vgaCont|hsync~1                                                                  ; 3       ;
 ; vga:vga1|vgaController:vgaCont|hsync~0                                                                  ; 3       ;
-; vga:vga1|vgaController:vgaCont|hcnt[0]                                                                  ; 3       ;
-; vga:vga1|vgaController:vgaCont|b[0]~5                                                                   ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~135                                           ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~125                                           ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~71                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~70                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~55                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~54                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~52                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~35                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~30                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~29                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~20                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~19                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~18                                            ; 2       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~15                                            ; 2       ;
 ; vga:vga1|vgaController:vgaCont|LessThan8~1                                                              ; 2       ;
 ; vga:vga1|vgaController:vgaCont|vsync~1                                                                  ; 2       ;
 ; vga:vga1|vgaController:vgaCont|hsync~3                                                                  ; 2       ;
 ; vga:vga1|vgaController:vgaCont|hcnt[2]                                                                  ; 2       ;
+; vga:vga1|vgaController:vgaCont|hcnt[1]                                                                  ; 2       ;
 ; vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0]~clkctrl_e_vgaclk ; 1       ;
 ; clk~input                                                                                               ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~171                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~170                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~169                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~168                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~167                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~166                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~8                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~7                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~165                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~164                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~163                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~162                                           ; 1       ;
-; vga:vga1|vgaController:vgaCont|b[0]~4                                                                   ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~161                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~160                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~159                                           ; 1       ;
 ; vga:vga1|vgaController:vgaCont|oldhsync                                                                 ; 1       ;
 ; vga:vga1|vgaController:vgaCont|LessThan1~0                                                              ; 1       ;
 ; vga:vga1|vgaController:vgaCont|LessThan0~0                                                              ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~6                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~5                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~158                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~157                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~156                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~155                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~154                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~153                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~152                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~151                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~150                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~149                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~148                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~147                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~146                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~145                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~144                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~143                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~142                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~141                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~140                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~139                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~138                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~137                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~136                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~134                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~133                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~132                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~131                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~130                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~129                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~128                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~127                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~126                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~124                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~123                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~122                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~121                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~120                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~119                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~118                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~117                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~116                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~115                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~114                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~113                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~112                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~111                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~110                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~109                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~108                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~107                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~106                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~105                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~104                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~103                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~102                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~101                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~100                                           ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~99                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~98                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~97                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~96                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~95                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~94                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~93                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~92                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~91                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~90                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~89                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~88                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~87                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~86                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~85                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~84                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~83                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~82                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~81                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~80                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~79                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~78                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~77                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~76                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~75                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~74                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~73                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~72                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~69                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~68                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~67                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~66                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~65                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~64                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~63                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~62                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~61                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~60                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~59                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~58                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~57                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~56                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~4                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~53                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~3                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~2                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~1                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~51                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~50                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~49                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~48                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~47                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~46                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|Mux0~0                                                ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~45                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~44                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~43                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~42                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~41                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~40                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~39                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~38                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~37                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~36                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~34                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~33                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~32                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~31                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~28                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~27                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~26                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~25                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~24                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~23                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~22                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~21                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~17                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~14                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~13                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~12                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~11                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~10                                            ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~9                                             ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~8                                             ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~7                                             ; 1       ;
-; vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom~6                                             ; 1       ;
-; vga:vga1|vgaController:vgaCont|b[0]~2                                                                   ; 1       ;
-; vga:vga1|vgaController:vgaCont|b[0]~1                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|r[0]~4                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|r[0]~3                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|r[0]~2                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|r[0]~1                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|valid~1                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|LessThan8~2                                                              ; 1       ;
 ; vga:vga1|vgaController:vgaCont|LessThan8~0                                                              ; 1       ;
-; vga:vga1|vgaController:vgaCont|b[0]~0                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|valid~0                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|LessThan6~0                                                              ; 1       ;
+; vga:vga1|vgaController:vgaCont|r[0]~0                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|sync_b                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|vsync~0                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|vcnt[9]~28                                                               ; 1       ;
@@ -1016,164 +831,186 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; vga:vga1|vgaController:vgaCont|hcnt[1]~12                                                               ; 1       ;
 ; vga:vga1|vgaController:vgaCont|hcnt[0]~11                                                               ; 1       ;
 ; vga:vga1|vgaController:vgaCont|hcnt[0]~10                                                               ; 1       ;
+; vga:vga1|vgaController:vgaCont|hcnt[0]                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~18                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~17                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~16                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~15                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~14                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~13                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~12                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~12                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~11                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~10                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~11                                                                  ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~10                                                                  ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~9                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~8                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~7                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~6                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~5                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~4                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~3                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add3~2                                                                   ; 1       ;
 ; vga:vga1|vgaController:vgaCont|Add3~1                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~9                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~8                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~7                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~6                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~5                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~4                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~3                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~2                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~1                                                                   ; 1       ;
+; vga:vga1|vgaController:vgaCont|Add2~0                                                                   ; 1       ;
 ; vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_fbout                   ; 1       ;
 +---------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Interconnect Usage Summary                          ;
-+----------------------------+------------------------+
-; Interconnect Resource Type ; Usage                  ;
-+----------------------------+------------------------+
-; Block interconnects        ; 227 / 32,401 ( < 1 % ) ;
-; C16 interconnects          ; 1 / 1,326 ( < 1 % )    ;
-; C4 interconnects           ; 107 / 21,816 ( < 1 % ) ;
-; Direct links               ; 37 / 32,401 ( < 1 % )  ;
-; Global clocks              ; 1 / 10 ( 10 % )        ;
-; Local interconnects        ; 154 / 10,320 ( 1 % )   ;
-; R24 interconnects          ; 3 / 1,289 ( < 1 % )    ;
-; R4 interconnects           ; 103 / 28,186 ( < 1 % ) ;
-+----------------------------+------------------------+
++----------------------------------------------------+
+; Interconnect Usage Summary                         ;
++----------------------------+-----------------------+
+; Interconnect Resource Type ; Usage                 ;
++----------------------------+-----------------------+
+; Block interconnects        ; 83 / 32,401 ( < 1 % ) ;
+; C16 interconnects          ; 5 / 1,326 ( < 1 % )   ;
+; C4 interconnects           ; 43 / 21,816 ( < 1 % ) ;
+; Direct links               ; 29 / 32,401 ( < 1 % ) ;
+; Global clocks              ; 1 / 10 ( 10 % )       ;
+; Local interconnects        ; 41 / 10,320 ( < 1 % ) ;
+; R24 interconnects          ; 4 / 1,289 ( < 1 % )   ;
+; R4 interconnects           ; 35 / 28,186 ( < 1 % ) ;
++----------------------------+-----------------------+
+
+
++---------------------------------------------------------------------------+
+; LAB Logic Elements                                                        ;
++---------------------------------------------+-----------------------------+
+; Number of Logic Elements  (Average = 12.60) ; Number of LABs  (Total = 5) ;
++---------------------------------------------+-----------------------------+
+; 1                                           ; 0                           ;
+; 2                                           ; 0                           ;
+; 3                                           ; 0                           ;
+; 4                                           ; 0                           ;
+; 5                                           ; 0                           ;
+; 6                                           ; 0                           ;
+; 7                                           ; 1                           ;
+; 8                                           ; 0                           ;
+; 9                                           ; 0                           ;
+; 10                                          ; 0                           ;
+; 11                                          ; 1                           ;
+; 12                                          ; 0                           ;
+; 13                                          ; 1                           ;
+; 14                                          ; 0                           ;
+; 15                                          ; 0                           ;
+; 16                                          ; 2                           ;
++---------------------------------------------+-----------------------------+
+
+
++------------------------------------------------------------------+
+; LAB-wide Signals                                                 ;
++------------------------------------+-----------------------------+
+; LAB-wide Signals  (Average = 0.40) ; Number of LABs  (Total = 5) ;
++------------------------------------+-----------------------------+
+; 1 Clock                            ; 2                           ;
++------------------------------------+-----------------------------+
 
 
 +----------------------------------------------------------------------------+
-; LAB Logic Elements                                                         ;
-+---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 12.72) ; Number of LABs  (Total = 18) ;
-+---------------------------------------------+------------------------------+
-; 1                                           ; 3                            ;
-; 2                                           ; 1                            ;
-; 3                                           ; 0                            ;
-; 4                                           ; 0                            ;
-; 5                                           ; 0                            ;
-; 6                                           ; 0                            ;
-; 7                                           ; 0                            ;
-; 8                                           ; 0                            ;
-; 9                                           ; 0                            ;
-; 10                                          ; 0                            ;
-; 11                                          ; 0                            ;
-; 12                                          ; 0                            ;
-; 13                                          ; 0                            ;
-; 14                                          ; 0                            ;
-; 15                                          ; 0                            ;
-; 16                                          ; 14                           ;
-+---------------------------------------------+------------------------------+
+; LAB Signals Sourced                                                        ;
++----------------------------------------------+-----------------------------+
+; Number of Signals Sourced  (Average = 16.60) ; Number of LABs  (Total = 5) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 0                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 0                           ;
+; 3                                            ; 0                           ;
+; 4                                            ; 0                           ;
+; 5                                            ; 0                           ;
+; 6                                            ; 0                           ;
+; 7                                            ; 1                           ;
+; 8                                            ; 0                           ;
+; 9                                            ; 0                           ;
+; 10                                           ; 1                           ;
+; 11                                           ; 0                           ;
+; 12                                           ; 0                           ;
+; 13                                           ; 1                           ;
+; 14                                           ; 0                           ;
+; 15                                           ; 0                           ;
+; 16                                           ; 0                           ;
+; 17                                           ; 0                           ;
+; 18                                           ; 0                           ;
+; 19                                           ; 0                           ;
+; 20                                           ; 0                           ;
+; 21                                           ; 0                           ;
+; 22                                           ; 0                           ;
+; 23                                           ; 0                           ;
+; 24                                           ; 0                           ;
+; 25                                           ; 0                           ;
+; 26                                           ; 1                           ;
+; 27                                           ; 1                           ;
++----------------------------------------------+-----------------------------+
 
 
-+-------------------------------------------------------------------+
-; LAB-wide Signals                                                  ;
-+------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 0.11) ; Number of LABs  (Total = 18) ;
-+------------------------------------+------------------------------+
-; 1 Clock                            ; 2                            ;
-+------------------------------------+------------------------------+
++-------------------------------------------------------------------------------+
+; LAB Signals Sourced Out                                                       ;
++-------------------------------------------------+-----------------------------+
+; Number of Signals Sourced Out  (Average = 9.00) ; Number of LABs  (Total = 5) ;
++-------------------------------------------------+-----------------------------+
+; 0                                               ; 0                           ;
+; 1                                               ; 0                           ;
+; 2                                               ; 0                           ;
+; 3                                               ; 0                           ;
+; 4                                               ; 1                           ;
+; 5                                               ; 0                           ;
+; 6                                               ; 0                           ;
+; 7                                               ; 1                           ;
+; 8                                               ; 1                           ;
+; 9                                               ; 0                           ;
+; 10                                              ; 0                           ;
+; 11                                              ; 0                           ;
+; 12                                              ; 0                           ;
+; 13                                              ; 2                           ;
++-------------------------------------------------+-----------------------------+
 
 
-+-----------------------------------------------------------------------------+
-; LAB Signals Sourced                                                         ;
-+----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 13.83) ; Number of LABs  (Total = 18) ;
-+----------------------------------------------+------------------------------+
-; 0                                            ; 0                            ;
-; 1                                            ; 3                            ;
-; 2                                            ; 1                            ;
-; 3                                            ; 0                            ;
-; 4                                            ; 0                            ;
-; 5                                            ; 0                            ;
-; 6                                            ; 0                            ;
-; 7                                            ; 0                            ;
-; 8                                            ; 0                            ;
-; 9                                            ; 0                            ;
-; 10                                           ; 0                            ;
-; 11                                           ; 0                            ;
-; 12                                           ; 0                            ;
-; 13                                           ; 0                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 1                            ;
-; 16                                           ; 11                           ;
-; 17                                           ; 0                            ;
-; 18                                           ; 0                            ;
-; 19                                           ; 0                            ;
-; 20                                           ; 0                            ;
-; 21                                           ; 0                            ;
-; 22                                           ; 0                            ;
-; 23                                           ; 0                            ;
-; 24                                           ; 0                            ;
-; 25                                           ; 0                            ;
-; 26                                           ; 1                            ;
-; 27                                           ; 1                            ;
-+----------------------------------------------+------------------------------+
-
-
-+--------------------------------------------------------------------------------+
-; LAB Signals Sourced Out                                                        ;
-+-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 5.17) ; Number of LABs  (Total = 18) ;
-+-------------------------------------------------+------------------------------+
-; 0                                               ; 0                            ;
-; 1                                               ; 4                            ;
-; 2                                               ; 1                            ;
-; 3                                               ; 2                            ;
-; 4                                               ; 2                            ;
-; 5                                               ; 2                            ;
-; 6                                               ; 1                            ;
-; 7                                               ; 2                            ;
-; 8                                               ; 1                            ;
-; 9                                               ; 0                            ;
-; 10                                              ; 0                            ;
-; 11                                              ; 2                            ;
-; 12                                              ; 0                            ;
-; 13                                              ; 1                            ;
-+-------------------------------------------------+------------------------------+
-
-
-+-----------------------------------------------------------------------------+
-; LAB Distinct Inputs                                                         ;
-+----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 10.33) ; Number of LABs  (Total = 18) ;
-+----------------------------------------------+------------------------------+
-; 0                                            ; 0                            ;
-; 1                                            ; 0                            ;
-; 2                                            ; 0                            ;
-; 3                                            ; 2                            ;
-; 4                                            ; 2                            ;
-; 5                                            ; 1                            ;
-; 6                                            ; 0                            ;
-; 7                                            ; 1                            ;
-; 8                                            ; 3                            ;
-; 9                                            ; 2                            ;
-; 10                                           ; 1                            ;
-; 11                                           ; 2                            ;
-; 12                                           ; 1                            ;
-; 13                                           ; 0                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 1                            ;
-; 17                                           ; 0                            ;
-; 18                                           ; 0                            ;
-; 19                                           ; 0                            ;
-; 20                                           ; 0                            ;
-; 21                                           ; 0                            ;
-; 22                                           ; 0                            ;
-; 23                                           ; 0                            ;
-; 24                                           ; 0                            ;
-; 25                                           ; 0                            ;
-; 26                                           ; 1                            ;
-; 27                                           ; 0                            ;
-; 28                                           ; 0                            ;
-; 29                                           ; 0                            ;
-; 30                                           ; 0                            ;
-; 31                                           ; 0                            ;
-; 32                                           ; 1                            ;
-+----------------------------------------------+------------------------------+
++----------------------------------------------------------------------------+
+; LAB Distinct Inputs                                                        ;
++----------------------------------------------+-----------------------------+
+; Number of Distinct Inputs  (Average = 11.80) ; Number of LABs  (Total = 5) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 0                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 0                           ;
+; 3                                            ; 1                           ;
+; 4                                            ; 0                           ;
+; 5                                            ; 0                           ;
+; 6                                            ; 0                           ;
+; 7                                            ; 2                           ;
+; 8                                            ; 0                           ;
+; 9                                            ; 0                           ;
+; 10                                           ; 0                           ;
+; 11                                           ; 0                           ;
+; 12                                           ; 1                           ;
+; 13                                           ; 0                           ;
+; 14                                           ; 0                           ;
+; 15                                           ; 0                           ;
+; 16                                           ; 0                           ;
+; 17                                           ; 0                           ;
+; 18                                           ; 0                           ;
+; 19                                           ; 0                           ;
+; 20                                           ; 0                           ;
+; 21                                           ; 0                           ;
+; 22                                           ; 0                           ;
+; 23                                           ; 0                           ;
+; 24                                           ; 0                           ;
+; 25                                           ; 0                           ;
+; 26                                           ; 0                           ;
+; 27                                           ; 0                           ;
+; 28                                           ; 0                           ;
+; 29                                           ; 0                           ;
+; 30                                           ; 1                           ;
++----------------------------------------------+-----------------------------+
 
 
 +------------------------------------------+
@@ -1312,7 +1149,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Fitter
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Sat Nov 01 23:37:41 2014
+    Info: Processing started: Sun Nov 02 10:25:53 2014
 Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off lab7_SL -c lab7_SL
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (119006): Selected device EP3C5E144C8 for design "lab7_SL"
@@ -1345,7 +1182,7 @@ Info (332130): Timing requirements not specified -- quality metrics such as perf
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
@@ -1353,7 +1190,7 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:00
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 1% of the available device resources in the region that extends from location X11_Y12 to location X22_Y24
+    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X23_Y12 to location X34_Y24
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
@@ -1364,10 +1201,10 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (144001): Generated suppressed messages file C:/Users/slam/Desktop/lab7base2/vga/lab7_SL.fit.smsg
 Info: Quartus II 32-bit Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 491 megabytes
-    Info: Processing ended: Sat Nov 01 23:37:49 2014
+    Info: Peak virtual memory: 494 megabytes
+    Info: Processing ended: Sun Nov 02 10:26:01 2014
     Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:08
+    Info: Total CPU time (on all processors): 00:00:07
 
 
 +----------------------------+

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab7_SL
-Sat Nov 01 23:37:40 2014
+Sun Nov 02 10:25:53 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -17,11 +17,12 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
   9. General Register Statistics
  10. Parameter Settings for User Entity Instance: vga:vga1|pll:vgapll|altpll:altpll_component
  11. Parameter Settings for User Entity Instance: vga:vga1|vgaController:vgaCont
- 12. altpll Parameter Settings by Entity Instance
- 13. Port Connectivity Checks: "vga:vga1|videoGen:videoGen|chargenrom:chargenromb"
+ 12. Parameter Settings for User Entity Instance: vga:vga1|videoGen2:videoGen|mouse:gen_ptr
+ 13. altpll Parameter Settings by Entity Instance
  14. Port Connectivity Checks: "vga:vga1|pll:vgapll"
- 15. Elapsed Time Per Partition
- 16. Analysis & Synthesis Messages
+ 15. Port Connectivity Checks: "vga:vga1"
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -47,13 +48,13 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Nov 01 23:37:40 2014    ;
+; Analysis & Synthesis Status        ; Successful - Sun Nov 02 10:25:53 2014    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; lab7_SL                                  ;
 ; Top-level Entity Name              ; lab7_SL                                  ;
 ; Family                             ; Cyclone III                              ;
-; Total logic elements               ; 229                                      ;
-;     Total combinational functions  ; 229                                      ;
+; Total logic elements               ; 63                                       ;
+;     Total combinational functions  ; 63                                       ;
 ;     Dedicated logic registers      ; 21                                       ;
 ; Total registers                    ; 21                                       ;
 ; Total pins                         ; 29                                       ;
@@ -185,36 +186,36 @@ applicable agreement for further details.
 +----------------------------------+-----------------+------------------------------+------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                          ;
-+---------------------------------------------+----------------------------------------+
-; Resource                                    ; Usage                                  ;
-+---------------------------------------------+----------------------------------------+
-; Estimated Total logic elements              ; 229                                    ;
-;                                             ;                                        ;
-; Total combinational functions               ; 229                                    ;
-; Logic element usage by number of LUT inputs ;                                        ;
-;     -- 4 input functions                    ; 168                                    ;
-;     -- 3 input functions                    ; 21                                     ;
-;     -- <=2 input functions                  ; 40                                     ;
-;                                             ;                                        ;
-; Logic elements by mode                      ;                                        ;
-;     -- normal mode                          ; 203                                    ;
-;     -- arithmetic mode                      ; 26                                     ;
-;                                             ;                                        ;
-; Total registers                             ; 21                                     ;
-;     -- Dedicated logic registers            ; 21                                     ;
-;     -- I/O registers                        ; 0                                      ;
-;                                             ;                                        ;
-; I/O pins                                    ; 29                                     ;
-; Total PLLs                                  ; 1                                      ;
-;     -- PLLs                                 ; 1                                      ;
-;                                             ;                                        ;
-; Maximum fan-out node                        ; vga:vga1|vgaController:vgaCont|Add3~10 ;
-; Maximum fan-out                             ; 77                                     ;
-; Total fan-out                               ; 935                                    ;
-; Average fan-out                             ; 3.03                                   ;
-+---------------------------------------------+----------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                          ;
++---------------------------------------------+----------------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                                  ;
++---------------------------------------------+----------------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 63                                                                                     ;
+;                                             ;                                                                                        ;
+; Total combinational functions               ; 63                                                                                     ;
+; Logic element usage by number of LUT inputs ;                                                                                        ;
+;     -- 4 input functions                    ; 20                                                                                     ;
+;     -- 3 input functions                    ; 5                                                                                      ;
+;     -- <=2 input functions                  ; 38                                                                                     ;
+;                                             ;                                                                                        ;
+; Logic elements by mode                      ;                                                                                        ;
+;     -- normal mode                          ; 30                                                                                     ;
+;     -- arithmetic mode                      ; 33                                                                                     ;
+;                                             ;                                                                                        ;
+; Total registers                             ; 21                                                                                     ;
+;     -- Dedicated logic registers            ; 21                                                                                     ;
+;     -- I/O registers                        ; 0                                                                                      ;
+;                                             ;                                                                                        ;
+; I/O pins                                    ; 29                                                                                     ;
+; Total PLLs                                  ; 1                                                                                      ;
+;     -- PLLs                                 ; 1                                                                                      ;
+;                                             ;                                                                                        ;
+; Maximum fan-out node                        ; vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
+; Maximum fan-out                             ; 23                                                                                     ;
+; Total fan-out                               ; 298                                                                                    ;
+; Average fan-out                             ; 2.08                                                                                   ;
++---------------------------------------------+----------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -222,14 +223,12 @@ applicable agreement for further details.
 +-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node              ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Library Name ;
 +-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
-; |lab7_SL                                ; 229 (0)           ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 29   ; 0            ; |lab7_SL                                                                       ;              ;
-;    |vga:vga1|                           ; 229 (0)           ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1                                                              ;              ;
+; |lab7_SL                                ; 63 (0)            ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 29   ; 0            ; |lab7_SL                                                                       ;              ;
+;    |vga:vga1|                           ; 63 (0)            ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1                                                              ;              ;
 ;       |pll:vgapll|                      ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|pll:vgapll                                                   ;              ;
 ;          |altpll:altpll_component|      ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|pll:vgapll|altpll:altpll_component                           ;              ;
 ;             |pll_altpll:auto_generated| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated ;              ;
-;       |vgaController:vgaCont|           ; 53 (53)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|vgaController:vgaCont                                        ;              ;
-;       |videoGen:videoGen|               ; 176 (1)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|videoGen:videoGen                                            ;              ;
-;          |chargenrom:chargenromb|       ; 175 (175)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|videoGen:videoGen|chargenrom:chargenromb                     ;              ;
+;       |vgaController:vgaCont|           ; 63 (63)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lab7_SL|vga:vga1|vgaController:vgaCont                                        ;              ;
 +-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -647,6 +646,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga:vga1|videoGen2:videoGen|mouse:gen_ptr ;
++----------------+----------+------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                       ;
++----------------+----------+------------------------------------------------------------+
+; width          ; 00001010 ; Unsigned Binary                                            ;
+; height         ; 00001010 ; Unsigned Binary                                            ;
++----------------+----------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-----------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                                ;
 +-------------------------------+---------------------------------------------+
@@ -664,15 +674,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+---------------------------------------------+
 
 
-+-------------------------------------------------------------------------------+
-; Port Connectivity Checks: "vga:vga1|videoGen:videoGen|chargenrom:chargenromb" ;
-+-------+-------+----------+----------------------------------------------------+
-; Port  ; Type  ; Severity ; Details                                            ;
-+-------+-------+----------+----------------------------------------------------+
-; ch[7] ; Input ; Info     ; Stuck at GND                                       ;
-+-------+-------+----------+----------------------------------------------------+
-
-
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "vga:vga1|pll:vgapll"                                                                                                                           ;
 +--------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -683,12 +684,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
++---------------------------------------------+
+; Port Connectivity Checks: "vga:vga1"        ;
++-----------+-------+----------+--------------+
+; Port      ; Type  ; Severity ; Details      ;
++-----------+-------+----------+--------------+
+; xpt[5..4] ; Input ; Info     ; Stuck at VCC ;
+; xpt[9..6] ; Input ; Info     ; Stuck at GND ;
+; xpt[3..2] ; Input ; Info     ; Stuck at GND ;
+; xpt[1]    ; Input ; Info     ; Stuck at VCC ;
+; xpt[0]    ; Input ; Info     ; Stuck at GND ;
+; ypt[5..4] ; Input ; Info     ; Stuck at VCC ;
+; ypt[9..6] ; Input ; Info     ; Stuck at GND ;
+; ypt[3..2] ; Input ; Info     ; Stuck at GND ;
+; ypt[1]    ; Input ; Info     ; Stuck at VCC ;
+; ypt[0]    ; Input ; Info     ; Stuck at GND ;
++-----------+-------+----------+--------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -698,14 +717,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Sat Nov 01 23:37:35 2014
+    Info: Processing started: Sun Nov 02 10:25:50 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab7_SL -c lab7_SL
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Info (12021): Found 4 design units, including 4 entities, in source file vga.sv
+Info (12021): Found 7 design units, including 7 entities, in source file vga.sv
     Info (12023): Found entity 1: vga
     Info (12023): Found entity 2: vgaController
     Info (12023): Found entity 3: videoGen
-    Info (12023): Found entity 4: chargenrom
+    Info (12023): Found entity 4: videoGen2
+    Info (12023): Found entity 5: background
+    Info (12023): Found entity 6: mouse
+    Info (12023): Found entity 7: chargenrom
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
     Info (12022): Found design unit 1: pll-SYN
     Info (12023): Found entity 1: pll
@@ -776,37 +798,22 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
     Info (12023): Found entity 1: pll_altpll
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "vga:vga1|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "vgaController" for hierarchy "vga:vga1|vgaController:vgaCont"
-Info (12128): Elaborating entity "videoGen" for hierarchy "vga:vga1|videoGen:videoGen"
-Info (12128): Elaborating entity "chargenrom" for hierarchy "vga:vga1|videoGen:videoGen|chargenrom:chargenromb"
-Warning (10850): Verilog HDL warning at vga.sv(95): number of words (744) in memory file does not match the number of elements in the address range [0:2047]
-Warning (10030): Net "charrom.data_a" at vga.sv(90) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.waddr_a" at vga.sv(90) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.we_a" at vga.sv(90) has no driver or initial value, using a default initial value '0'
-Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276007): RAM logic "vga:vga1|videoGen:videoGen|chargenrom:chargenromb|charrom" is uninferred due to asynchronous read logic
-Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/slam/Desktop/lab7base2/vga/db/lab7_SL.ram0_chargenrom_5dff6772.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info (12128): Elaborating entity "videoGen2" for hierarchy "vga:vga1|videoGen2:videoGen"
+Info (12128): Elaborating entity "background" for hierarchy "vga:vga1|videoGen2:videoGen|background:gen_bkg"
+Info (12128): Elaborating entity "mouse" for hierarchy "vga:vga1|videoGen2:videoGen|mouse:gen_ptr"
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "g[0]" is stuck at GND
-    Warning (13410): Pin "g[1]" is stuck at GND
-    Warning (13410): Pin "g[2]" is stuck at GND
-    Warning (13410): Pin "g[3]" is stuck at GND
-    Warning (13410): Pin "g[4]" is stuck at GND
-    Warning (13410): Pin "g[5]" is stuck at GND
-    Warning (13410): Pin "g[6]" is stuck at GND
-    Warning (13410): Pin "g[7]" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 260 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 94 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 230 logic cells
+    Info (21061): Implemented 64 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 361 megabytes
-    Info: Processing ended: Sat Nov 01 23:37:40 2014
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:05
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 358 megabytes
+    Info: Processing ended: Sun Nov 02 10:25:53 2014
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
 
 
