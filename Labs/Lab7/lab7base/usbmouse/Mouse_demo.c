@@ -145,6 +145,8 @@ BOOL LED_Key_Pressed = FALSE;
 BYTE currCharPos;
 BYTE FirstKeyPressed ;
 
+short xMvmt, yMvmt;			// Sherman. x and y movement of the mouse.
+
 short mouseMvt = 0;
 
 //******************************************************************************
@@ -249,7 +251,6 @@ int main (void)
 void App_ProcessInputReport(void)
 {
     BYTE  data;
-	short xMvmt, yMvmt;
    /* process input report received from device */
     USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportData, Appl_raw_report_buffer.ReportSize
                           ,Appl_Button_report_buffer, &Appl_Mouse_Buttons_Details);
