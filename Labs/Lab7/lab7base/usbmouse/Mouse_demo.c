@@ -145,9 +145,22 @@ BOOL LED_Key_Pressed = FALSE;
 BYTE currCharPos;
 BYTE FirstKeyPressed ;
 
-short xMvmt, yMvmt;			// Sherman. x and y movement of the mouse.
+//Sherman. Make x and y movement global
+char xMvmt = 0;
+char yMvmt = 0;
 
 short mouseMvt = 0;
+
+
+// *****************************************************************************
+// *****************************************************************************
+// Sherman's Function Prototypes
+// *****************************************************************************
+// *****************************************************************************
+void initspi(void);
+char spi_send_receive(char);
+void spi_send_short(short);
+
 
 //******************************************************************************
 //******************************************************************************
@@ -172,6 +185,12 @@ int main (void)
   		TRISE = 0xFFFF;
   		TRISB = 0xFFFF;
   		TRISG = 0xFFFF;
+
+		//Sherman. Make TRISDD0-7 outputs. This allows numbers to be counted on the LEDs
+		TRISD = 0xFF00;
+
+		//Sherman. Init SPI
+		initspi();
         
         // Initialize USB layers
         USBInitialize( 0 );
@@ -251,6 +270,7 @@ int main (void)
 void App_ProcessInputReport(void)
 {
     BYTE  data;
+	
    /* process input report received from device */
     USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportData, Appl_raw_report_buffer.ReportSize
                           ,Appl_Button_report_buffer, &Appl_Mouse_Buttons_Details);
@@ -261,8 +281,39 @@ void App_ProcessInputReport(void)
     xMvmt = (signed char) Appl_XY_report_buffer[0];	// Get X-axis movement from report
 	//PORTD = mouseMvt;	// Write to LEDs to show mouse is working
     yMvmt = (signed char) Appl_XY_report_buffer[1];	// Get Y-axis movement from report
+
+	//Sherman. Write the x movement to PORTD.
+	PORTD = xMvmt;
+
+	//Sherman. Send x and y movements
+	spi_send_receive(xMvmt);
+	spi_send_receive(yMvmt);
     
 }
+
+
+//******************************************************************************
+//******************************************************************************
+// SPI Support Functions
+//******************************************************************************
+//******************************************************************************
+
+void initspi(void) {
+ 	char junk;
+ 	SPI2CONbits.ON = 0; 		// disable SPI to reset any previous state
+	junk = SPI2BUF; 			// read SPI buffer to clear the receive buffer
+	SPI2BRG = 7; 				//set BAUD rate to 1.25MHz, with Pclk at 20MHz
+	SPI2CONbits.MSTEN = 1; 	// enable master mode
+	SPI2CONbits.CKE = 1; 		// set clock-to-data timing (data centered on rising SCK edge)
+	SPI2CONbits.ON = 1; 		// turn SPI on
+}
+
+char spi_send_receive(char send) {
+ SPI2BUF = send; // send data to slave
+ while (!SPI2STATbits.SPIBUSY); // wait until received buffer fills, indicating data received
+ return SPI2BUF; // return received data and clear the read buffer full
+}
+
 
 //******************************************************************************
 //******************************************************************************
