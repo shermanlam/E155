@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="lab7_SL">
+		<CBX_INST_ENTRY INSTANCE_NAME="|lab7_SL|vga:vga1|pll:vgapll|altpll:altpll_component" CBX_FILE_NAME="pll_altpll.v"/>
+	</PROJECT>
+</LOG_ROOT>
