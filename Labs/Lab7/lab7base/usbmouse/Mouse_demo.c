@@ -146,10 +146,12 @@ BYTE currCharPos;
 BYTE FirstKeyPressed ;
 
 //Sherman. Make x and y movement global
-char xMvmt = 0;
-char yMvmt = 0;
-
-short mouseMvt = 0;
+short xPt = 0;
+short yPt = 0;
+short xLim = 640;
+short yLim = 480;
+char buffer = 10;		//width of the mouse
+int mouseData = 0; 	// use top 16bits for x, bottom 16 for y
 
 
 // *****************************************************************************
@@ -158,8 +160,7 @@ short mouseMvt = 0;
 // *****************************************************************************
 // *****************************************************************************
 void initspi(void);
-char spi_send_receive(char);
-void spi_send_short(short);
+int spi_send_receive(int);
 
 
 //******************************************************************************
@@ -277,18 +278,24 @@ void App_ProcessInputReport(void)
     USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportData, Appl_raw_report_buffer.ReportSize
                           ,Appl_XY_report_buffer, &Appl_XY_Axis_Details);
 
-    
-    xMvmt = (signed char) Appl_XY_report_buffer[0];	// Get X-axis movement from report
+	// Sherman   
+    xPt += (signed char) Appl_XY_report_buffer[0];	// Get X-axis movement from report
 	//PORTD = mouseMvt;	// Write to LEDs to show mouse is working
-    yMvmt = (signed char) Appl_XY_report_buffer[1];	// Get Y-axis movement from report
+    yPt += (signed char) Appl_XY_report_buffer[1];	// Get Y-axis movement from report
+
+	//Sherman. check bounds
+	if (xPt > xLim-buffer)	xPt = xLim-buffer;
+	if (xPt < 0)			xPt = 0;
+	if (yPt > yLim-buffer) 	yPt = yLim-buffer;
+	if (yPt < 0)			yPt = 0;
 
 	//Sherman. Write the x movement to PORTD.
-	PORTD = xMvmt;
+	PORTD = xPt;
 
 	//Sherman. Send x and y movements
-	spi_send_receive(xMvmt);
-	spi_send_receive(yMvmt);
-    
+	mouseData = yPt;		// lower 16 bits
+	mouseData |= (xPt<<16);	// upper 16 bits
+    spi_send_receive(mouseData);
 }
 
 
@@ -302,13 +309,14 @@ void initspi(void) {
  	char junk;
  	SPI2CONbits.ON = 0; 		// disable SPI to reset any previous state
 	junk = SPI2BUF; 			// read SPI buffer to clear the receive buffer
-	SPI2BRG = 7; 				//set BAUD rate to 1.25MHz, with Pclk at 20MHz
-	SPI2CONbits.MSTEN = 1; 	// enable master mode
+	SPI2BRG = 7; 				// set BAUD rate to 1.25MHz, with Pclk at 20MHz
+	SPI2CONbits.MSTEN = 1; 		// enable master mode
 	SPI2CONbits.CKE = 1; 		// set clock-to-data timing (data centered on rising SCK edge)
 	SPI2CONbits.ON = 1; 		// turn SPI on
+	SPI2CONbits.MODE32 = 1;		// set to 32 bit mode
 }
 
-char spi_send_receive(char send) {
+int spi_send_receive(int send) {
  SPI2BUF = send; // send data to slave
  while (!SPI2STATbits.SPIBUSY); // wait until received buffer fills, indicating data received
  return SPI2BUF; // return received data and clear the read buffer full
