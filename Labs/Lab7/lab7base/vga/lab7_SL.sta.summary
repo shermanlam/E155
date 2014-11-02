@@ -3,24 +3,24 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'sclk'
-Slack : -1.137
-TNS   : -8.969
+Slack : -1.145
+TNS   : -8.925
 
 Type  : Slow 1200mV 85C Model Setup 'spiRx:spi|counter[0]'
-Slack : 0.171
+Slack : 0.432
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Setup 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 34.994
+Slack : 34.669
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'sclk'
-Slack : -0.922
-TNS   : -3.582
+Slack : -0.672
+TNS   : -2.590
 
 Type  : Slow 1200mV 85C Model Hold 'spiRx:spi|counter[0]'
-Slack : -0.133
-TNS   : -0.485
+Slack : -0.480
+TNS   : -5.863
 
 Type  : Slow 1200mV 85C Model Hold 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
 Slack : 0.761
@@ -43,27 +43,27 @@ Slack : 19.572
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'sclk'
-Slack : -0.914
-TNS   : -6.591
+Slack : -0.922
+TNS   : -6.728
 
 Type  : Slow 1200mV 0C Model Setup 'spiRx:spi|counter[0]'
-Slack : 0.059
+Slack : 0.334
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 35.243
+Slack : 34.969
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'sclk'
-Slack : -0.920
-TNS   : -3.678
+Slack : -0.660
+TNS   : -2.631
 
 Type  : Slow 1200mV 0C Model Hold 'spiRx:spi|counter[0]'
-Slack : -0.046
-TNS   : -0.060
+Slack : -0.353
+TNS   : -3.251
 
 Type  : Slow 1200mV 0C Model Hold 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.708
+Slack : 0.706
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sclk'
@@ -83,32 +83,32 @@ Slack : 19.570
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'sclk'
-Slack : 0.085
+Slack : 0.082
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'spiRx:spi|counter[0]'
-Slack : 0.405
+Slack : 0.473
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 37.683
+Slack : 37.553
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'sclk'
-Slack : -0.438
-TNS   : -1.753
+Slack : -0.355
+TNS   : -1.424
 
 Type  : Fast 1200mV 0C Model Hold 'spiRx:spi|counter[0]'
-Slack : 0.128
+Slack : 0.011
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.304
+Slack : 0.305
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sclk'
 Slack : -3.000
-TNS   : -36.625
+TNS   : -36.878
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'spiRx:spi|counter[0]'
 Slack : -1.000
@@ -119,7 +119,7 @@ Slack : 12.097
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vga1|vgapll|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.650
+Slack : 19.649
 TNS   : 0.000
 
 ------------------------------------------------------------

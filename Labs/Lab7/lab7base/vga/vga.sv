@@ -123,8 +123,8 @@ Date: 11-2-14
 module background(input 	logic [9:0] x,y,
 						output	logic [7:0] r,g,b);
 					
-	assign r = 8'd0;
-	assign g = 8'd255;
+	assign r = x>>2;
+	assign g = y>>2;
 	assign b = 8'd0;
 	
 endmodule
@@ -139,7 +139,7 @@ Date: 11-2-14
 */
 module mouse(	input 	logic [9:0] x,y,xpt,ypt,
 					output	logic [7:0] r,g,b);
-	
+	/*
 	//size of mouse - rect box for now
 	parameter width = 8'd10;
 	parameter height = 8'd10;
@@ -148,6 +148,21 @@ module mouse(	input 	logic [9:0] x,y,xpt,ypt,
 	
 	always_comb begin
 		inrange = (x>=xpt) & (x<xpt+width) & (y>=ypt) & (y<ypt+height);
+		r = inrange? 8'd255 : 8'd0;
+		g = inrange? 8'd255 : 8'd0;
+		b = inrange? 8'd255 : 8'd0;
+	end
+	*/
+	//variable declaration
+	parameter size = 8'd8;					// size of the mouse			
+	logic intriangle, instem, inrange;	// if pixel is in various parts of the mouse
+	logic [9:0] dx, dy;						// difference between x coord of pixel and cursor position
+	always_comb begin
+		dx = x-xpt;
+		dy = y-ypt;
+		intriangle = (dx<size & dx>0 & dy<size & dy>0 & dx+dy<size);
+		instem = ((dx==dy) & dx<size & dx>0 & dy<size & dy>0);
+		inrange = intriangle | instem;
 		r = inrange? 8'd255 : 8'd0;
 		g = inrange? 8'd255 : 8'd0;
 		b = inrange? 8'd255 : 8'd0;

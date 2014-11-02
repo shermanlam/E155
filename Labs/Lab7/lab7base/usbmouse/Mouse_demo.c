@@ -150,8 +150,8 @@ short xPt = 0;
 short yPt = 0;
 short xLim = 640;
 short yLim = 480;
-char buffer = 10;		//width of the mouse
-int mouseData = 0; 	// use top 16bits for x, bottom 16 for y
+char buffer = 2;		// set boundary as offset from side of screen.
+int mouseData = 0; 		// use top 16bits for x, bottom 16 for y
 
 
 // *****************************************************************************
@@ -192,6 +192,7 @@ int main (void)
 
 		//Sherman. Init SPI
 		initspi();
+		spi_send_receive(mouseData);	//send once to change fpga cursor position to 0,0
         
         // Initialize USB layers
         USBInitialize( 0 );
