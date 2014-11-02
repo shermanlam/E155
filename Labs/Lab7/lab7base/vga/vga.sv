@@ -3,6 +3,7 @@
 // VGA driver with character generator
 
 module vga(input  logic       clk,
+			  input 	logic	[9:0]	xpt, ypt,					// x,y position for the rectangle
 			  output logic       vgaclk,						// 25 MHz VGA clock
 			  output logic       hsync, vsync, sync_b,	// to monitor & DAC
 			  output logic [7:0] r, g, b);					// to video DAC

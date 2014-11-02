@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for lab7_SL
-Sat Nov 01 23:16:16 2014
+Sat Nov 01 23:37:53 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -1747,7 +1747,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Sat Nov 01 23:16:13 2014
+    Info: Processing started: Sat Nov 01 23:37:50 2014
 Info: Command: quartus_sta lab7_SL -c lab7_SL
 Info: qsta_default_script.tcl version: #4
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1818,9 +1818,9 @@ Info (332146): Worst-case minimum pulse width slack is 12.097
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 347 megabytes
-    Info: Processing ended: Sat Nov 01 23:16:16 2014
+    Info: Peak virtual memory: 359 megabytes
+    Info: Processing ended: Sat Nov 01 23:37:53 2014
     Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
 
 

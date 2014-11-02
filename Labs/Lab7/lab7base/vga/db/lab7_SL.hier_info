@@ -32,6 +32,26 @@ b[7] <= vga:vga1.b
 
 |lab7_SL|vga:vga1
 clk => clk.IN1
+xpt[0] => ~NO_FANOUT~
+xpt[1] => ~NO_FANOUT~
+xpt[2] => ~NO_FANOUT~
+xpt[3] => ~NO_FANOUT~
+xpt[4] => ~NO_FANOUT~
+xpt[5] => ~NO_FANOUT~
+xpt[6] => ~NO_FANOUT~
+xpt[7] => ~NO_FANOUT~
+xpt[8] => ~NO_FANOUT~
+xpt[9] => ~NO_FANOUT~
+ypt[0] => ~NO_FANOUT~
+ypt[1] => ~NO_FANOUT~
+ypt[2] => ~NO_FANOUT~
+ypt[3] => ~NO_FANOUT~
+ypt[4] => ~NO_FANOUT~
+ypt[5] => ~NO_FANOUT~
+ypt[6] => ~NO_FANOUT~
+ypt[7] => ~NO_FANOUT~
+ypt[8] => ~NO_FANOUT~
+ypt[9] => ~NO_FANOUT~
 vgaclk <= vgaclk.DB_MAX_OUTPUT_PORT_TYPE
 hsync <= vgaController:vgaCont.port1
 vsync <= vgaController:vgaCont.port2
