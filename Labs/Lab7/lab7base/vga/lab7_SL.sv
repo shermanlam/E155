@@ -1,8 +1,8 @@
-module lab7_SL(input  logic       clk, reset,
-					input  logic 	    sclk, sdo, sdi,			// spi communication lines		
-					output logic       vgaclk,						// 25 MHz VGA clock
-					output logic       hsync, vsync, sync_b,	// to monitor & DAC
-					output logic [7:0] r, g, b);					// to video DAC
+module lab7_SL(	input  logic		clk, reset,
+				input  logic 		sclk, sdo, sdi,			// spi communication lines		
+				output logic    	vgaclk,					// 25 MHz VGA clock
+				output logic    	hsync, vsync, sync_b,	// to monitor & DAC
+				output logic [7:0] 	r, g, b);				// to video DAC
 	
 	logic [9:0] xpt;
 	logic [9:0] ypt;
@@ -27,9 +27,10 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: 11-2-14
 */
-module spiRx(  input logic sclk, sdo, reset,
-					output logic ready, sdi,
-					output logic [31:0] data);
+module spiRx(  	input logic 		sclk, sdo, reset,	// SPI data lines
+				output logic 		sdi,				// SPI data
+				output logic 		ready,				// whether the data packet is ready
+				output logic [31:0] data);				// data packet
 	//counter for 32 bits
 	parameter bits = 5'd31;
 	logic [4:0] counter;
@@ -61,15 +62,15 @@ Author: Sherman Lam
 Email: slam@g.hmc.edu
 Date: 11-2-14
 */
-module parse(	input logic [31:0] data,
-					input logic ready, reset,
-					output logic [9:0] xpt, ypt);
+module parse(	input logic [31:0] data,		// data packet
+				input logic ready, reset,		// whether data is ready to be stored, reset
+				output logic [9:0] xpt, ypt);	// x and y position of cursor
 	
 	logic [31:0] dataCp;
 	
 	//store 32 bit data
 	always_ff@(posedge ready, posedge reset) begin
-		if (reset) 	dataCp = '0;
+		if (reset) 		dataCp = '0;
 		else 			dataCp = data;
 	end
 	

@@ -138,24 +138,11 @@ Email: slam@g.hmc.edu
 Date: 11-2-14
 */
 module mouse(	input 	logic [9:0] x,y,xpt,ypt,
-					output	logic [7:0] r,g,b);
-	/*
-	//size of mouse - rect box for now
-	parameter width = 8'd10;
-	parameter height = 8'd10;
-	
-	logic inrange;
-	
-	always_comb begin
-		inrange = (x>=xpt) & (x<xpt+width) & (y>=ypt) & (y<ypt+height);
-		r = inrange? 8'd255 : 8'd0;
-		g = inrange? 8'd255 : 8'd0;
-		b = inrange? 8'd255 : 8'd0;
-	end
-	*/
+				output	logic [7:0] r,g,b);
+
 	//variable declaration
 	parameter size = 8'd8;					// size of the mouse			
-	logic intriangle, instem, inrange;	// if pixel is in various parts of the mouse
+	logic intriangle, instem, inrange;		// if pixel is in various parts of the mouse
 	logic [9:0] dx, dy;						// difference between x coord of pixel and cursor position
 	always_comb begin
 		dx = x-xpt;
